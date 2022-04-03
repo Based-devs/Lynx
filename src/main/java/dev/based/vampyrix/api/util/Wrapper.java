@@ -1,6 +1,6 @@
 package dev.based.vampyrix.api.util;
 
-import dev.based.vampyrix.impl.Main;
+import dev.based.vampyrix.impl.Vampyrix;
 import net.minecraft.client.Minecraft;
 
 //Global functions
@@ -12,8 +12,8 @@ public interface Wrapper {
         return mc.player == null || mc.world == null;
     }
 
-    default Main getMain() {
-        return Main.INSTANCE;
+    default Vampyrix getMain() {
+        return Vampyrix.INSTANCE;
     }
 
 }

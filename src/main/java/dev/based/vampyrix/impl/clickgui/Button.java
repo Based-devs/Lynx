@@ -19,12 +19,11 @@ public class Button extends AToggleContainer {
 
     @Override
     public void render(int mouseX, int mouseY, float partialTicks) {
-
         int toggleColor = module.toggled ? new Color(50, 80, 255, 200).getRGB() : new Color(40, 40, 40, 200).getRGB();
 
         Gui.drawRect(x, y, x + width, y + height, toggleColor);
 
-        Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(module.name, x + 2 f, y + 2.5 f, new Color(255, 255, 255).getRGB());
+        Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(module.name, x + 2, y + 2.5f, new Color(255, 255, 255).getRGB());
     }
 
     @Override

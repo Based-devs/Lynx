@@ -13,16 +13,16 @@ import net.minecraft.client.gui.Gui;
 //ClickGUI frame class that handles buttons
 public class Frame extends ADragComponent {
 
-    private final ArrayList < AToggleContainer > buttons;
+    private final ArrayList<AToggleContainer> buttons;
 
     private final Category category;
 
     public Frame(Category category, ArrayList < Module > modules, int x, int y, int width, int height) {
         super(x, y, width, height);
-        this.buttons = new ArrayList < > ();
+        this.buttons = new ArrayList<>();
         this.category = category;
 
-        for (Module module: modules) {
+        for (Module module : modules) {
             buttons.add(new Button(module, x, y, width, 12));
         }
     }
@@ -30,9 +30,9 @@ public class Frame extends ADragComponent {
     @Override
     public void render(int mouseX, int mouseY, float partialTicks) {
         Gui.drawRect(x, y, x + width, y + height, new Color(50, 80, 255, 200).getRGB());
-        Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(category.name, x + 2 f, y + 2.5 f, new Color(255, 255, 255).getRGB());
+        Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(category.name, x + 2, y + 2.5f, new Color(255, 255, 255).getRGB());
         int yOffset = height;
-        for (AToggleContainer button: buttons) {
+        for (AToggleContainer button : buttons) {
             button.x = this.x;
             button.y = this.y + yOffset;
             yOffset += button.getTotalHeight();
@@ -48,7 +48,7 @@ public class Frame extends ADragComponent {
             startDragging(mouseX, mouseY);
         }
 
-        for (AToggleContainer button: buttons) {
+        for (AToggleContainer button : buttons) {
             button.mouseClicked(mouseX, mouseY, mouseButton);
         }
     }
@@ -59,19 +59,19 @@ public class Frame extends ADragComponent {
             stopDragging(mouseX, mouseY);
         }
 
-        for (AToggleContainer button: buttons) {
+        for (AToggleContainer button : buttons) {
             button.mouseReleased(mouseX, mouseY, mouseButton);
         }
     }
 
     @Override
     public void keyTyped(char keyChar, int keyCode) {
-        for (AToggleContainer button: buttons) {
+        for (AToggleContainer button : buttons) {
             button.keyTyped(keyChar, keyCode);
         }
     }
 
-    public ArrayList < AToggleContainer > getButtons() {
+    public ArrayList<AToggleContainer> getButtons() {
         return buttons;
     }
 
