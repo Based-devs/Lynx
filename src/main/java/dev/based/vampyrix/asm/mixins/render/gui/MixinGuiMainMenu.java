@@ -1,7 +1,7 @@
 package dev.based.vampyrix.asm.mixins.render.gui;
 
 import dev.based.vampyrix.api.util.render.ColourUtil;
-import dev.based.vampyrix.impl.Vampyrix;
+import dev.based.vampyrix.Vampyrix;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.util.text.TextFormatting;

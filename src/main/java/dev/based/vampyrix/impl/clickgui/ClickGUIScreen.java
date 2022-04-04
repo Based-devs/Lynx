@@ -3,24 +3,22 @@ package dev.based.vampyrix.impl.clickgui;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import dev.based.vampyrix.api.module.Category;
-import dev.based.vampyrix.api.module.Module;
-import dev.based.vampyrix.impl.Vampyrix;
+import dev.based.vampyrix.impl.clickgui.frame.Frame;
+import dev.based.vampyrix.impl.modules.Category;
+import dev.based.vampyrix.api.util.Wrapper;
 import net.minecraft.client.gui.GuiScreen;
 
-//Base ClickGUI class that handles frames
-public class ClickGUIScreen extends GuiScreen {
+public class ClickGUIScreen extends GuiScreen implements Wrapper {
 
-    ArrayList < Frame > frames = new ArrayList < > ();
+    ArrayList<Frame> frames = new ArrayList < > ();
 
     public static ClickGUIScreen INSTANCE = new ClickGUIScreen();
 
     public ClickGUIScreen() {
-        int xoffset = 10;
-        for (Category category: Category.values()) {
-            final ArrayList < Module > modulesList = Vampyrix.INSTANCE.getModuleManager().getModulesByCategory(category);
-            frames.add(new Frame(category, modulesList, 10 + xoffset, 10, 100, 12));
-            xoffset += 100;
+        int xOffset = 10;
+        for (Category category : Category.values()) {
+            frames.add(new Frame(category, getVampyrix().getModuleManager().getModulesByCategory(category), 10 + xOffset, 10, 100, 16));
+            xOffset += 105;
         }
     }
 

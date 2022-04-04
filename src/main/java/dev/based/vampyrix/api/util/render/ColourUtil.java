@@ -5,7 +5,7 @@ import java.awt.*;
 public class ColourUtil {
 
     public static Color getClientColour() {
-        return new Color(128, 128, 255);
+        return new Color(50, 80, 255);
     }
 
 }

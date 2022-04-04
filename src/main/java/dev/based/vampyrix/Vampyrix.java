@@ -1,11 +1,12 @@
-package dev.based.vampyrix.impl;
+package dev.based.vampyrix;
 
+import me.wolfsurge.cerauno.EventBus;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;
 
-import dev.based.vampyrix.api.event.EventManager;
-import dev.based.vampyrix.api.module.ModuleManager;
+import dev.based.vampyrix.managers.EventManager;
+import dev.based.vampyrix.managers.ModuleManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -17,13 +18,14 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 public class Vampyrix {
 
     public static final String MODID = "vampyrix";
-    public static final String NAME = "vampyrix";
+    public static final String NAME = "Vampyrix";
     public static final String VERSION = "0.1";
 
     @Instance
     public static Vampyrix INSTANCE;
 
-    public static final Logger LOGGER = LogManager.getLogger("vampyrix");
+    private final Logger logger = LogManager.getLogger("vampyrix");
+    private final EventBus eventBus = new EventBus();
 
     private ModuleManager moduleManager;
     private EventManager eventManager;
@@ -32,18 +34,26 @@ public class Vampyrix {
     public void init(FMLInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(INSTANCE);
 
-        LOGGER.info("Setting up Vampyrix {}...", Vampyrix.VERSION);
+        logger.info("Setting up Vampyrix {}...", Vampyrix.VERSION);
 
         moduleManager = new ModuleManager();
-        LOGGER.info("Modules Initialized.");
+        logger.info("Modules Initialized.");
 
         eventManager = new EventManager();
-        LOGGER.info("Events Initialized.");
+        logger.info("Events Initialized.");
     }
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        Display.setTitle(Vampyrix.NAME + "Vampyrix 0.1" + Vampyrix.VERSION);
+        Display.setTitle(Vampyrix.NAME + " " + Vampyrix.VERSION);
+    }
+
+    public Logger getLogger() {
+        return logger;
+    }
+
+    public EventBus getEventBus() {
+        return eventBus;
     }
 
     public ModuleManager getModuleManager() {
