@@ -100,13 +100,13 @@ public class Setting<T> {
     }
 
     public T getNextMode() {
+        // thx linus
+
         Enum<?> enumVal = (Enum<?>) value;
 
-        // search all values
         String[] values = Arrays.stream(enumVal.getClass().getEnumConstants()).map(Enum::name).toArray(String[]::new);
         index = index + 1 > values.length - 1 ? 0 : index + 1;
 
-        // use value index
         return (T) Enum.valueOf(enumVal.getClass(), values[index]);
     }
 
