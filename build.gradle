@@ -4,10 +4,6 @@ buildscript {
             url = 'https://jitpack.io'
         }
 
-        maven {
-            url = 'https://repo.spongepowered.org/repository/maven-public/'
-        }
-    }
     dependencies {
         implementation 'com.github.therealbush:eventbus:1.0.2'
     }
