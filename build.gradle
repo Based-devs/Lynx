@@ -1,14 +1,21 @@
 buildscript {
     repositories {
         maven {
-            url = 'https://jitpack.io'
+            url = 'https://files.minecraftforge.net/maven'
         }
 
+        maven {
+            url = 'https://repo.spongepowered.org/repository/maven-public/'
+        }
+    }
     dependencies {
-        implementation 'com.github.therealbush:eventbus:1.0.2'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath 'org.spongepowered:mixingradle:0.4-SNAPSHOT'
     }
 }
 
+apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'org.spongepowered.mixin'
 
 version = '0.1'
 group = 'dev.based.vampyrix'
@@ -33,7 +40,7 @@ repositories {
     mavenCentral()
 
     maven {
-        url = 'com.github.therealbush:eventbus:1.0.2'
+        url = 'https://repo.spongepowered.org/repository/maven-public/'
     }
 }
 
