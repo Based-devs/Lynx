@@ -67,7 +67,7 @@ public class Frame extends ADragComponent {
     @Override
     public void mouseReleased(int mouseX, int mouseY, int mouseButton) {
         if (mouseButton == 0) {
-            stopDragging(mouseX, mouseY);
+            stopDragging();
         }
 
         if (expanded) {

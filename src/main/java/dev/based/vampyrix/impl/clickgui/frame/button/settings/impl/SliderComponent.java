@@ -16,7 +16,6 @@ import java.math.RoundingMode;
 import static org.lwjgl.opengl.GL11.glScalef;
 
 public class SliderComponent extends SettingComponent<Number> implements Wrapper {
-
     private boolean dragging = false;
 
     public SliderComponent(float x, float y, float width, float height, Setting<Number> setting) {

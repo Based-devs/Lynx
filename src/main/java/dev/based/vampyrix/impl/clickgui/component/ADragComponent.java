@@ -17,7 +17,7 @@ public abstract class ADragComponent extends AComponent {
         }
     }
 
-    public void stopDragging(int mouseX, int mouseY) {
+    public void stopDragging() {
         this.dragging = false;
     }
 

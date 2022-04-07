@@ -8,5 +8,5 @@ public enum Category {
 	MOVEMENT,
 	PLAYER,
 	RENDER,
-	CLIENT;
+	CLIENT
 }

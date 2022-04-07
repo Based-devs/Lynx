@@ -10,14 +10,14 @@ import net.minecraft.client.gui.GuiScreen;
 
 public class ClickGUIScreen extends GuiScreen implements Wrapper {
 
-    ArrayList<Frame> frames = new ArrayList < > ();
+    private static final ArrayList<Frame> frames = new ArrayList < > ();
 
-    public static ClickGUIScreen INSTANCE = new ClickGUIScreen();
+    public static final ClickGUIScreen INSTANCE = new ClickGUIScreen();
 
     public ClickGUIScreen() {
         int xOffset = 10;
         for (Category category : Category.values()) {
-            frames.add(new Frame(category, getVampyrix().getModuleManager().getModulesByCategory(category), 10 + xOffset, 10, 100, 16));
+            frames.add(new Frame(category, this.getVampyrix().getModuleManager().getModulesByCategory(category), 10 + xOffset, 10, 100, 16));
             xOffset += 105;
         }
     }

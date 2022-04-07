@@ -3,8 +3,8 @@ package dev.based.vampyrix.api.util.misc;
 public class StringFormatter {
 
     public static String formatEnum(Enum<?> enumIn) {
-        String text = enumIn.name();
-        StringBuilder formatted = new StringBuilder();
+        final String text = enumIn.name();
+        final StringBuilder formatted = new StringBuilder();
 
         boolean isFirst = true;
         for (char c : text.toCharArray()) {

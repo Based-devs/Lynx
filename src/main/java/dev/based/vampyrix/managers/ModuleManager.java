@@ -1,8 +1,9 @@
 package dev.based.vampyrix.managers;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
 import dev.based.vampyrix.impl.modules.Category;
 import dev.based.vampyrix.impl.modules.Module;
@@ -14,12 +15,10 @@ import net.minecraftforge.common.MinecraftForge;
 
 public class ModuleManager implements Wrapper {
 	
-	private List<Module> modules;
+	private final List<Module> modules;
 
 	public ModuleManager() {
-		modules = new ArrayList<>();
-
-		modules = Arrays.asList(
+		this.modules = Arrays.asList(
 				// Add movement modules
 				new Flight(),
 				new Step(),
@@ -28,7 +27,7 @@ public class ModuleManager implements Wrapper {
 				new ClickGUI()
 		);
 
-		modules.forEach(module -> {
+		this.modules.forEach(module -> {
 			// Setup module settings
 			module.setupSettings();
 
@@ -36,19 +35,14 @@ public class ModuleManager implements Wrapper {
 			module.registerSetting(module.getKeybind());
 		});
 
-		modules.sort(this::sortABC);
+		this.modules.sort(this::sortABC);
 
-		getVampyrix().getEventBus().register(this);
+		this.getVampyrix().getEventBus().register(this);
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 	
 	public Module getModuleByName(String name) {
-		for (Module m : this.modules) {
-			if (m.getName().equalsIgnoreCase(name)) {
-				return m;
-			}
-		}
-		return null;
+		return modules.stream().filter(module -> module.getName().toLowerCase().equals(name)).collect(Collectors.toList()).get(0);
 	}
 	
 	private int sortABC(Module module1, Module module2) {
@@ -56,19 +50,11 @@ public class ModuleManager implements Wrapper {
 	}
 	
 	public List<Module> getModules() {
-		return this.modules;
+		return modules;
 	}
 	
 	public List<Module> getModulesByCategory(Category c) {
-		List<Module> modulesList = new ArrayList<>();
-		
-		for (Module m : modules) {
-			if (m.getCategory() == c) {
-				modulesList.add(m);
-			}
-		}
-
-		return modulesList;
+		return modules.stream().filter(module -> module.getCategory() == c).collect(Collectors.toList());
 	}
 
 }

@@ -2,20 +2,16 @@ package dev.based.vampyrix.impl.modules;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Enumeration;
 import java.util.List;
 import java.util.function.Supplier;
 
 public class Setting<T> {
 
-    private String name;
+    private final String name;
     private String description;
 
-    private T value;
-
-    private T min;
-    private T max;
-    private T incrementation;
+    // Bad system, we store these values even when they aren't used which is wasteful in memory
+    private T value, min, max, incrementation;
 
     private int index;
 

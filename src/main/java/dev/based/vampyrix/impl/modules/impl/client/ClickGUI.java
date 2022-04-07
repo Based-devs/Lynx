@@ -7,7 +7,6 @@ import org.lwjgl.input.Keyboard;
 import dev.based.vampyrix.impl.clickgui.ClickGUIScreen;
 
 public class ClickGUI extends Module {
-
     public ClickGUI() {
         super("ClickGUI", "Initializes the ClickGUI", Category.CLIENT);
         this.getKeybind().getValue().setKeyCode(Keyboard.KEY_P);
@@ -16,11 +15,12 @@ public class ClickGUI extends Module {
     @Override
     public void onEnable() {
         if (nullCheck()) {
+            this.disable();
             return;
         }
 
         mc.displayGuiScreen(new ClickGUIScreen());
-        toggle();
+        this.disable();
     }
 
 }

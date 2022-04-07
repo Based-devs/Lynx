@@ -17,10 +17,9 @@ public class Module implements Wrapper, Toggleable {
 	
 	protected final Minecraft mc = Minecraft.getMinecraft();
 	
-	public String name;
-	public String description;
-	private Category category;
-	public boolean enabled;
+	private final String name, description;
+	private final Category category;
+	private boolean enabled = false;
 
 	public final Setting<Keybind> keybind = new Setting<>("Keybind", new Keybind(Keyboard.KEY_NONE)).setDescription("The keybind to toggle this module");
 
@@ -30,7 +29,6 @@ public class Module implements Wrapper, Toggleable {
 		this.name = name;
 		this.description = description;
 		this.category = category;
-		this.enabled = false;
 	}
 
 	/**
@@ -49,21 +47,31 @@ public class Module implements Wrapper, Toggleable {
 	public void onEnable() {}
 	public void onDisable() {}
 	public void onUpdate() {}
-	
-	public void toggle() {
-		this.enabled = !this.enabled;
-		
-		if(this.enabled) {
+
+	public void enable() {
+		if (!this.enabled) {
+			this.enabled = true;
+
 			MinecraftForge.EVENT_BUS.register(this);
 			Vampyrix.INSTANCE.getEventBus().register(this);
-
 			this.onEnable();
-		} else {
+		}
+	}
+
+	public void disable() {
+		if (this.enabled) {
+			this.enabled = false;
+
 			MinecraftForge.EVENT_BUS.unregister(this);
 			Vampyrix.INSTANCE.getEventBus().unregister(this);
 
 			this.onDisable();
 		}
+	}
+	
+	public void toggle() {
+		if (this.enabled) this.disable();
+		else this.enable();
 	}
 
 	// Getters

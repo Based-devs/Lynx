@@ -16,7 +16,6 @@ import static org.lwjgl.opengl.GL11.glScaled;
 import static org.lwjgl.opengl.GL11.glScalef;
 
 public class KeybindComponent extends SettingComponent<Keybind> implements Wrapper {
-
     private boolean isListening;
 
     public KeybindComponent(float x, float y, float width, float height, Setting<Keybind> setting) {
