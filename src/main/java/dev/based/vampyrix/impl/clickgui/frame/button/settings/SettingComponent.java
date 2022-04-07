@@ -17,8 +17,8 @@ import java.util.List;
 public abstract class SettingComponent<T> extends AComponent {
 
     private boolean expanded;
-    private Setting<T> setting;
-    private List<SettingComponent<?>> subcomponents = new ArrayList<>();
+    private final Setting<T> setting;
+    private final List<SettingComponent<?>> subcomponents = new ArrayList<>();
 
     public SettingComponent(float x, float y, float width, float height, Setting<T> setting) {
         super(x, y, width, height);

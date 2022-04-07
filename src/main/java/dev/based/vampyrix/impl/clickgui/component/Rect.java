@@ -1,11 +1,7 @@
 package dev.based.vampyrix.impl.clickgui.component;
 
-import dev.based.vampyrix.impl.clickgui.frame.Frame;
-
 public class Rect {
-
     public float x, y, width, height;
-    public Frame parent;
 
     public Rect(float x, float y, float width, float height) {
         this.x = x;

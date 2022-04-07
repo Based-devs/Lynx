@@ -32,5 +32,4 @@ public class RenderUtil {
         GlStateManager.enableTexture2D();
         GlStateManager.popMatrix();
     }
-
 }

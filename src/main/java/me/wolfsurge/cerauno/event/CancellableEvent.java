@@ -6,7 +6,6 @@ package me.wolfsurge.cerauno.event;
  * @since 05/03/22
  */
 public class CancellableEvent extends Event {
-
     private boolean cancelled;
 
     public void cancel() {

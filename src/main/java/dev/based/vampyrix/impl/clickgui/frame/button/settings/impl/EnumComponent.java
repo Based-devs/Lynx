@@ -13,7 +13,6 @@ import java.awt.*;
 import static org.lwjgl.opengl.GL11.glScalef;
 
 public class EnumComponent extends SettingComponent<Enum<?>> implements Wrapper {
-
     public EnumComponent(float x, float y, float width, float height, Setting<Enum<?>> setting) {
         super(x, y, width, height, setting);
     }

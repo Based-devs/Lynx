@@ -9,7 +9,6 @@ import java.awt.*;
 import static org.lwjgl.opengl.GL11.glScalef;
 
 public class BooleanComponent extends SettingComponent<Boolean> implements Wrapper {
-
     public BooleanComponent(float x, float y, float width, float height, Setting<Boolean> setting) {
         super(x, y, width, height, setting);
     }

@@ -29,5 +29,4 @@ public class Keybind {
     public void setKeyCode(int keyCode) {
         this.keyCode = keyCode;
     }
-
 }
