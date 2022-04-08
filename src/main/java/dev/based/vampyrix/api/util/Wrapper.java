@@ -4,7 +4,6 @@ import dev.based.vampyrix.Vampyrix;
 import net.minecraft.client.Minecraft;
 
 public interface Wrapper {
-	
     Minecraft mc = Minecraft.getMinecraft();
 
     default boolean nullCheck() {
@@ -14,5 +13,4 @@ public interface Wrapper {
     default Vampyrix getVampyrix() {
         return Vampyrix.INSTANCE;
     }
-
 }

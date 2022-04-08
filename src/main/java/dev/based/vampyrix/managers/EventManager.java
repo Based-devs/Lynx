@@ -4,7 +4,6 @@ import org.lwjgl.input.Keyboard;
 
 import dev.based.vampyrix.impl.modules.Module;
 import dev.based.vampyrix.api.util.Wrapper;
-import dev.based.vampyrix.Vampyrix;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;

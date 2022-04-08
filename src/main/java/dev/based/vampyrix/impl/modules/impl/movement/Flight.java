@@ -2,7 +2,6 @@ package dev.based.vampyrix.impl.modules.impl.movement;
 
 import dev.based.vampyrix.impl.modules.Category;
 import dev.based.vampyrix.impl.modules.Module;
-import dev.based.vampyrix.impl.modules.Setting;
 
 public class Flight extends Module {
 

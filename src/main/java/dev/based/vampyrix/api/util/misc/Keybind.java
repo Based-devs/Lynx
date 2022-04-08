@@ -2,6 +2,7 @@ package dev.based.vampyrix.api.util.misc;
 
 /**
  * Used for keybind settings
+ *
  * @author Wolfsurge
  * @since 03/04/22
  */
@@ -16,6 +17,7 @@ public class Keybind {
 
     /**
      * Gets the keycode
+     *
      * @return The keycode
      */
     public int getKeyCode() {
@@ -24,6 +26,7 @@ public class Keybind {
 
     /**
      * Sets the keycode
+     *
      * @param keyCode The keycode
      */
     public void setKeyCode(int keyCode) {

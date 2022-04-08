@@ -1,60 +1,58 @@
 package dev.based.vampyrix.managers;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
-import java.util.stream.Collectors;
-
+import dev.based.vampyrix.api.util.Wrapper;
 import dev.based.vampyrix.impl.modules.Category;
 import dev.based.vampyrix.impl.modules.Module;
-import dev.based.vampyrix.api.util.Wrapper;
 import dev.based.vampyrix.impl.modules.impl.client.ClickGUI;
 import dev.based.vampyrix.impl.modules.impl.movement.Flight;
 import dev.based.vampyrix.impl.modules.impl.movement.Step;
 import net.minecraftforge.common.MinecraftForge;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class ModuleManager implements Wrapper {
-	
-	private final List<Module> modules;
 
-	public ModuleManager() {
-		this.modules = Arrays.asList(
-				// Add movement modules
-				new Flight(),
-				new Step(),
+    private final List<Module> modules;
 
-				// Add client modules
-				new ClickGUI()
-		);
+    public ModuleManager() {
+        this.modules = Arrays.asList(
+                // Add movement modules
+                new Flight(),
+                new Step(),
 
-		this.modules.forEach(module -> {
-			// Setup module settings
-			module.setupSettings();
+                // Add client modules
+                new ClickGUI()
+        );
 
-			// Add module keybind last
-			module.registerSetting(module.getKeybind());
-		});
+        this.modules.forEach(module -> {
+            // Setup module settings
+            module.setupSettings();
 
-		this.modules.sort(this::sortABC);
+            // Add module keybind last
+            module.registerSetting(module.getKeybind());
+        });
 
-		this.getVampyrix().getEventBus().register(this);
-		MinecraftForge.EVENT_BUS.register(this);
-	}
-	
-	public Module getModuleByName(String name) {
-		return modules.stream().filter(module -> module.getName().toLowerCase().equals(name)).collect(Collectors.toList()).get(0);
-	}
-	
-	private int sortABC(Module module1, Module module2) {
-		return module1.getName().compareTo(module2.getName());
-	}
-	
-	public List<Module> getModules() {
-		return modules;
-	}
-	
-	public List<Module> getModulesByCategory(Category c) {
-		return modules.stream().filter(module -> module.getCategory() == c).collect(Collectors.toList());
-	}
+        this.modules.sort(this::sortABC);
 
+        this.getVampyrix().getEventBus().register(this);
+        MinecraftForge.EVENT_BUS.register(this);
+    }
+
+    public Module getModuleByName(String name) {
+        return modules.stream().filter(module -> module.getName().toLowerCase().equals(name)).collect(Collectors.toList()).get(0);
+    }
+
+    private int sortABC(Module module1, Module module2) {
+        return module1.getName().compareTo(module2.getName());
+    }
+
+    public List<Module> getModules() {
+        return modules;
+    }
+
+    public List<Module> getModulesByCategory(Category c) {
+        return modules.stream().filter(module -> module.getCategory() == c).collect(Collectors.toList());
+    }
 }

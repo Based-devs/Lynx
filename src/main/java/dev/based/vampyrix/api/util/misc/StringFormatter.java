@@ -26,5 +26,4 @@ public class StringFormatter {
 
         return formatted.toString();
     }
-
 }

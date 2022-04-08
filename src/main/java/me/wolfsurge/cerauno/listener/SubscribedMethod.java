@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 
 /**
  * An object which holds the data of a subscribed method
+ *
  * @author Wolfsurge
  * @since 05/03/22
  */
@@ -22,6 +23,7 @@ public class SubscribedMethod {
 
     /**
      * Gets the source of the method
+     *
      * @return The source of the method
      */
     public Object getSource() {
@@ -30,10 +32,10 @@ public class SubscribedMethod {
 
     /**
      * Gets the method
+     *
      * @return The method
      */
     public Method getMethod() {
         return method;
     }
-
 }

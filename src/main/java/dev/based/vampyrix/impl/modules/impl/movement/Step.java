@@ -47,7 +47,6 @@ public class Step extends Module {
     }
 
     public enum Mode {
-        VANILLA,
-        PACKET
+        VANILLA, PACKET
     }
 }

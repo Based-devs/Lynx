@@ -1,10 +1,9 @@
 package dev.based.vampyrix.impl.modules.impl.client;
 
+import dev.based.vampyrix.impl.clickgui.ClickGUIScreen;
 import dev.based.vampyrix.impl.modules.Category;
 import dev.based.vampyrix.impl.modules.Module;
 import org.lwjgl.input.Keyboard;
-
-import dev.based.vampyrix.impl.clickgui.ClickGUIScreen;
 
 public class ClickGUI extends Module {
     public ClickGUI() {
@@ -22,5 +21,4 @@ public class ClickGUI extends Module {
         mc.displayGuiScreen(new ClickGUIScreen());
         this.disable();
     }
-
 }

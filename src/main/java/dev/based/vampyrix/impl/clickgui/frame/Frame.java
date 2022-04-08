@@ -1,19 +1,18 @@
 package dev.based.vampyrix.impl.clickgui.frame;
 
-import java.awt.Color;
-import java.util.ArrayList;
-import java.util.List;
-
 import dev.based.vampyrix.api.util.misc.StringFormatter;
 import dev.based.vampyrix.api.util.render.ColourUtil;
 import dev.based.vampyrix.api.util.render.RenderUtil;
-import dev.based.vampyrix.impl.clickgui.frame.button.Button;
 import dev.based.vampyrix.impl.clickgui.component.ADragComponent;
 import dev.based.vampyrix.impl.clickgui.component.AToggleContainer;
+import dev.based.vampyrix.impl.clickgui.frame.button.Button;
 import dev.based.vampyrix.impl.modules.Category;
 import dev.based.vampyrix.impl.modules.Module;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Frame extends ADragComponent {
 
@@ -89,5 +88,4 @@ public class Frame extends ADragComponent {
     public List<AToggleContainer> getButtons() {
         return buttons;
     }
-
 }

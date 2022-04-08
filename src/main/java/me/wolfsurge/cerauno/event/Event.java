@@ -2,6 +2,7 @@ package me.wolfsurge.cerauno.event;
 
 /**
  * A basic event
+ *
  * @author Wolfsurge
  * @since 05/03/22
  */
@@ -12,6 +13,7 @@ public class Event {
 
     /**
      * Gets the state of the event
+     *
      * @return The state of the event
      */
     public State getState() {
@@ -34,5 +36,4 @@ public class Event {
          */
         PERI
     }
-
 }

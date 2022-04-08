@@ -2,17 +2,13 @@ package dev.based.vampyrix.impl.clickgui.frame.button.settings.impl;
 
 import dev.based.vampyrix.api.util.Wrapper;
 import dev.based.vampyrix.api.util.misc.Keybind;
-import dev.based.vampyrix.api.util.render.ColourUtil;
 import dev.based.vampyrix.api.util.render.RenderUtil;
 import dev.based.vampyrix.impl.clickgui.frame.button.settings.SettingComponent;
 import dev.based.vampyrix.impl.modules.Setting;
-import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
-import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
 
-import static org.lwjgl.opengl.GL11.glScaled;
 import static org.lwjgl.opengl.GL11.glScalef;
 
 public class KeybindComponent extends SettingComponent<Keybind> implements Wrapper {

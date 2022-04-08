@@ -5,7 +5,9 @@ import dev.based.vampyrix.api.util.render.ColourUtil;
 import dev.based.vampyrix.api.util.render.RenderUtil;
 import dev.based.vampyrix.impl.clickgui.frame.button.settings.SettingComponent;
 import dev.based.vampyrix.impl.modules.Setting;
+
 import java.awt.*;
+
 import static org.lwjgl.opengl.GL11.glScalef;
 
 public class BooleanComponent extends SettingComponent<Boolean> implements Wrapper {
@@ -38,8 +40,10 @@ public class BooleanComponent extends SettingComponent<Boolean> implements Wrapp
     }
 
     @Override
-    public void mouseReleased(int mouseX, int mouseY, int mouseButton) {}
+    public void mouseReleased(int mouseX, int mouseY, int mouseButton) {
+    }
 
     @Override
-    public void keyTyped(char keyChar, int keyCode) {}
+    public void keyTyped(char keyChar, int keyCode) {
+    }
 }

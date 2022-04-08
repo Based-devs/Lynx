@@ -4,8 +4,8 @@ import dev.based.vampyrix.api.util.misc.Keybind;
 import dev.based.vampyrix.api.util.render.ColourUtil;
 import dev.based.vampyrix.api.util.render.RenderUtil;
 import dev.based.vampyrix.impl.clickgui.component.AToggleContainer;
-import dev.based.vampyrix.impl.clickgui.frame.button.settings.impl.BooleanComponent;
 import dev.based.vampyrix.impl.clickgui.frame.button.settings.SettingComponent;
+import dev.based.vampyrix.impl.clickgui.frame.button.settings.impl.BooleanComponent;
 import dev.based.vampyrix.impl.clickgui.frame.button.settings.impl.EnumComponent;
 import dev.based.vampyrix.impl.clickgui.frame.button.settings.impl.KeybindComponent;
 import dev.based.vampyrix.impl.clickgui.frame.button.settings.impl.SliderComponent;
@@ -19,9 +19,9 @@ import java.util.List;
 
 public class Button extends AToggleContainer {
 
-    private boolean expanded;
     private final Module module;
     private final List<SettingComponent<?>> components = new ArrayList<>();
+    private boolean expanded;
 
     public Button(Module module, float x, float y, float width, float height) {
         super(module, x, y, width, height);
@@ -54,13 +54,13 @@ public class Button extends AToggleContainer {
             float barHeight = 0;
             for (SettingComponent<?> component : components) {
                 if (component.getSetting().isVisible()) {
-                    component.setPos(x + 3,y + height + barHeight);
+                    component.setPos(x + 3, y + height + barHeight);
                     component.render(mouseX, mouseY, partialTicks);
                     barHeight += component.getTotalHeight();
                 }
             }
 
-            RenderUtil.drawRect(x + 1, y + height, 2, barHeight,  ColourUtil.getClientColour().getRGB());
+            RenderUtil.drawRect(x + 1, y + height, 2, barHeight, ColourUtil.getClientColour().getRGB());
         }
     }
 
@@ -117,5 +117,4 @@ public class Button extends AToggleContainer {
 
         return totalHeight;
     }
-
 }

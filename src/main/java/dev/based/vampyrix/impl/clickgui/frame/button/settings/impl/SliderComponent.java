@@ -5,13 +5,9 @@ import dev.based.vampyrix.api.util.render.ColourUtil;
 import dev.based.vampyrix.api.util.render.RenderUtil;
 import dev.based.vampyrix.impl.clickgui.frame.button.settings.SettingComponent;
 import dev.based.vampyrix.impl.modules.Setting;
-import net.minecraft.client.Minecraft;
-import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
 import java.awt.*;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 import static org.lwjgl.opengl.GL11.glScalef;
 
@@ -72,8 +68,10 @@ public class SliderComponent extends SettingComponent<Number> implements Wrapper
     }
 
     @Override
-    public void mouseReleased(int mouseX, int mouseY, int mouseButton) {}
+    public void mouseReleased(int mouseX, int mouseY, int mouseButton) {
+    }
 
     @Override
-    public void keyTyped(char keyChar, int keyCode) {}
+    public void keyTyped(char keyChar, int keyCode) {
+    }
 }

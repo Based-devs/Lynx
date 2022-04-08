@@ -2,11 +2,9 @@ package dev.based.vampyrix.impl.clickgui.frame.button.settings.impl;
 
 import dev.based.vampyrix.api.util.Wrapper;
 import dev.based.vampyrix.api.util.misc.StringFormatter;
-import dev.based.vampyrix.api.util.render.ColourUtil;
 import dev.based.vampyrix.api.util.render.RenderUtil;
 import dev.based.vampyrix.impl.clickgui.frame.button.settings.SettingComponent;
 import dev.based.vampyrix.impl.modules.Setting;
-import org.lwjgl.input.Keyboard;
 
 import java.awt.*;
 
@@ -43,8 +41,10 @@ public class EnumComponent extends SettingComponent<Enum<?>> implements Wrapper 
     }
 
     @Override
-    public void mouseReleased(int mouseX, int mouseY, int mouseButton) {}
+    public void mouseReleased(int mouseX, int mouseY, int mouseButton) {
+    }
 
     @Override
-    public void keyTyped(char keyChar, int keyCode) {}
+    public void keyTyped(char keyChar, int keyCode) {
+    }
 }

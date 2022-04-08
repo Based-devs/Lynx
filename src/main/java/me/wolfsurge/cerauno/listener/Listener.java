@@ -7,6 +7,7 @@ import java.lang.annotation.Target;
 
 /**
  * The annotation to declare a method as a listener.
+ *
  * @author Wolfsurge
  * @since 05/03/22
  */

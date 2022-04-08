@@ -1,18 +1,17 @@
 package dev.based.vampyrix;
 
-import me.wolfsurge.cerauno.EventBus;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.lwjgl.opengl.Display;
-
 import dev.based.vampyrix.managers.EventManager;
 import dev.based.vampyrix.managers.ModuleManager;
+import me.wolfsurge.cerauno.EventBus;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.lwjgl.opengl.Display;
 
 @Mod(modid = Vampyrix.MODID, name = Vampyrix.NAME, version = Vampyrix.VERSION)
 public class Vampyrix {
@@ -61,5 +60,4 @@ public class Vampyrix {
     public EventManager getEventManager() {
         return eventManager;
     }
-
 }

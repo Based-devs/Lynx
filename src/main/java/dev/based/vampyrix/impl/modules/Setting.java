@@ -8,22 +8,20 @@ import java.util.function.Supplier;
 public class Setting<T> {
 
     private final String name;
+    private final List<Setting<?>> subsettings = new ArrayList<>();
     private String description;
-
     // Bad system, we store these values even when they aren't used which is wasteful in memory
     private T value, min, max, incrementation;
-
     private int index;
-
     private Supplier<Boolean> isVisible = () -> true;
     private Setting<?> parentSetting;
-    private final List<Setting<?>> subsettings = new ArrayList<>();
 
     // Constructors
 
     /**
      * Boolean, mode, and keybind settings
-     * @param name Name of the setting
+     *
+     * @param name  Name of the setting
      * @param value Default value
      */
     public Setting(String name, T value) {
@@ -33,10 +31,11 @@ public class Setting<T> {
 
     /**
      * Numeric settings
-     * @param name Name of the setting
-     * @param value Default value
-     * @param min Minimum value
-     * @param max Maximum value
+     *
+     * @param name           Name of the setting
+     * @param value          Default value
+     * @param min            Minimum value
+     * @param max            Maximum value
      * @param incrementation How much to increment by
      */
     public Setting(String name, T value, T min, T max, T incrementation) {
@@ -49,27 +48,10 @@ public class Setting<T> {
 
     // Setters
 
-    public void setValue(T value) {
-        this.value = value;
-    }
-
     public Setting<T> setVisibility(Supplier<Boolean> isVisible) {
         this.isVisible = isVisible;
         return this;
     }
-
-    public Setting<T> setDescription(String description) {
-        this.description = description;
-        return this;
-    }
-
-    public Setting<T> setParentSetting(Setting<?> parentSetting) {
-        this.parentSetting = parentSetting;
-        this.parentSetting.getSubsettings().add(this);
-        return this;
-    }
-
-    // Getters
 
     public String getName() {
         return name;
@@ -79,8 +61,19 @@ public class Setting<T> {
         return description;
     }
 
+    public Setting<T> setDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    // Getters
+
     public T getValue() {
         return value;
+    }
+
+    public void setValue(T value) {
+        this.value = value;
     }
 
     public T getMin() {
@@ -114,8 +107,13 @@ public class Setting<T> {
         return parentSetting;
     }
 
+    public Setting<T> setParentSetting(Setting<?> parentSetting) {
+        this.parentSetting = parentSetting;
+        this.parentSetting.getSubsettings().add(this);
+        return this;
+    }
+
     public List<Setting<?>> getSubsettings() {
         return subsettings;
     }
-
 }
