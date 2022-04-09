@@ -12,13 +12,11 @@ buildscript {
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
         classpath 'org.spongepowered:mixingradle:0.6-SNAPSHOT'
-        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.4'
     }
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'org.spongepowered.mixin'
-apply plugin: 'com.github.johnrengelman.shadow'
 
 version = '0.1'
 group = 'dev.based.vampyrix'
@@ -77,36 +75,23 @@ processResources {
 mixin {
     defaultObfuscationEnv searge
 
-    sourceSets {
-        main {
-            ext.refMap = 'mixins.vampyrix.refmap.json'
-        }
+    sourceSets.main {
+        ext.refMap = 'mixins.vampyrix.refmap.json'
     }
 }
 
-shadowJar {
+jar {
     dependencies {
-        include(dependency('org.spongepowered:mixin'))
+        include('org.spongepowered:mixin')
     }
 
-    manifest {
-        attributes(
-                'MixinConfigs': 'mixins.vampyrix.json',
-                'tweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
-                'TweakOrder': 0,
-                'FMLCorePluginContainsFMLMod': 'true',
-                'FMLCorePlugin': 'dev.based.vampyrix.asm.VampyrixMixinLoader',
-                'ForceLoadAsMod': 'true'
-        )
-    }
+    manifest.attributes(
+        'MixinConfigs': 'mixins.vampyrix.json',
+        'tweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
+        'TweakOrder': 0,
+        'FMLCorePluginContainsFMLMod': 'true',
+        'FMLCorePlugin': 'dev.based.vampyrix.asm.VampyrixMixinLoader',
+        'ForceLoadAsMod': 'true'
+    )
     classifier = 'release'
 }
-
-reobf {
-    shadowJar {
-        mappingType = 'SEARGE'
-        classpath = sourceSets.main.compileClasspath
-    }
-}
-
-build.dependsOn(shadowJar)
