@@ -50,6 +50,7 @@ dependencies {
         exclude module: 'guava'
         exclude module: 'gson'
         exclude module: 'commons-io'
+        exclude module: 'log4j-core'
     }
 
     compile group: 'org.json', name: 'json', version: '20211205'
@@ -73,11 +74,7 @@ processResources {
 mixin {
     defaultObfuscationEnv searge
 
-    sourceSets {
-        main {
-            ext.refMap = 'mixins.vampyrix.refmap.json'
-        }
-    }
+    add sourceSets.main, 'mixins.postman.refmap.json'
 }
 
 jar {
