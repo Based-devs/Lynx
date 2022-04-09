@@ -53,7 +53,7 @@ dependencies {
         exclude module: 'log4j-core'
     }
 
-    compile group: 'org.json', name: 'json', version: '20211205'
+    compile group: 'org.json', name: 'json', version: '20220320'
 }
 
 processResources {
