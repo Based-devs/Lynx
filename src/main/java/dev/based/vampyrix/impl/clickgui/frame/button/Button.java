@@ -5,6 +5,7 @@ import dev.based.vampyrix.api.util.render.ColourUtil;
 import dev.based.vampyrix.api.util.render.RenderUtil;
 import dev.based.vampyrix.api.clickgui.component.AToggleContainer;
 import dev.based.vampyrix.api.clickgui.button.SettingComponent;
+import dev.based.vampyrix.api.util.render.TextRenderer;
 import dev.based.vampyrix.impl.clickgui.frame.button.settings.BooleanComponent;
 import dev.based.vampyrix.impl.clickgui.frame.button.settings.EnumComponent;
 import dev.based.vampyrix.impl.clickgui.frame.button.settings.KeybindComponent;
@@ -17,7 +18,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Button extends AToggleContainer {
+public class Button extends AToggleContainer implements TextRenderer {
 
     private final Module module;
     private final List<SettingComponent<?>> components = new ArrayList<>();
@@ -47,8 +48,8 @@ public class Button extends AToggleContainer {
     public void render(int mouseX, int mouseY, float partialTicks) {
         RenderUtil.drawRect(x, y, width, height, isWithin(mouseX, mouseY) ? new Color(23, 23, 23, 200).getRGB() : 0x90000000);
 
-        Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(module.getName(), x + 4, y + 3.5f, module.isEnabled() ? ColourUtil.getClientColour().brighter().brighter().getRGB() : -1);
-        Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(expanded ? "-" : "+", x + width - 10, y + 3.5f, -1);
+        drawString(module.getName(), x + 4, y + 3.5f, module.isEnabled() ? ColourUtil.getClientColour().brighter().brighter().getRGB() : -1, true);
+        drawString(expanded ? "-" : "+", x + width - 10, y + 3.5f, -1, false);
 
         if (expanded) {
             float barHeight = 0;

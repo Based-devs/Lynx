@@ -10,8 +10,7 @@ import java.util.ArrayList;
 
 public class ClickGUIScreen extends GuiScreen implements Wrapper {
 
-    public static final ClickGUIScreen INSTANCE = new ClickGUIScreen();
-    private static final ArrayList<Frame> frames = new ArrayList<>();
+    private final ArrayList<Frame> frames = new ArrayList<>();
 
     public ClickGUIScreen() {
         int xOffset = 10;

@@ -52,7 +52,7 @@ public class Module implements Wrapper, Toggleable {
             this.enabled = true;
 
             MinecraftForge.EVENT_BUS.register(this);
-            Vampyrix.INSTANCE.getEventBus().register(this);
+            getVampyrix().getEventBus().register(this);
             this.onEnable();
         }
     }
@@ -62,7 +62,7 @@ public class Module implements Wrapper, Toggleable {
             this.enabled = false;
 
             MinecraftForge.EVENT_BUS.unregister(this);
-            Vampyrix.INSTANCE.getEventBus().unregister(this);
+            getVampyrix().getEventBus().unregister(this);
 
             this.onDisable();
         }

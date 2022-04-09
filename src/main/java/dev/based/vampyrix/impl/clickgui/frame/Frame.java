@@ -5,6 +5,7 @@ import dev.based.vampyrix.api.util.render.ColourUtil;
 import dev.based.vampyrix.api.util.render.RenderUtil;
 import dev.based.vampyrix.api.clickgui.component.ADragComponent;
 import dev.based.vampyrix.api.clickgui.component.AToggleContainer;
+import dev.based.vampyrix.api.util.render.TextRenderer;
 import dev.based.vampyrix.impl.clickgui.frame.button.Button;
 import dev.based.vampyrix.api.module.Category;
 import dev.based.vampyrix.api.module.Module;
@@ -14,7 +15,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Frame extends ADragComponent {
+public class Frame extends ADragComponent implements TextRenderer {
 
     private final List<AToggleContainer> buttons;
     private final Category category;
@@ -33,7 +34,7 @@ public class Frame extends ADragComponent {
     @Override
     public void render(int mouseX, int mouseY, float partialTicks) {
         RenderUtil.drawRect(x, y, width, height, ColourUtil.getClientColour().getRGB());
-        Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(StringFormatter.formatEnum(category), x + ((width / 2F) - (Minecraft.getMinecraft().fontRenderer.getStringWidth(StringFormatter.formatEnum(category)) / 2F)), y + 4, new Color(255, 255, 255).getRGB());
+        drawString(StringFormatter.formatEnum(category), x + ((width / 2F) - (Minecraft.getMinecraft().fontRenderer.getStringWidth(StringFormatter.formatEnum(category)) / 2F)), y + 4, new Color(255, 255, 255).getRGB(), true);
 
         if (expanded) {
             float yOffset = height;

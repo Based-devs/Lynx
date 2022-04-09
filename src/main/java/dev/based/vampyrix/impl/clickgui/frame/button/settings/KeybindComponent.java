@@ -26,8 +26,8 @@ public class KeybindComponent extends SettingComponent<Keybind> implements Wrapp
 
         glScalef(0.75f, 0.75f, 0.75f);
 
-        mc.fontRenderer.drawStringWithShadow(getSetting().getName(), (x + 5) * scaleFactor, (y + 4.5f) * scaleFactor, -1);
-        mc.fontRenderer.drawStringWithShadow((isListening ? "..." : Keyboard.getKeyName(getSetting().getValue().getKeyCode())), (x + width - 4.5f - (mc.fontRenderer.getStringWidth(isListening ? "..." : Keyboard.getKeyName(getSetting().getValue().getKeyCode())) * 0.75f)) * scaleFactor, (y + 4.5f) * scaleFactor, -1);
+        drawString(getSetting().getName(), (x + 5) * scaleFactor, (y + 4.5f) * scaleFactor, -1, true);
+        drawString((isListening ? "..." : Keyboard.getKeyName(getSetting().getValue().getKeyCode())), (x + width - 4.5f - (getStringWidth(isListening ? "..." : Keyboard.getKeyName(getSetting().getValue().getKeyCode())) * 0.75f)) * scaleFactor, (y + 4.5f) * scaleFactor, -1, true);
 
         glScalef(scaleFactor, scaleFactor, scaleFactor);
 

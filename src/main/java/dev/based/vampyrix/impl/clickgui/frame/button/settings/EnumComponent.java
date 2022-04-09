@@ -23,8 +23,8 @@ public class EnumComponent extends SettingComponent<Enum<?>> implements Wrapper 
 
         glScalef(0.75f, 0.75f, 0.75f);
 
-        mc.fontRenderer.drawStringWithShadow(getSetting().getName(), (x + 4) * scaleFactor, (y + 4.5f) * scaleFactor, -1);
-        mc.fontRenderer.drawStringWithShadow(StringFormatter.formatEnum(getSetting().getValue()), (x + width - 4.5f - (mc.fontRenderer.getStringWidth(StringFormatter.formatEnum(getSetting().getValue())) * 0.75f)) * scaleFactor, (y + 4.5f) * scaleFactor, -1);
+        drawString(getSetting().getName(), (x + 4) * scaleFactor, (y + 4.5f) * scaleFactor, -1, true);
+        drawString(StringFormatter.formatEnum(getSetting().getValue()), (x + width - 4.5f - (getStringWidth(StringFormatter.formatEnum(getSetting().getValue())) * 0.75f)) * scaleFactor, (y + 4.5f) * scaleFactor, -1, true);
 
         glScalef(scaleFactor, scaleFactor, scaleFactor);
 

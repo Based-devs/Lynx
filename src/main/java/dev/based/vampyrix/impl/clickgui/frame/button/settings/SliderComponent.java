@@ -50,8 +50,8 @@ public class SliderComponent extends SettingComponent<Number> implements Wrapper
 
         glScalef(0.75f, 0.75f, 0.75f);
 
-        mc.fontRenderer.drawStringWithShadow(getSetting().getName(), (x + 4) * scaleFactor, (y + 4.5f) * scaleFactor, -1);
-        mc.fontRenderer.drawStringWithShadow(String.valueOf(getSetting().getValue()), (x + width - 4.5f - (mc.fontRenderer.getStringWidth(String.valueOf(getSetting().getValue())) * 0.75f)) * scaleFactor, (y + 4.5f) * scaleFactor, -1);
+        drawString(getSetting().getName(), (x + 4) * scaleFactor, (y + 4.5f) * scaleFactor, -1, true);
+        drawString(String.valueOf(getSetting().getValue()), (x + width - 4.5f - (getStringWidth(String.valueOf(getSetting().getValue())) * 0.75f)) * scaleFactor, (y + 4.5f) * scaleFactor, -1, true);
 
         glScalef(scaleFactor, scaleFactor, scaleFactor);
 

@@ -4,6 +4,7 @@ import dev.based.vampyrix.api.util.misc.Keybind;
 import dev.based.vampyrix.api.util.render.ColourUtil;
 import dev.based.vampyrix.api.util.render.RenderUtil;
 import dev.based.vampyrix.api.clickgui.component.AComponent;
+import dev.based.vampyrix.api.util.render.TextRenderer;
 import dev.based.vampyrix.impl.clickgui.frame.button.settings.BooleanComponent;
 import dev.based.vampyrix.impl.clickgui.frame.button.settings.EnumComponent;
 import dev.based.vampyrix.impl.clickgui.frame.button.settings.KeybindComponent;
@@ -14,7 +15,7 @@ import net.minecraft.client.Minecraft;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class SettingComponent<T> extends AComponent {
+public abstract class SettingComponent<T> extends AComponent implements TextRenderer {
 
     private final Setting<T> setting;
     private final List<SettingComponent<?>> subcomponents = new ArrayList<>();
@@ -43,7 +44,7 @@ public abstract class SettingComponent<T> extends AComponent {
     @Override
     public void render(int mouseX, int mouseY, float partialTicks) {
         if (!subcomponents.isEmpty()) {
-            Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(expanded ? "-" : "+", x + width - 10, y + 3.5f, -1);
+            drawString(expanded ? "-" : "+", x + width - 10, y + 3.5f, -1, false);
         }
 
         if (isExpanded()) {
