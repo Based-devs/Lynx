@@ -1,7 +1,6 @@
-package dev.based.vampyrix.impl.clickgui.component;
+package dev.based.vampyrix.api.clickgui.component;
 
 public abstract class AComponent extends Rect {
-	
     public AComponent(float x, float y, float width, float height) {
         super(x, y, width, height);
     }

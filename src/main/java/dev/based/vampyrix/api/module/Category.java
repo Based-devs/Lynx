@@ -1,4 +1,4 @@
-package dev.based.vampyrix.impl.modules;
+package dev.based.vampyrix.api.module;
 
 //Module categories
 public enum Category {

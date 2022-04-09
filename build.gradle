@@ -89,8 +89,7 @@ jar {
                 'TweakOrder': 0,
                 'FMLCorePluginContainsFMLMod': 'true',
                 'FMLCorePlugin': 'dev.based.vampyrix.asm.VampyrixMixinLoader',
-                'ForceLoadAsMod': 'true',
-                'FMLAT': ''
+                'ForceLoadAsMod': 'true'
         )
     }
 }

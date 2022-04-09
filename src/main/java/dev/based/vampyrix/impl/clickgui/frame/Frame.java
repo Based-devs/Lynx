@@ -3,11 +3,11 @@ package dev.based.vampyrix.impl.clickgui.frame;
 import dev.based.vampyrix.api.util.misc.StringFormatter;
 import dev.based.vampyrix.api.util.render.ColourUtil;
 import dev.based.vampyrix.api.util.render.RenderUtil;
-import dev.based.vampyrix.impl.clickgui.component.ADragComponent;
-import dev.based.vampyrix.impl.clickgui.component.AToggleContainer;
+import dev.based.vampyrix.api.clickgui.component.ADragComponent;
+import dev.based.vampyrix.api.clickgui.component.AToggleContainer;
 import dev.based.vampyrix.impl.clickgui.frame.button.Button;
-import dev.based.vampyrix.impl.modules.Category;
-import dev.based.vampyrix.impl.modules.Module;
+import dev.based.vampyrix.api.module.Category;
+import dev.based.vampyrix.api.module.Module;
 import net.minecraft.client.Minecraft;
 
 import java.awt.*;

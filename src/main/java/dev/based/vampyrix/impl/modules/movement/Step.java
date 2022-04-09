@@ -1,9 +1,9 @@
-package dev.based.vampyrix.impl.modules.impl.movement;
+package dev.based.vampyrix.impl.modules.movement;
 
 import dev.based.vampyrix.api.util.player.PlayerUtil;
-import dev.based.vampyrix.impl.modules.Category;
-import dev.based.vampyrix.impl.modules.Module;
-import dev.based.vampyrix.impl.modules.Setting;
+import dev.based.vampyrix.api.module.Category;
+import dev.based.vampyrix.api.module.Module;
+import dev.based.vampyrix.api.module.setting.Setting;
 import net.minecraft.network.play.client.CPacketPlayer;
 
 public class Step extends Module {

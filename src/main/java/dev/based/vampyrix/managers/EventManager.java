@@ -2,7 +2,7 @@ package dev.based.vampyrix.managers;
 
 import org.lwjgl.input.Keyboard;
 
-import dev.based.vampyrix.impl.modules.Module;
+import dev.based.vampyrix.api.module.Module;
 import dev.based.vampyrix.api.util.Wrapper;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingEvent;

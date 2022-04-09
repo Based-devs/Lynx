@@ -1,10 +1,10 @@
-package dev.based.vampyrix.impl.clickgui.frame.button.settings.impl;
+package dev.based.vampyrix.impl.clickgui.frame.button.settings;
 
 import dev.based.vampyrix.api.util.Wrapper;
 import dev.based.vampyrix.api.util.misc.Keybind;
 import dev.based.vampyrix.api.util.render.RenderUtil;
-import dev.based.vampyrix.impl.clickgui.frame.button.settings.SettingComponent;
-import dev.based.vampyrix.impl.modules.Setting;
+import dev.based.vampyrix.api.clickgui.button.SettingComponent;
+import dev.based.vampyrix.api.module.setting.Setting;
 import org.lwjgl.input.Keyboard;
 
 import java.awt.*;

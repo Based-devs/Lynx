@@ -1,4 +1,4 @@
-package dev.based.vampyrix.impl.clickgui.component;
+package dev.based.vampyrix.api.clickgui.component;
 
 public abstract class ADragComponent extends AComponent {
 	

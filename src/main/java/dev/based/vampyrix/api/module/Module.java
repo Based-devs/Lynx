@@ -1,9 +1,10 @@
-package dev.based.vampyrix.impl.modules;
+package dev.based.vampyrix.api.module;
 
 import dev.based.vampyrix.Vampyrix;
 import dev.based.vampyrix.api.util.Wrapper;
 import dev.based.vampyrix.api.util.misc.Keybind;
-import dev.based.vampyrix.impl.clickgui.component.Toggleable;
+import dev.based.vampyrix.api.clickgui.component.Toggleable;
+import dev.based.vampyrix.api.module.setting.Setting;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
 import org.lwjgl.input.Keyboard;

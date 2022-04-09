@@ -1,6 +1,6 @@
-package dev.based.vampyrix.impl.clickgui.component;
+package dev.based.vampyrix.api.clickgui.component;
 
-public class Rect {
+public abstract class Rect {
     public float x, y, width, height;
 
     public Rect(float x, float y, float width, float height) {

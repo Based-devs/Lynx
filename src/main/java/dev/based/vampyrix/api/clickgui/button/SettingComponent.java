@@ -1,14 +1,14 @@
-package dev.based.vampyrix.impl.clickgui.frame.button.settings;
+package dev.based.vampyrix.api.clickgui.button;
 
 import dev.based.vampyrix.api.util.misc.Keybind;
 import dev.based.vampyrix.api.util.render.ColourUtil;
 import dev.based.vampyrix.api.util.render.RenderUtil;
-import dev.based.vampyrix.impl.clickgui.component.AComponent;
-import dev.based.vampyrix.impl.clickgui.frame.button.settings.impl.BooleanComponent;
-import dev.based.vampyrix.impl.clickgui.frame.button.settings.impl.EnumComponent;
-import dev.based.vampyrix.impl.clickgui.frame.button.settings.impl.KeybindComponent;
-import dev.based.vampyrix.impl.clickgui.frame.button.settings.impl.SliderComponent;
-import dev.based.vampyrix.impl.modules.Setting;
+import dev.based.vampyrix.api.clickgui.component.AComponent;
+import dev.based.vampyrix.impl.clickgui.frame.button.settings.BooleanComponent;
+import dev.based.vampyrix.impl.clickgui.frame.button.settings.EnumComponent;
+import dev.based.vampyrix.impl.clickgui.frame.button.settings.KeybindComponent;
+import dev.based.vampyrix.impl.clickgui.frame.button.settings.SliderComponent;
+import dev.based.vampyrix.api.module.setting.Setting;
 import net.minecraft.client.Minecraft;
 
 import java.util.ArrayList;

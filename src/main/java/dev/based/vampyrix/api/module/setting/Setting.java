@@ -1,4 +1,4 @@
-package dev.based.vampyrix.impl.modules;
+package dev.based.vampyrix.api.module.setting;
 
 import java.util.ArrayList;
 import java.util.Arrays;

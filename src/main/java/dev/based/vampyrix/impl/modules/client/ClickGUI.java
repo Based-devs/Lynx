@@ -1,8 +1,8 @@
-package dev.based.vampyrix.impl.modules.impl.client;
+package dev.based.vampyrix.impl.modules.client;
 
 import dev.based.vampyrix.impl.clickgui.ClickGUIScreen;
-import dev.based.vampyrix.impl.modules.Category;
-import dev.based.vampyrix.impl.modules.Module;
+import dev.based.vampyrix.api.module.Category;
+import dev.based.vampyrix.api.module.Module;
 import org.lwjgl.input.Keyboard;
 
 public class ClickGUI extends Module {

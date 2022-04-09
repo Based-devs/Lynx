@@ -1,11 +1,11 @@
 package dev.based.vampyrix.managers;
 
 import dev.based.vampyrix.api.util.Wrapper;
-import dev.based.vampyrix.impl.modules.Category;
-import dev.based.vampyrix.impl.modules.Module;
-import dev.based.vampyrix.impl.modules.impl.client.ClickGUI;
-import dev.based.vampyrix.impl.modules.impl.movement.Flight;
-import dev.based.vampyrix.impl.modules.impl.movement.Step;
+import dev.based.vampyrix.api.module.Category;
+import dev.based.vampyrix.api.module.Module;
+import dev.based.vampyrix.impl.modules.client.ClickGUI;
+import dev.based.vampyrix.impl.modules.movement.Flight;
+import dev.based.vampyrix.impl.modules.movement.Step;
 import net.minecraftforge.common.MinecraftForge;
 
 import java.util.Arrays;

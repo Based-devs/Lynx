@@ -1,17 +1,17 @@
-package dev.based.vampyrix.impl.clickgui.frame.button.settings.impl;
+package dev.based.vampyrix.impl.clickgui.frame.button.settings;
 
 import dev.based.vampyrix.api.util.Wrapper;
-import dev.based.vampyrix.api.util.render.ColourUtil;
+import dev.based.vampyrix.api.util.misc.StringFormatter;
 import dev.based.vampyrix.api.util.render.RenderUtil;
-import dev.based.vampyrix.impl.clickgui.frame.button.settings.SettingComponent;
-import dev.based.vampyrix.impl.modules.Setting;
+import dev.based.vampyrix.api.clickgui.button.SettingComponent;
+import dev.based.vampyrix.api.module.setting.Setting;
 
 import java.awt.*;
 
 import static org.lwjgl.opengl.GL11.glScalef;
 
-public class BooleanComponent extends SettingComponent<Boolean> implements Wrapper {
-    public BooleanComponent(float x, float y, float width, float height, Setting<Boolean> setting) {
+public class EnumComponent extends SettingComponent<Enum<?>> implements Wrapper {
+    public EnumComponent(float x, float y, float width, float height, Setting<Enum<?>> setting) {
         super(x, y, width, height, setting);
     }
 
@@ -23,7 +23,8 @@ public class BooleanComponent extends SettingComponent<Boolean> implements Wrapp
 
         glScalef(0.75f, 0.75f, 0.75f);
 
-        mc.fontRenderer.drawStringWithShadow(getSetting().getName(), (x + 4) * scaleFactor, (y + 4.5f) * scaleFactor, getSetting().getValue() ? ColourUtil.getClientColour().brighter().brighter().getRGB() : -1);
+        mc.fontRenderer.drawStringWithShadow(getSetting().getName(), (x + 4) * scaleFactor, (y + 4.5f) * scaleFactor, -1);
+        mc.fontRenderer.drawStringWithShadow(StringFormatter.formatEnum(getSetting().getValue()), (x + width - 4.5f - (mc.fontRenderer.getStringWidth(StringFormatter.formatEnum(getSetting().getValue())) * 0.75f)) * scaleFactor, (y + 4.5f) * scaleFactor, -1);
 
         glScalef(scaleFactor, scaleFactor, scaleFactor);
 
@@ -33,7 +34,7 @@ public class BooleanComponent extends SettingComponent<Boolean> implements Wrapp
     @Override
     public void mouseClicked(int mouseX, int mouseY, int mouseButton) {
         if (isWithin(mouseX, mouseY) && mouseButton == 0) {
-            getSetting().setValue(!getSetting().getValue());
+            getSetting().setValue(getSetting().getNextMode());
         }
 
         super.mouseClicked(mouseX, mouseY, mouseButton);
