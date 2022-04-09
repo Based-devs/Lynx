@@ -3,12 +3,11 @@ package me.wolfsurge.cerauno;
 import me.wolfsurge.cerauno.listener.Listener;
 import me.wolfsurge.cerauno.listener.SubscribedMethod;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
  * The main EventBus object. All events are posted from here, as well as objects being subscribed
@@ -19,7 +18,7 @@ import java.util.Map;
 public class EventBus {
 
     // A map of all classes and their subscribed methods
-    private final Map<Class<?>, ArrayList<SubscribedMethod>> subscribedMethods = new HashMap<>();
+    private final Map<Class<?>, CopyOnWriteArraySet<SubscribedMethod>> subscribedMethods = new ConcurrentHashMap<>();
 
     /**
      * Register an object
@@ -69,7 +68,7 @@ public class EventBus {
             method.setAccessible(true);
         }
 
-        subscribedMethods.computeIfAbsent(method.getParameterTypes()[0], e -> new ArrayList<>()).add(new SubscribedMethod(obj, method));
+        subscribedMethods.computeIfAbsent(method.getParameterTypes()[0], e -> new CopyOnWriteArraySet<>()).add(new SubscribedMethod(obj, method));
     }
 
     /**
@@ -81,14 +80,7 @@ public class EventBus {
         // Check that we successfully got the class
         if (subscribedMethods.get(obj.getClass()) != null) {
             // iterate through the map
-            subscribedMethods.get(obj.getClass()).forEach(method -> {
-                try {
-                    // Invoke (run) the method
-                    method.getMethod().invoke(method.getSource(), obj);
-                } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-                    e.printStackTrace();
-                }
-            });
+            subscribedMethods.get(obj.getClass()).forEach(method -> method.invoke(obj));
         }
     }
 

@@ -1,7 +1,6 @@
 package dev.based.vampyrix.api.util.misc;
 
 public class StringFormatter {
-
     public static String formatEnum(Enum<?> enumIn) {
         final String text = enumIn.name();
         final StringBuilder formatted = new StringBuilder();

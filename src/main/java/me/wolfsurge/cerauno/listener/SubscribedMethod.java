@@ -1,5 +1,6 @@
 package me.wolfsurge.cerauno.listener;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
@@ -37,5 +38,14 @@ public class SubscribedMethod {
      */
     public Method getMethod() {
         return method;
+    }
+
+    public void invoke(Object param) {
+        try {
+            method.invoke(param);
+        }
+        catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
     }
 }
