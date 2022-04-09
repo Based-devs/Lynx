@@ -4,7 +4,6 @@ import dev.based.vampyrix.api.module.Category;
 import dev.based.vampyrix.api.module.Module;
 
 public class Flight extends Module {
-
     public Flight() {
         super("Flight", "Lets you fly in survival mode", Category.MOVEMENT);
     }
