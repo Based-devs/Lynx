@@ -74,7 +74,11 @@ processResources {
 mixin {
     defaultObfuscationEnv searge
 
-    add sourceSets.main, 'mixins.postman.refmap.json'
+    sourceSets {
+        main {
+            ext.refMap = 'mixins.vampyrix.refmap.json'
+        }
+    }
 }
 
 jar {
