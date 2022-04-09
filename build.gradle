@@ -12,11 +12,13 @@ buildscript {
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
         classpath 'org.spongepowered:mixingradle:0.6-SNAPSHOT'
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.4'
     }
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'org.spongepowered.mixin'
+apply plugin: 'com.github.johnrengelman.shadow'
 
 version = '0.1'
 group = 'dev.based.vampyrix'
@@ -31,7 +33,7 @@ compileJava {
 minecraft {
     version = '1.12.2-14.23.5.2847'
     runDir = 'run'
-    mappings = 'snapshot_20171003'
+    mappings = 'stable_39'
     makeObfSourceJar = false
     clientJvmArgs += '-Dfml.coreMods.load=dev.based.vampyrix.asm.VampyrixMixinLoader'
     clientRunArgs += '--mixin mixins.vampyrix.json'
@@ -82,7 +84,11 @@ mixin {
     }
 }
 
-jar {
+shadowJar {
+    dependencies {
+        include(dependency('org.spongepowered:mixin'))
+    }
+
     manifest {
         attributes(
                 'MixinConfigs': 'mixins.vampyrix.json',
@@ -93,4 +99,14 @@ jar {
                 'ForceLoadAsMod': 'true'
         )
     }
+    classifier = 'release'
 }
+
+reobf {
+    shadowJar {
+        mappingType = 'SEARGE'
+        classpath = sourceSets.main.compileClasspath
+    }
+}
+
+build.dependsOn(shadowJar)
