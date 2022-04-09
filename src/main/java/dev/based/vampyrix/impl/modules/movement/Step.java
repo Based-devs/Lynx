@@ -1,13 +1,12 @@
 package dev.based.vampyrix.impl.modules.movement;
 
-import dev.based.vampyrix.api.util.player.PlayerUtil;
 import dev.based.vampyrix.api.module.Category;
 import dev.based.vampyrix.api.module.Module;
 import dev.based.vampyrix.api.module.setting.Setting;
+import dev.based.vampyrix.api.util.player.PlayerUtil;
 import net.minecraft.network.play.client.CPacketPlayer;
 
 public class Step extends Module {
-
     private final Setting<Mode> mode = new Setting<>("Mode", Mode.PACKET).setDescription("How to step up the block");
     private final Setting<Float> stepHeight = new Setting<>("Step Height", 1.5F, 0.5F, 2.5F, 0.5F).setDescription("How high to step up the block").setVisibility(() -> !mode.getValue().equals(Mode.PACKET));
 
@@ -17,8 +16,8 @@ public class Step extends Module {
 
     @Override
     public void setupSettings() {
-        registerSetting(mode);
-        registerSetting(stepHeight);
+        this.registerSetting(mode);
+        this.registerSetting(stepHeight);
     }
 
     @Override
@@ -28,7 +27,7 @@ public class Step extends Module {
 
     @Override
     public void onUpdate() {
-        if (nullCheck()) {
+        if (this.nullCheck()) {
             return;
         }
 
