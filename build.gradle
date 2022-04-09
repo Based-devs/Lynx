@@ -1,19 +1,20 @@
 buildscript {
     repositories {
         maven {
-            url = 'https://files.minecraftforge.net/maven'
+            url = "https://maven.minecraftforge.net/"
         }
 
         maven {
-            url = 'https://repo.spongepowered.org/repository/maven-public/'
+            url = 'net.minecraftforge.gradle:ForgeGradle:5.1.31'
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:5.1.31'
         classpath 'org.spongepowered:mixingradle:0.4-SNAPSHOT'
     }
 }
 
+apply plugin: 'brain.Main'
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'org.spongepowered.mixin'
 
