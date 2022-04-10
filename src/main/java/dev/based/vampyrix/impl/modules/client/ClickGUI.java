@@ -17,7 +17,7 @@ public class ClickGUI extends Module {
             return;
         }
 
-        mc.displayGuiScreen(getVampyrix().getClickGUIScreen());
+        mc.displayGuiScreen(this.getVampyrix().getClickGUIScreen());
         this.disable();
     }
 }
