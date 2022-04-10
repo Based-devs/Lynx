@@ -35,7 +35,7 @@ public class EventBus {
      * @param obj The object to unregister
      */
     public void unregister(Object obj) {
-        subscribedMethods.values().forEach(list -> list.removeIf(method -> method.getSource() == obj));
+        this.subscribedMethods.values().forEach(list -> list.removeIf(method -> method.getSource() == obj));
     }
 
     /**
@@ -68,7 +68,7 @@ public class EventBus {
             method.setAccessible(true);
         }
 
-        subscribedMethods.computeIfAbsent(method.getParameterTypes()[0], e -> new CopyOnWriteArraySet<>()).add(new SubscribedMethod(obj, method));
+        this.subscribedMethods.computeIfAbsent(method.getParameterTypes()[0], e -> new CopyOnWriteArraySet<>()).add(new SubscribedMethod(obj, method));
     }
 
     /**
@@ -78,9 +78,9 @@ public class EventBus {
      */
     public void post(Object obj) {
         // Check that we successfully got the class
-        if (subscribedMethods.get(obj.getClass()) != null) {
+        if (this.subscribedMethods.get(obj.getClass()) != null) {
             // iterate through the map
-            subscribedMethods.get(obj.getClass()).forEach(method -> method.invoke(obj));
+            this.subscribedMethods.get(obj.getClass()).forEach(method -> method.invoke(obj));
         }
     }
 

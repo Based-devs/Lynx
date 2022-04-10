@@ -7,9 +7,12 @@ package me.wolfsurge.cerauno.event;
  * @since 05/03/22
  */
 public class Event {
-
     // The state of the event
-    private State state;
+    private final State state;
+
+    public Event(State state) {
+        this.state = state;
+    }
 
     /**
      * Gets the state of the event

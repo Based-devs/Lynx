@@ -16,8 +16,8 @@ public class Step extends Module {
 
     @Override
     public void setupSettings() {
-        this.registerSetting(mode);
-        this.registerSetting(stepHeight);
+        this.registerSetting(this.mode);
+        this.registerSetting(this.stepHeight);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class Step extends Module {
 
                 break;
             case VANILLA:
-                mc.player.stepHeight = stepHeight.getValue();
+                mc.player.stepHeight = this.stepHeight.getValue();
                 break;
         }
     }

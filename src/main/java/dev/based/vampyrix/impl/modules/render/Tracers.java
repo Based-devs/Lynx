@@ -4,7 +4,6 @@ import dev.based.vampyrix.api.module.Category;
 import dev.based.vampyrix.api.module.Module;
 import dev.based.vampyrix.api.module.setting.Setting;
 import dev.based.vampyrix.api.util.maths.InterpolationUtil;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -16,7 +15,6 @@ import java.awt.*;
 import static org.lwjgl.opengl.GL11.*;
 
 public class Tracers extends Module {
-
     private final Setting<Boolean> players = new Setting<>("Players", true).setDescription("Draw lines to players");
     private final Setting<Color> playerColour = new Setting<>("Colour", Color.WHITE).setDescription("The colour of the lines to players").setParentSetting(players);
 
@@ -34,10 +32,10 @@ public class Tracers extends Module {
 
     @Override
     public void setupSettings() {
-        registerSetting(players);
-        registerSetting(mobs);
-        registerSetting(passive);
-        registerSetting(width);
+        this.registerSetting(players);
+        this.registerSetting(mobs);
+        this.registerSetting(passive);
+        this.registerSetting(width);
     }
 
     @Override
@@ -86,32 +84,28 @@ public class Tracers extends Module {
     }
 
     public boolean isEntityValid(Entity entity) {
-        if (entity instanceof EntityPlayer && entity != mc.player && players.getValue()) {
+        if (entity instanceof EntityPlayer && entity != mc.player && this.players.getValue()) {
             return true;
         }
 
-        if (entity instanceof EntityMob && mobs.getValue()) {
+        if (entity instanceof EntityMob && this.mobs.getValue()) {
             return true;
         }
 
-        if (entity instanceof EntityAnimal && passive.getValue()) {
-            return true;
-        }
-
-        return false;
+        return entity instanceof EntityAnimal && this.passive.getValue();
     }
 
     public Color getEntityColour(Entity entity) {
         if (entity instanceof EntityPlayer) {
-            return playerColour.getValue();
+            return this.playerColour.getValue();
         }
 
         if (entity instanceof EntityMob) {
-            return mobColour.getValue();
+            return this.mobColour.getValue();
         }
 
         if (entity instanceof EntityAnimal) {
-            return passiveColour.getValue();
+            return this.passiveColour.getValue();
         }
 
         return Color.WHITE;

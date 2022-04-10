@@ -6,8 +6,12 @@ package me.wolfsurge.cerauno.event;
  * @author Wolfsurge
  * @since 05/03/22
  */
-public class CancellableEvent extends Event {
-    private boolean cancelled;
+public class Cancellable extends Event {
+    private boolean cancelled = false;
+
+    public Cancellable(State state) {
+        super(state);
+    }
 
     public void cancel() {
         this.cancelled = true;

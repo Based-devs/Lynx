@@ -34,16 +34,16 @@ public class Vampyrix {
     public void init(FMLInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(INSTANCE);
 
-        logger.info("Setting up Vampyrix {}...", Vampyrix.VERSION);
+        this.logger.info("Setting up Vampyrix {}...", Vampyrix.VERSION);
 
-        moduleManager = new ModuleManager();
-        logger.info("Modules Initialized.");
+        this.moduleManager = new ModuleManager();
+        this.logger.info("Modules Initialized.");
 
-        eventManager = new EventManager();
-        logger.info("Events Initialized.");
+        this.eventManager = new EventManager();
+        this.logger.info("Events Initialized.");
 
-        clickGUIScreen = new ClickGUIScreen();
-        logger.info("ClickGUI Initialized.");
+        this.clickGUIScreen = new ClickGUIScreen();
+        this.logger.info("ClickGUI Initialized.");
     }
 
     @EventHandler
@@ -52,22 +52,22 @@ public class Vampyrix {
     }
 
     public Logger getLogger() {
-        return logger;
+        return this.logger;
     }
 
     public EventBus getEventBus() {
-        return eventBus;
+        return this.eventBus;
     }
 
     public ModuleManager getModuleManager() {
-        return moduleManager;
+        return this.moduleManager;
     }
 
     public EventManager getEventManager() {
-        return eventManager;
+        return this.eventManager;
     }
 
     public ClickGUIScreen getClickGUIScreen() {
-        return clickGUIScreen;
+        return this.clickGUIScreen;
     }
 }

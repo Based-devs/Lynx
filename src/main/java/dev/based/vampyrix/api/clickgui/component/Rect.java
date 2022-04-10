@@ -1,7 +1,7 @@
 package dev.based.vampyrix.api.clickgui.component;
 
 public abstract class Rect {
-    protected float x, y, width, height;
+    public float x, y, width, height;
 
     public Rect(float x, float y, float width, float height) {
         this.x = x;

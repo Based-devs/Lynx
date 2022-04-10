@@ -7,7 +7,10 @@ import dev.based.vampyrix.impl.modules.client.ClickGUI;
 import dev.based.vampyrix.impl.modules.movement.Flight;
 import dev.based.vampyrix.impl.modules.movement.Step;
 import dev.based.vampyrix.impl.modules.render.Tracers;
+import me.wolfsurge.cerauno.listener.Listener;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.gameevent.InputEvent;
+import org.lwjgl.input.Keyboard;
 
 import java.util.Arrays;
 import java.util.List;
@@ -41,11 +44,15 @@ public class ModuleManager implements Wrapper {
         this.modules.sort(this::sortABC);
 
         this.getVampyrix().getEventBus().register(this);
-        MinecraftForge.EVENT_BUS.register(this);
     }
 
     public Module getModuleByName(String name) {
-        return modules.stream().filter(module -> module.getName().toLowerCase().equals(name)).collect(Collectors.toList()).get(0);
+        return this.modules.stream().filter(module -> module.getName().toLowerCase().equals(name)).collect(Collectors.toList()).get(0);
+    }
+
+    @Listener
+    private void onKeyTyped(InputEvent.KeyInputEvent event) {
+        this.getModules().stream().filter(module -> module.getKeybind().getValue().getKeyCode() == Keyboard.getEventKey()).forEach(Module::toggle);
     }
 
     private int sortABC(Module module1, Module module2) {
@@ -53,10 +60,10 @@ public class ModuleManager implements Wrapper {
     }
 
     public List<Module> getModules() {
-        return modules;
+        return this.modules;
     }
 
     public List<Module> getModulesByCategory(Category c) {
-        return modules.stream().filter(module -> module.getCategory() == c).collect(Collectors.toList());
+        return this.modules.stream().filter(module -> module.getCategory() == c).collect(Collectors.toList());
     }
 }

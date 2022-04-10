@@ -5,6 +5,9 @@
   "minVersion": "0.7.11",
   "compatibilityLevel": "JAVA_8",
   "client": [
-      "render.gui.MixinGuiMainMenu"
+    "render.gui.MixinGuiMainMenu"
+  ],
+  "mixins": [
+    "system.MixinKeyboard"
   ]
 }

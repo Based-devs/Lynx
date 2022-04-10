@@ -1,5 +1,6 @@
 package dev.based.vampyrix.managers;
 
+import dev.based.vampyrix.Vampyrix;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import org.lwjgl.input.Keyboard;
@@ -12,10 +13,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 
 public class EventManager implements Wrapper {
-
     public EventManager() {
     	MinecraftForge.EVENT_BUS.register(this);
-        this.getVampyrix().getEventBus().register(this);
     }
     
     @SubscribeEvent
@@ -27,9 +26,7 @@ public class EventManager implements Wrapper {
     
     @SubscribeEvent
 	public void onKey(InputEvent.KeyInputEvent event) {
-		if (!nullCheck() && Keyboard.getEventKeyState() && Keyboard.getEventKey() > 1) {
-            this.getVampyrix().getModuleManager().getModules().stream().filter(module -> module.getKeybind().getValue().getKeyCode() == Keyboard.getEventKey()).forEach(Module::toggle);
-        }
+        Vampyrix.INSTANCE.getEventBus().post(event);
 	}
 
     @SubscribeEvent
