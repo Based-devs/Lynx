@@ -17,13 +17,13 @@ public class BooleanComponent extends SettingComponent<Boolean> implements Wrapp
 
     @Override
     public void render(int mouseX, int mouseY, float partialTicks) {
-        RenderUtil.drawRect(x, y, width, height, isWithin(mouseX, mouseY) ? new Color(23, 23, 23, 200).getRGB() : 0x90000000);
+        RenderUtil.drawRect(this.x, this.y, this.width, this.height, this.isWithin(mouseX, mouseY) ? new Color(23, 23, 23, 200).getRGB() : 0x90000000);
 
         float scaleFactor = 1 / 0.75f;
 
         glScalef(0.75f, 0.75f, 0.75f);
 
-        drawString(getSetting().getName(), (x + 4) * scaleFactor, (y + 4.5f) * scaleFactor, getSetting().getValue() ? ColourUtil.getClientColour().brighter().brighter().getRGB() : -1, true);
+        drawString(this.getSetting().getName(), (x + 4) * scaleFactor, (y + 4.5f) * scaleFactor, this.getSetting().getValue() ? ColourUtil.getClientColour().brighter().brighter().getRGB() : -1, true);
 
         glScalef(scaleFactor, scaleFactor, scaleFactor);
 
@@ -33,17 +33,15 @@ public class BooleanComponent extends SettingComponent<Boolean> implements Wrapp
     @Override
     public void mouseClicked(int mouseX, int mouseY, int mouseButton) {
         if (isWithin(mouseX, mouseY) && mouseButton == 0) {
-            getSetting().setValue(!getSetting().getValue());
+            this.getSetting().setValue(!this.getSetting().getValue());
         }
 
         super.mouseClicked(mouseX, mouseY, mouseButton);
     }
 
     @Override
-    public void mouseReleased(int mouseX, int mouseY, int mouseButton) {
-    }
+    public void mouseReleased(int mouseX, int mouseY, int mouseButton) {}
 
     @Override
-    public void keyTyped(char keyChar, int keyCode) {
-    }
+    public void keyTyped(char keyChar, int keyCode) {}
 }

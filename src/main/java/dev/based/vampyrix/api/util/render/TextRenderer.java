@@ -7,7 +7,6 @@ import dev.based.vampyrix.api.util.Wrapper;
  * Will just be so it's all in one file
  */
 public interface TextRenderer extends Wrapper {
-
     default void drawString(String string, float x, float y, int colour, boolean shadow) {
         mc.fontRenderer.drawString(string, x, y, colour, shadow);
     }
@@ -19,5 +18,4 @@ public interface TextRenderer extends Wrapper {
     default float getFontHeight() {
         return mc.fontRenderer.FONT_HEIGHT;
     }
-
 }

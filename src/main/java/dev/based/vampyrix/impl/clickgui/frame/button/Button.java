@@ -28,15 +28,15 @@ public class Button extends AToggleContainer implements TextRenderer {
         float offset = y + height + height + 2;
         for (Setting<?> setting : this.module.getSettings()) {
             if (setting.getValue() instanceof Boolean) {
-                components.add(new BooleanComponent(x + 2, offset, width - 3, height, (Setting<Boolean>) setting));
+                this.components.add(new BooleanComponent(x + 2, offset, width - 3, height, (Setting<Boolean>) setting));
             } else if (setting.getValue() instanceof Color) {
-                components.add(new ColourComponent(x + 2, offset, width - 3, height, (Setting<Color>) setting));
+                this.components.add(new ColourComponent(x + 2, offset, width - 3, height, (Setting<Color>) setting));
             } else if (setting.getValue() instanceof Number) {
-                components.add(new SliderComponent(x + 2, offset, width - 3, height, (Setting<Number>) setting));
+                this.components.add(new SliderComponent(x + 2, offset, width - 3, height, (Setting<Number>) setting));
             } else if (setting.getValue() instanceof Enum<?>) {
-                components.add(new EnumComponent(x + 2, offset, width - 3, height, (Setting<Enum<?>>) setting));
+                this.components.add(new EnumComponent(x + 2, offset, width - 3, height, (Setting<Enum<?>>) setting));
             } else if (setting.getValue() instanceof Keybind) {
-                components.add(new KeybindComponent(x + 2, offset, width - 3, height, (Setting<Keybind>) setting));
+                this.components.add(new KeybindComponent(x + 2, offset, width - 3, height, (Setting<Keybind>) setting));
             }
 
             offset += height;
@@ -45,35 +45,35 @@ public class Button extends AToggleContainer implements TextRenderer {
 
     @Override
     public void render(int mouseX, int mouseY, float partialTicks) {
-        RenderUtil.drawRect(x, y, width, height, isWithin(mouseX, mouseY) ? new Color(23, 23, 23, 200).getRGB() : 0x90000000);
+        RenderUtil.drawRect(this.x, this.y, this.width, this.height, this.isWithin(mouseX, mouseY) ? new Color(23, 23, 23, 200).getRGB() : 0x90000000);
 
-        drawString(module.getName(), x + 4, y + 3.5f, module.isEnabled() ? ColourUtil.getClientColour().brighter().brighter().getRGB() : -1, true);
-        drawString(expanded ? "-" : "+", x + width - 10, y + 3.5f, -1, false);
+        this.drawString(this.module.getName(), this.x + 4, y + 3.5f, this.module.isEnabled() ? ColourUtil.getClientColour().brighter().brighter().getRGB() : -1, true);
+        this.drawString(this.expanded ? "-" : "+", this.x + this.width - 10, y + 3.5f, -1, false);
 
-        if (expanded) {
+        if (this.expanded) {
             float barHeight = 0;
-            for (SettingComponent<?> component : components) {
+            for (SettingComponent<?> component : this.components) {
                 if (component.getSetting().isVisible()) {
-                    component.setPos(x + 3, y + height + barHeight);
+                    component.setPos(this.x + 3, this.y + this.height + barHeight);
                     component.render(mouseX, mouseY, partialTicks);
                     barHeight += component.getTotalHeight();
                 }
             }
 
-            RenderUtil.drawRect(x + 1, y + height, 2, barHeight, ColourUtil.getClientColour().getRGB());
+            RenderUtil.drawRect(x + 1, this.y + this.height, 2, barHeight, ColourUtil.getClientColour().getRGB());
         }
     }
 
     @Override
     public void mouseClicked(int mouseX, int mouseY, int mouseButton) {
         if (isWithin(mouseX, mouseY) && mouseButton == 0) {
-            module.toggle();
+            this.module.toggle();
         } else if (isWithin(mouseX, mouseY) && mouseButton == 1) {
-            expanded = !expanded;
+            this.expanded = !this.expanded;
         }
 
-        if (expanded) {
-            for (SettingComponent<?> settingComponent : components) {
+        if (this.expanded) {
+            for (SettingComponent<?> settingComponent : this.components) {
                 if (settingComponent.getSetting().isVisible()) {
                     settingComponent.mouseClicked(mouseX, mouseY, mouseButton);
                 }
@@ -83,8 +83,8 @@ public class Button extends AToggleContainer implements TextRenderer {
 
     @Override
     public void mouseReleased(int mouseX, int mouseY, int mouseButton) {
-        if (expanded) {
-            for (SettingComponent<?> settingComponent : components) {
+        if (this.expanded) {
+            for (SettingComponent<?> settingComponent : this.components) {
                 if (settingComponent.getSetting().isVisible()) {
                     settingComponent.mouseReleased(mouseX, mouseY, mouseButton);
                 }
@@ -94,8 +94,8 @@ public class Button extends AToggleContainer implements TextRenderer {
 
     @Override
     public void keyTyped(char keyChar, int keyCode) {
-        if (expanded) {
-            for (SettingComponent<?> settingComponent : components) {
+        if (this.expanded) {
+            for (SettingComponent<?> settingComponent : this.components) {
                 if (settingComponent.getSetting().isVisible()) {
                     settingComponent.keyTyped(keyChar, keyCode);
                 }
@@ -105,10 +105,10 @@ public class Button extends AToggleContainer implements TextRenderer {
 
     @Override
     public float getTotalHeight() {
-        float totalHeight = height;
+        float totalHeight = this.height;
 
-        if (expanded) {
-            for (SettingComponent<?> settingComponent : components) {
+        if (this.expanded) {
+            for (SettingComponent<?> settingComponent : this.components) {
                 if (settingComponent.getSetting().isVisible()) {
                     totalHeight += settingComponent.getTotalHeight();
                 }

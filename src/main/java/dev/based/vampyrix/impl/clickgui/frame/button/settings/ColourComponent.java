@@ -33,49 +33,49 @@ public class ColourComponent extends SettingComponent<Color> {
 
         float[] hsbValues = Color.RGBtoHSB(setting.getValue().getRed(), setting.getValue().getGreen(), setting.getValue().getBlue(), null);
 
-        hueSetting.setValue(hsbValues[0]);
-        alphaSetting.setValue(setting.getValue().getAlpha());
+        this.hueSetting.setValue(hsbValues[0]);
+        this.alphaSetting.setValue(setting.getValue().getAlpha());
 
-        pickerComponents.add(new SliderComponent(x + 2, y + height, width - 2, height, hueSetting));
-        pickerComponents.add(new SliderComponent(x + 2, y + height, width - 2, height, alphaSetting));
+        this.pickerComponents.add(new SliderComponent(x + 2, y + height, width - 2, height, this.hueSetting));
+        this.pickerComponents.add(new SliderComponent(x + 2, y + height, width - 2, height, this.alphaSetting));
 
-        finalColour = setting.getValue();
+        this.finalColour = setting.getValue();
     }
 
     @Override
     public void render(int mouseX, int mouseY, float partialTicks) {
-        RenderUtil.drawRect(x, y, width, height, isWithin(mouseX, mouseY) ? new Color(23, 23, 23, 200).getRGB() : 0x90000000);
+        RenderUtil.drawRect(this.x, this.y, this.width, this.height, this.isWithin(mouseX, mouseY) ? new Color(23, 23, 23, 200).getRGB() : 0x90000000);
 
         float scaleFactor = 1 / 0.75f;
 
         glScalef(0.75f, 0.75f, 0.75f);
 
-        drawString(getSetting().getName(), (x + 4) * scaleFactor, (y + 4.5f) * scaleFactor, -1, true);
+        this.drawString(this.getSetting().getName(), (x + 4) * scaleFactor, (y + 4.5f) * scaleFactor, -1, true);
 
         glScalef(scaleFactor, scaleFactor, scaleFactor);
 
-        RenderUtil.drawRect(x + width - 13, y + 2, 10, 10, getSetting().getValue().getRGB());
+        RenderUtil.drawRect(x + width - 13, y + 2, 10, 10, this.getSetting().getValue().getRGB());
 
-        if (open) {
-            RenderUtil.drawRect(x, y + height + (pickerComponents.size() * height), width, 74, 0x90000000);
-            RenderUtil.drawRect(x, y + height, 2, getTotalHeight() - height, ColourUtil.getClientColour().getRGB());
+        if (this.open) {
+            RenderUtil.drawRect(this.x, this.y + this.height + (this.pickerComponents.size() * this.height), this.width, 74, 0x90000000);
+            RenderUtil.drawRect(this.x, this.y + this.height, 2, getTotalHeight() - this.height, ColourUtil.getClientColour().getRGB());
 
-            float offset = y + height;
-            for (SettingComponent<?> component : pickerComponents) {
+            float offset = this.y + this.height;
+            for (SettingComponent<?> component : this.pickerComponents) {
                 component.setPos(x + 2, offset);
                 offset += component.getTotalHeight();
             }
 
-            pickerComponents.forEach(component -> component.render(mouseX, mouseY, partialTicks));
+            this.pickerComponents.forEach(component -> component.render(mouseX, mouseY, partialTicks));
 
             float hue = this.hueSetting.getValue().floatValue();
 
             // Picker attributes
-            Color colour = Color.getHSBColor(hueSetting.getValue().floatValue() / 360, 1, 1);
+            Color colour = Color.getHSBColor(this.hueSetting.getValue().floatValue() / 360, 1, 1);
 
-            float pickerX = x + 4;
-            float pickerY = y + height + (pickerComponents.size() * height) + 2;
-            float pickerWidth = width - 6;
+            float pickerX = this.x + 4;
+            float pickerY = this.y + this.height + (this.pickerComponents.size() * this.height) + 2;
+            float pickerWidth = this.width - 6;
             float pickerHeight = 70;
 
             // GL shit pt 1
@@ -105,24 +105,23 @@ public class ColourComponent extends SettingComponent<Color> {
             GlStateManager.popMatrix();
 
             // awful thing to check if we are dragging the hue slider
-            for (SettingComponent<?> settingComponent : pickerComponents) {
+            for (SettingComponent<?> settingComponent : this.pickerComponents) {
                 if (settingComponent.getSetting() == this.hueSetting && ((SliderComponent) settingComponent).isDragging()) {
-                    hue = hueSetting.getValue().floatValue();
-                    float[] hsb2 = Color.RGBtoHSB(finalColour.getRed(), finalColour.getGreen(), finalColour.getBlue(), null);
-                    finalColour = new Color(Color.HSBtoRGB(hue / 360, hsb2[1], hsb2[2]));
+                    hue = this.hueSetting.getValue().floatValue();
+                    float[] hsb2 = Color.RGBtoHSB(this.finalColour.getRed(), this.finalColour.getGreen(), this.finalColour.getBlue(), null);
+                    this.finalColour = new Color(Color.HSBtoRGB(hue / 360, hsb2[1], hsb2[2]));
                 }
 
                 // If we are dragging a slider, we don't want to pick a colour
                 if (settingComponent instanceof SliderComponent && ((SliderComponent) settingComponent).isDragging()) {
-                    draggingPicker = false;
+                    this.draggingPicker = false;
                 }
             }
 
-            if (draggingPicker) {
-                float saturation;
-                float brightness;
-
-                float satDiff = Math.min(pickerWidth, Math.max(0, mouseX - pickerX));
+            if (this.draggingPicker) {
+                float saturation,
+                        brightness,
+                        satDiff = Math.min(pickerWidth, Math.max(0, mouseX - pickerX));
 
                 if (satDiff == 0) {
                     saturation = 0;
@@ -138,11 +137,11 @@ public class ColourComponent extends SettingComponent<Color> {
                     brightness = (float) MathsUtil.roundDouble(((brightDiff / pickerHeight) * 100), 0);
                 }
 
-                finalColour = new Color(Color.HSBtoRGB(hue / 360, saturation / 100, brightness / 100));
+                this.finalColour = new Color(Color.HSBtoRGB(hue / 360, saturation / 100, brightness / 100));
             }
 
             // Get final HSB colours
-            float[] finHSB = Color.RGBtoHSB(finalColour.getRed(), finalColour.getGreen(), finalColour.getBlue(), null);
+            float[] finHSB = Color.RGBtoHSB(this.finalColour.getRed(), this.finalColour.getGreen(), this.finalColour.getBlue(), null);
 
             // Picker X and Y
             float pickerIndicatorX = pickerX + (finHSB[1]) * pickerWidth;
@@ -150,32 +149,32 @@ public class ColourComponent extends SettingComponent<Color> {
 
             // Draw picker indicator (is that the right word? idfk)
             RenderUtil.drawRect(pickerIndicatorX - 1.5f, pickerIndicatorY - 1.5f, 3, 3, -1);
-            RenderUtil.drawRect(pickerIndicatorX - 1, pickerIndicatorY - 1, 2, 2, finalColour.getRGB());
+            RenderUtil.drawRect(pickerIndicatorX - 1, pickerIndicatorY - 1, 2, 2, this.finalColour.getRGB());
         }
 
-        getSetting().setValue(ColourUtil.integrateAlpha(finalColour, alphaSetting.getValue().floatValue()));
+        this.getSetting().setValue(ColourUtil.integrateAlpha(this.finalColour, this.alphaSetting.getValue().floatValue()));
 
         super.render(mouseX, mouseY, partialTicks);
     }
 
     @Override
     public void mouseClicked(int mouseX, int mouseY, int mouseButton) {
-        if (isWithin(mouseX, mouseY)) {
-            open = !open;
+        if (this.isWithin(mouseX, mouseY)) {
+            this.open = !this.open;
         }
 
-        if (open) {
-            pickerComponents.forEach(component -> component.mouseClicked(mouseX, mouseY, mouseButton));
+        if (this.open) {
+            this.pickerComponents.forEach(component -> component.mouseClicked(mouseX, mouseY, mouseButton));
 
-            if (GuiUtil.isMouseOver(x + 3, y + height + (pickerComponents.size() * height) + 2, 93, 70, mouseX, mouseY)) {
-                draggingPicker = true;
+            if (GuiUtil.isMouseOver(this.x + 3, this.y + this.height + (this.pickerComponents.size() * this.height) + 2, 93, 70, mouseX, mouseY)) {
+                this.draggingPicker = true;
             }
         }
     }
 
     @Override
     public void mouseReleased(int mouseX, int mouseY, int mouseButton) {
-        draggingPicker = false;
+        this.draggingPicker = false;
     }
 
     @Override
@@ -184,6 +183,6 @@ public class ColourComponent extends SettingComponent<Color> {
 
     @Override
     public float getTotalHeight() {
-        return open ? (pickerComponents.size() * height) + 88 : super.getTotalHeight();
+        return this.open ? (this.pickerComponents.size() * this.height) + 88 : super.getTotalHeight();
     }
 }

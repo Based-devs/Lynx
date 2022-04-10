@@ -16,14 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Frame extends ADragComponent implements TextRenderer {
-
-    private final List<AToggleContainer> buttons;
+    private final List<AToggleContainer> buttons = new ArrayList<>();
     private final Category category;
     private boolean expanded = true;
 
     public Frame(Category category, List<Module> modules, float x, float y, float width, float height) {
         super(x, y, width, height);
-        this.buttons = new ArrayList<>();
         this.category = category;
 
         for (Module module : modules) {
@@ -33,12 +31,12 @@ public class Frame extends ADragComponent implements TextRenderer {
 
     @Override
     public void render(int mouseX, int mouseY, float partialTicks) {
-        RenderUtil.drawRect(x, y, width, height, ColourUtil.getClientColour().getRGB());
-        drawString(StringFormatter.formatEnum(category), x + ((width / 2F) - (Minecraft.getMinecraft().fontRenderer.getStringWidth(StringFormatter.formatEnum(category)) / 2F)), y + 4, new Color(255, 255, 255).getRGB(), true);
+        RenderUtil.drawRect(this.x, this.y, this.width, this.height, ColourUtil.getClientColour().getRGB());
+        this.drawString(StringFormatter.formatEnum(this.category), x + ((this.width / 2F) - (Minecraft.getMinecraft().fontRenderer.getStringWidth(StringFormatter.formatEnum(this.category)) / 2F)), y + 4, new Color(255, 255, 255).getRGB(), true);
 
-        if (expanded) {
+        if (this.expanded) {
             float yOffset = height;
-            for (AToggleContainer button : buttons) {
+            for (AToggleContainer button : this.buttons) {
                 button.x = this.x;
                 button.y = this.y + yOffset;
                 yOffset += button.getTotalHeight();
@@ -46,19 +44,19 @@ public class Frame extends ADragComponent implements TextRenderer {
             }
         }
 
-        updateDragPosition(mouseX, mouseY);
+        this.updateDragPosition(mouseX, mouseY);
     }
 
     @Override
     public void mouseClicked(int mouseX, int mouseY, int mouseButton) {
         if (isWithin(mouseX, mouseY) && mouseButton == 0) {
-            startDragging(mouseX, mouseY);
+            this.startDragging(mouseX, mouseY);
         } else if (isWithin(mouseX, mouseY) && mouseButton == 1) {
-            expanded = !expanded;
+            this.expanded = !this.expanded;
         }
 
-        if (expanded) {
-            for (AToggleContainer button : buttons) {
+        if (this.expanded) {
+            for (AToggleContainer button : this.buttons) {
                 button.mouseClicked(mouseX, mouseY, mouseButton);
             }
         }
@@ -67,11 +65,11 @@ public class Frame extends ADragComponent implements TextRenderer {
     @Override
     public void mouseReleased(int mouseX, int mouseY, int mouseButton) {
         if (mouseButton == 0) {
-            stopDragging();
+            this.stopDragging();
         }
 
-        if (expanded) {
-            for (AToggleContainer button : buttons) {
+        if (this.expanded) {
+            for (AToggleContainer button : this.buttons) {
                 button.mouseReleased(mouseX, mouseY, mouseButton);
             }
         }
@@ -79,14 +77,10 @@ public class Frame extends ADragComponent implements TextRenderer {
 
     @Override
     public void keyTyped(char keyChar, int keyCode) {
-        if (expanded) {
-            for (AToggleContainer button : buttons) {
+        if (this.expanded) {
+            for (AToggleContainer button : this.buttons) {
                 button.keyTyped(keyChar, keyCode);
             }
         }
-    }
-
-    public List<AToggleContainer> getButtons() {
-        return buttons;
     }
 }

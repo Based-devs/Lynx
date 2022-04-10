@@ -6,7 +6,6 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 
 public class RenderUtil {
-
     public static void drawRect(float x, float y, float width, float height, int colour) {
         float c = (float) (colour >> 24 & 255) / 255.0F;
         float c1 = (float) (colour >> 16 & 255) / 255.0F;

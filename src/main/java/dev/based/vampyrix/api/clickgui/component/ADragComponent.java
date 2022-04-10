@@ -1,7 +1,6 @@
 package dev.based.vampyrix.api.clickgui.component;
 
 public abstract class ADragComponent extends AComponent {
-	
     private float dragX, dragY;
     public boolean dragging;
 	
@@ -10,10 +9,10 @@ public abstract class ADragComponent extends AComponent {
     }
 
     public void startDragging(int mouseX, int mouseY) {
-        if (isWithin(mouseX, mouseY)) {
-            dragging = true;
-            dragX = mouseX - x;
-            dragY = mouseY - y;
+        if (this.isWithin(mouseX, mouseY)) {
+            this.dragging = true;
+            this.dragX = mouseX - x;
+            this.dragY = mouseY - y;
         }
     }
 
@@ -23,9 +22,8 @@ public abstract class ADragComponent extends AComponent {
 
     public void updateDragPosition(int mouseX, int mouseY) {
         if (this.dragging) {
-            x = (mouseX - dragX);
-            y = (mouseY - dragY);
+            this.x = (mouseX - this.dragX);
+            this.y = (mouseY - this.dragY);
         }
     }
-
 }

@@ -7,7 +7,6 @@ import dev.based.vampyrix.api.clickgui.button.SettingComponent;
 import dev.based.vampyrix.api.module.setting.Setting;
 import org.lwjgl.input.Mouse;
 
-import javax.swing.plaf.ColorUIResource;
 import java.awt.*;
 
 import static org.lwjgl.opengl.GL11.glScalef;
@@ -21,38 +20,38 @@ public class SliderComponent extends SettingComponent<Number> implements Wrapper
 
     @Override
     public void render(int mouseX, int mouseY, float partialTicks) {
-        RenderUtil.drawRect(x, y, width, height, isWithin(mouseX, mouseY) ? new Color(23, 23, 23, 200).getRGB() : 0x90000000);
+        RenderUtil.drawRect(this.x, this.y, this.width, this.height, this.isWithin(mouseX, mouseY) ? new Color(23, 23, 23, 200).getRGB() : 0x90000000);
 
-        float difference = Math.min(width, Math.max(0, mouseX - x));
+        float difference = Math.min(this.width, Math.max(0, mouseX - this.x));
 
         float min = getSetting().getMin().floatValue();
         float max = getSetting().getMax().floatValue();
 
         if (!Mouse.isButtonDown(0)) {
-            dragging = false;
+            this.dragging = false;
         }
 
-        if (dragging) {
+        if (this.dragging) {
             if (difference == 0) {
-                getSetting().setValue(getSetting().getMin());
+                this.getSetting().setValue(this.getSetting().getMin());
             } else {
-                float value = ((difference / width) * (max - min) + min);
+                float value = ((difference / this.width) * (max - min) + min);
 
-                float precision = 1 / getSetting().getIncrementation().floatValue();
-                getSetting().setValue(Math.round(Math.max(getSetting().getMin().floatValue(), Math.min(getSetting().getMax().floatValue(), value)) * precision) / precision);
+                float precision = 1 / this.getSetting().getIncrementation().floatValue();
+                this.getSetting().setValue(Math.round(Math.max(this.getSetting().getMin().floatValue(), Math.min(this.getSetting().getMax().floatValue(), value)) * precision) / precision);
             }
         }
 
-        float renderWidth = (width * (getSetting().getValue().floatValue() - min) / (max - min));
+        float renderWidth = (this.width * (this.getSetting().getValue().floatValue() - min) / (max - min));
 
-        RenderUtil.drawRect(x, y, renderWidth, height, isWithin(mouseX, mouseY) ? ColourUtil.integrateAlpha(ColourUtil.getClientColour(), 240).getRGB() : ColourUtil.getClientColour().getRGB());
+        RenderUtil.drawRect(this.x, this.y, renderWidth, this.height, isWithin(mouseX, mouseY) ? ColourUtil.integrateAlpha(ColourUtil.getClientColour(), 240).getRGB() : ColourUtil.getClientColour().getRGB());
 
         float scaleFactor = 1 / 0.75f;
 
         glScalef(0.75f, 0.75f, 0.75f);
 
-        drawString(getSetting().getName(), (x + 4) * scaleFactor, (y + 4.5f) * scaleFactor, -1, true);
-        drawString(String.valueOf(getSetting().getValue()), (x + width - 4.5f - (getStringWidth(String.valueOf(getSetting().getValue())) * 0.75f)) * scaleFactor, (y + 4.5f) * scaleFactor, -1, true);
+        this.drawString(this.getSetting().getName(), (this.x + 4) * scaleFactor, (this.y + 4.5f) * scaleFactor, -1, true);
+        this.drawString(String.valueOf(this.getSetting().getValue()), (this.x + this.width - 4.5f - (this.getStringWidth(String.valueOf(this.getSetting().getValue())) * 0.75f)) * scaleFactor, (this.y + 4.5f) * scaleFactor, -1, true);
 
         glScalef(scaleFactor, scaleFactor, scaleFactor);
 
@@ -62,21 +61,19 @@ public class SliderComponent extends SettingComponent<Number> implements Wrapper
     @Override
     public void mouseClicked(int mouseX, int mouseY, int mouseButton) {
         if (isWithin(mouseX, mouseY) && mouseButton == 0) {
-            dragging = true;
+            this.dragging = true;
         }
 
         super.mouseClicked(mouseX, mouseY, mouseButton);
     }
 
     @Override
-    public void mouseReleased(int mouseX, int mouseY, int mouseButton) {
-    }
+    public void mouseReleased(int mouseX, int mouseY, int mouseButton) {}
 
     @Override
-    public void keyTyped(char keyChar, int keyCode) {
-    }
+    public void keyTyped(char keyChar, int keyCode) {}
 
     public boolean isDragging() {
-        return dragging;
+        return this.dragging;
     }
 }

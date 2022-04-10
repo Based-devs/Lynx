@@ -15,35 +15,35 @@ public class ClickGUIScreen extends GuiScreen implements Wrapper {
     public ClickGUIScreen() {
         int xOffset = 10;
         for (Category category : Category.values()) {
-            frames.add(new Frame(category, this.getVampyrix().getModuleManager().getModulesByCategory(category), 10 + xOffset, 10, 100, 16));
+            this.frames.add(new Frame(category, this.getVampyrix().getModuleManager().getModulesByCategory(category), 10 + xOffset, 10, 100, 16));
             xOffset += 105;
         }
     }
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        for (Frame frame : frames) {
+        for (Frame frame : this.frames) {
             frame.render(mouseX, mouseY, partialTicks);
         }
     }
 
     @Override
     public void mouseClicked(int mouseX, int mouseY, int mouseButton) {
-        for (Frame frame : frames) {
+        for (Frame frame : this.frames) {
             frame.mouseClicked(mouseX, mouseY, mouseButton);
         }
     }
 
     @Override
     public void mouseReleased(int mouseX, int mouseY, int mouseButton) {
-        for (Frame frame : frames) {
+        for (Frame frame : this.frames) {
             frame.mouseReleased(mouseX, mouseY, mouseButton);
         }
     }
 
     @Override
     public void keyTyped(char keychar, int keycode) throws IOException {
-        for (Frame frame : frames) {
+        for (Frame frame : this.frames) {
             frame.keyTyped(keychar, keycode);
         }
 
