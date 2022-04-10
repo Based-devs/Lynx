@@ -7,6 +7,7 @@ import dev.based.vampyrix.api.clickgui.button.SettingComponent;
 import dev.based.vampyrix.api.module.setting.Setting;
 import org.lwjgl.input.Mouse;
 
+import javax.swing.plaf.ColorUIResource;
 import java.awt.*;
 
 import static org.lwjgl.opengl.GL11.glScalef;
@@ -44,7 +45,7 @@ public class SliderComponent extends SettingComponent<Number> implements Wrapper
 
         float renderWidth = (width * (getSetting().getValue().floatValue() - min) / (max - min));
 
-        RenderUtil.drawRect(x, y, renderWidth, height, ColourUtil.getClientColour().getRGB());
+        RenderUtil.drawRect(x, y, renderWidth, height, isWithin(mouseX, mouseY) ? ColourUtil.integrateAlpha(ColourUtil.getClientColour(), 240).getRGB() : ColourUtil.getClientColour().getRGB());
 
         float scaleFactor = 1 / 0.75f;
 
@@ -73,5 +74,9 @@ public class SliderComponent extends SettingComponent<Number> implements Wrapper
 
     @Override
     public void keyTyped(char keyChar, int keyCode) {
+    }
+
+    public boolean isDragging() {
+        return dragging;
     }
 }

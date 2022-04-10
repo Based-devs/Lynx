@@ -5,13 +5,11 @@ import dev.based.vampyrix.api.util.render.ColourUtil;
 import dev.based.vampyrix.api.util.render.RenderUtil;
 import dev.based.vampyrix.api.clickgui.component.AComponent;
 import dev.based.vampyrix.api.util.render.TextRenderer;
-import dev.based.vampyrix.impl.clickgui.frame.button.settings.BooleanComponent;
-import dev.based.vampyrix.impl.clickgui.frame.button.settings.EnumComponent;
-import dev.based.vampyrix.impl.clickgui.frame.button.settings.KeybindComponent;
-import dev.based.vampyrix.impl.clickgui.frame.button.settings.SliderComponent;
+import dev.based.vampyrix.impl.clickgui.frame.button.settings.*;
 import dev.based.vampyrix.api.module.setting.Setting;
 import net.minecraft.client.Minecraft;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,13 +26,15 @@ public abstract class SettingComponent<T> extends AComponent implements TextRend
         float offset = y + height;
         for (Setting<?> subsetting : setting.getSubsettings()) {
             if (subsetting.getValue() instanceof Boolean) {
-                subcomponents.add(new BooleanComponent(x + 2, offset, width - 3, height, (Setting<Boolean>) subsetting));
-            } else if (setting.getValue() instanceof Number) {
-                subcomponents.add(new SliderComponent(x + 2, offset, width - 3, height, (Setting<Number>) setting));
-            } else if (setting.getValue() instanceof Enum<?>) {
-                subcomponents.add(new EnumComponent(x + 2, offset, width - 3, height, (Setting<Enum<?>>) setting));
-            } else if (setting.getValue() instanceof Keybind) {
-                subcomponents.add(new KeybindComponent(x + 2, offset, width - 3, height, (Setting<Keybind>) setting));
+                subcomponents.add(new BooleanComponent(x + 2, offset, width - 2, height, (Setting<Boolean>) subsetting));
+            } else if (subsetting.getValue() instanceof Color) {
+                subcomponents.add(new ColourComponent(x + 2, offset, width - 2, height, (Setting<Color>) subsetting));
+            } else if (subsetting.getValue() instanceof Number) {
+                subcomponents.add(new SliderComponent(x + 2, offset, width - 2, height, (Setting<Number>) subsetting));
+            } else if (subsetting.getValue() instanceof Enum<?>) {
+                subcomponents.add(new EnumComponent(x + 2, offset, width - 2, height, (Setting<Enum<?>>) subsetting));
+            } else if (subsetting.getValue() instanceof Keybind) {
+                subcomponents.add(new KeybindComponent(x + 2, offset, width - 2, height, (Setting<Keybind>) subsetting));
             }
 
             offset += height;

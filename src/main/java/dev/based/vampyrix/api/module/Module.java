@@ -1,6 +1,5 @@
 package dev.based.vampyrix.api.module;
 
-import dev.based.vampyrix.Vampyrix;
 import dev.based.vampyrix.api.clickgui.component.Toggleable;
 import dev.based.vampyrix.api.module.setting.Setting;
 import dev.based.vampyrix.api.util.Wrapper;
@@ -12,7 +11,6 @@ import org.lwjgl.input.Keyboard;
 import java.util.ArrayList;
 import java.util.List;
 
-//Module base class
 public class Module implements Wrapper, Toggleable {
     public final Setting<Keybind> keybind = new Setting<>("Keybind", new Keybind(Keyboard.KEY_NONE)).setDescription("The keybind to toggle this module");
     protected final Minecraft mc = Minecraft.getMinecraft();
@@ -42,10 +40,11 @@ public class Module implements Wrapper, Toggleable {
     }
 
     public void onEnable() {}
-
     public void onDisable() {}
 
     public void onUpdate() {}
+    public void onRender2D() {}
+    public void onRender3D() {}
 
     public void enable() {
         if (!this.enabled) {

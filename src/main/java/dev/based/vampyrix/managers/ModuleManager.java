@@ -6,6 +6,7 @@ import dev.based.vampyrix.api.module.Module;
 import dev.based.vampyrix.impl.modules.client.ClickGUI;
 import dev.based.vampyrix.impl.modules.movement.Flight;
 import dev.based.vampyrix.impl.modules.movement.Step;
+import dev.based.vampyrix.impl.modules.render.Tracers;
 import net.minecraftforge.common.MinecraftForge;
 
 import java.util.Arrays;
@@ -21,6 +22,9 @@ public class ModuleManager implements Wrapper {
                 // Add movement modules
                 new Flight(),
                 new Step(),
+
+                // Add render modules
+                new Tracers(),
 
                 // Add client modules
                 new ClickGUI()

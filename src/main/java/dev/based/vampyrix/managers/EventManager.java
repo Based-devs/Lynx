@@ -1,5 +1,7 @@
 package dev.based.vampyrix.managers;
 
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
 import org.lwjgl.input.Keyboard;
 
 import dev.based.vampyrix.api.module.Module;
@@ -29,4 +31,18 @@ public class EventManager implements Wrapper {
             this.getVampyrix().getModuleManager().getModules().stream().filter(module -> module.getKeybind().getValue().getKeyCode() == Keyboard.getEventKey()).forEach(Module::toggle);
         }
 	}
+
+    @SubscribeEvent
+    public void onRender2D(RenderGameOverlayEvent event) {
+        if (!nullCheck() && event.getType() == RenderGameOverlayEvent.ElementType.TEXT) {
+            this.getVampyrix().getModuleManager().getModules().stream().filter(Module::isEnabled).forEach(Module::onRender2D);
+        }
+    }
+
+    @SubscribeEvent
+    public void onRender3D(RenderWorldLastEvent event) {
+        if (!nullCheck()) {
+            this.getVampyrix().getModuleManager().getModules().stream().filter(Module::isEnabled).forEach(Module::onRender3D);
+        }
+    }
 }

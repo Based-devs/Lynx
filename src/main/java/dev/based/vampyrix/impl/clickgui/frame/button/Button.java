@@ -6,10 +6,7 @@ import dev.based.vampyrix.api.util.render.RenderUtil;
 import dev.based.vampyrix.api.clickgui.component.AToggleContainer;
 import dev.based.vampyrix.api.clickgui.button.SettingComponent;
 import dev.based.vampyrix.api.util.render.TextRenderer;
-import dev.based.vampyrix.impl.clickgui.frame.button.settings.BooleanComponent;
-import dev.based.vampyrix.impl.clickgui.frame.button.settings.EnumComponent;
-import dev.based.vampyrix.impl.clickgui.frame.button.settings.KeybindComponent;
-import dev.based.vampyrix.impl.clickgui.frame.button.settings.SliderComponent;
+import dev.based.vampyrix.impl.clickgui.frame.button.settings.*;
 import dev.based.vampyrix.api.module.Module;
 import dev.based.vampyrix.api.module.setting.Setting;
 import net.minecraft.client.Minecraft;
@@ -32,6 +29,8 @@ public class Button extends AToggleContainer implements TextRenderer {
         for (Setting<?> setting : this.module.getSettings()) {
             if (setting.getValue() instanceof Boolean) {
                 components.add(new BooleanComponent(x + 2, offset, width - 3, height, (Setting<Boolean>) setting));
+            } else if (setting.getValue() instanceof Color) {
+                components.add(new ColourComponent(x + 2, offset, width - 3, height, (Setting<Color>) setting));
             } else if (setting.getValue() instanceof Number) {
                 components.add(new SliderComponent(x + 2, offset, width - 3, height, (Setting<Number>) setting));
             } else if (setting.getValue() instanceof Enum<?>) {
