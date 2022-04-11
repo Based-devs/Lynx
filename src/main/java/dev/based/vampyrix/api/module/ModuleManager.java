@@ -34,6 +34,9 @@ public class ModuleManager implements Wrapper {
                 // Add client modules
                 new ClickGUI(),
                 new Colour()
+               // Add combat modules
+               new AutoArmor()
+            //sup
         );
 
         this.modules.forEach(module -> {
