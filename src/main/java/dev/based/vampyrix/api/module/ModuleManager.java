@@ -71,12 +71,9 @@ public class ModuleManager implements Wrapper {
 
     @Listener
     private void onKeyTyped(InputEvent.KeyInputEvent event) {
-        this.modules.stream().filter(module -> module.getKeybind().getValue().getKeyCode() == Keyboard.getEventKey()).forEach(Module::toggle);
-
-        /**
         if (Keyboard.isCreated() && Keyboard.getEventKey() != 0) {
             this.modules.stream().filter(module -> module.getKeybind().getValue().getKeyCode() == Keyboard.getEventKey()).forEach(Module::toggle);
-        } */
+        }
     }
 
     @Listener

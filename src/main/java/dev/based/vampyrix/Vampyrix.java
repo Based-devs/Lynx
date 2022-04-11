@@ -42,7 +42,7 @@ public class Vampyrix {
         this.logger.info("Events Initialized.");
 
         this.commandManager = new CommandManager();
-        logger.info("Commands Initialized.");
+        this.logger.info("Commands Initialized.");
 
         this.clickGUIScreen = new ClickGUIScreen();
         this.logger.info("ClickGUI Initialized.");

@@ -11,7 +11,7 @@ import org.lwjgl.input.Keyboard;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Module implements Wrapper, Toggleable {
+public abstract class Module implements Wrapper, Toggleable {
     public final Setting<Keybind> keybind = new Setting<>("Keybind", new Keybind(Keyboard.KEY_NONE)).setDescription("The keybind to toggle this module");
     protected final Minecraft mc = Minecraft.getMinecraft();
     private final String name, description;
