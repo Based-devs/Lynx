@@ -13,11 +13,9 @@ public class ClickGUI extends Module {
 
     @Override
     public void onEnable() {
-        if (nullCheck()) {
-            return;
+        if (!nullCheck()) {
+            mc.displayGuiScreen(ClickGUIScreen.INSTANCE);
+            this.disable();
         }
-
-        mc.displayGuiScreen(this.getVampyrix().getClickGUIScreen());
-        this.disable();
     }
 }

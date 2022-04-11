@@ -21,12 +21,27 @@ public class EventBus {
     private final Map<Class<?>, CopyOnWriteArraySet<SubscribedMethod>> subscribedMethods = new ConcurrentHashMap<>();
 
     /**
+     * Registers a singular method
+     *
+     * @param method The method to register
+     * @param obj    The source
+     */
+    public void registerMethod(Method method, Object obj) {
+        // Set the method to accessible if it isn't already (private methods)
+        if (!method.isAccessible()) {
+            method.setAccessible(true);
+        }
+
+        this.subscribedMethods.computeIfAbsent(method.getParameterTypes()[0], k -> new CopyOnWriteArraySet<>()).add(new SubscribedMethod(obj, method));
+    }
+
+    /**
      * Register an object
      *
      * @param obj The object to register
      */
     public void register(Object obj) {
-        Arrays.stream(obj.getClass().getDeclaredMethods()).filter(this::isMethodGood).forEach(method -> registerMethod(method, obj));
+        Arrays.stream(obj.getClass().getDeclaredMethods()).filter(this::isMethodGood).forEach(method -> this.registerMethod(method, obj));
     }
 
     /**
@@ -54,21 +69,6 @@ public class EventBus {
      */
     public void unregisterAll(Object... objList) {
         Arrays.stream(objList).forEach(this::unregister);
-    }
-
-    /**
-     * Registers a singular method
-     *
-     * @param method The method to register
-     * @param obj    The source
-     */
-    public void registerMethod(Method method, Object obj) {
-        // Set the method to accessible if it isn't already (private methods)
-        if (!method.isAccessible()) {
-            method.setAccessible(true);
-        }
-
-        this.subscribedMethods.computeIfAbsent(method.getParameterTypes()[0], e -> new CopyOnWriteArraySet<>()).add(new SubscribedMethod(obj, method));
     }
 
     /**

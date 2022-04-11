@@ -28,7 +28,7 @@ public class SubscribedMethod {
      * @return The source of the method
      */
     public Object getSource() {
-        return source;
+        return this.source;
     }
 
     /**
@@ -37,12 +37,12 @@ public class SubscribedMethod {
      * @return The method
      */
     public Method getMethod() {
-        return method;
+        return this.method;
     }
 
     public void invoke(Object param) {
         try {
-            method.invoke(param);
+            this.method.invoke(this.source, param);
         }
         catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
             e.printStackTrace();

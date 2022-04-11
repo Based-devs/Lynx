@@ -1,8 +1,6 @@
-package dev.based.vampyrix.api.module.setting;
+package dev.based.vampyrix.api.module;
 
 import dev.based.vampyrix.api.util.Wrapper;
-import dev.based.vampyrix.api.module.Category;
-import dev.based.vampyrix.api.module.Module;
 import dev.based.vampyrix.impl.modules.client.ClickGUI;
 import dev.based.vampyrix.impl.modules.movement.Flight;
 import dev.based.vampyrix.impl.modules.movement.Step;
@@ -10,7 +8,6 @@ import dev.based.vampyrix.impl.modules.render.Tracers;
 import me.wolfsurge.cerauno.listener.Listener;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import org.lwjgl.input.Keyboard;
@@ -58,23 +55,22 @@ public class ModuleManager implements Wrapper {
         return module1.getName().compareTo(module2.getName());
     }
 
-    public List<Module> getModules() {
-        return this.modules;
-    }
-
     public List<Module> getModulesByCategory(Category c) {
         return this.modules.stream().filter(module -> module.getCategory() == c).collect(Collectors.toList());
     }
     
     public void forEachEnabled(Consumer<Module> action) {
-        this.getModules().stream().filter(Module::isEnabled).forEach(Objects.requireNonNull(action));
+        this.modules.stream().filter(Module::isEnabled).forEach(Objects.requireNonNull(action));
     }
 
     @Listener
     private void onKeyTyped(InputEvent.KeyInputEvent event) {
-        if (Keyboard.isCreated() && Keyboard.getEventKey() > 0) {
-            this.getModules().stream().filter(module -> module.getKeybind().getValue().getKeyCode() == Keyboard.getEventKey()).forEach(Module::toggle);
-        }
+        this.modules.stream().filter(module -> module.getKeybind().getValue().getKeyCode() == Keyboard.getEventKey()).forEach(Module::toggle);
+
+        /**
+        if (Keyboard.isCreated() && Keyboard.getEventKey() != 0) {
+            this.modules.stream().filter(module -> module.getKeybind().getValue().getKeyCode() == Keyboard.getEventKey()).forEach(Module::toggle);
+        } */
     }
 
     @Listener

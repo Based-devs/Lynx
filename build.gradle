@@ -10,9 +10,8 @@ buildscript {
     }
     
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3.4'
         classpath 'org.spongepowered:mixingradle:0.6-SNAPSHOT'
-        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.4'
     }
 }
 
@@ -21,7 +20,7 @@ apply plugin: 'org.spongepowered.mixin'
 
 version = '0.1'
 group = 'dev.based.vampyrix'
-archivesBaseName = 'vampyrix'
+archivesBaseName = 'Vampyrix'
 
 sourceCompatibility = targetCompatibility = '1.8'
 compileJava {
@@ -60,12 +59,11 @@ dependencies {
 
 processResources {
     inputs.property 'version', project.version
-    inputs.property 'mcversion', project.minecraft.version
 
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
 
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+        expand 'version':project.version
     }
 
     from(sourceSets.main.resources.srcDirs) {
@@ -90,5 +88,4 @@ jar {
         'FMLCorePlugin': 'dev.based.vampyrix.asm.VampyrixMixinLoader',
         'ForceLoadAsMod': 'true'
     )
-    classifier = 'release'
 }
