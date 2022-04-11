@@ -3,13 +3,13 @@ package dev.based.vampyrix.api.command;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class command {
+public abstract class Command {
     private final String name;
     private final String description;
     private final String syntax;
     private final List<String> aliases;
 
-    public command(final String name, final String description, final String syntax, final String... aliases){
+    public Command(final String name, final String description, final String syntax, final String... aliases){
         this.name = name;
         this.description = description;
         this.syntax = syntax;

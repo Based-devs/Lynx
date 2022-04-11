@@ -7,14 +7,12 @@ import dev.based.vampyrix.api.clickgui.component.AComponent;
 import dev.based.vampyrix.api.util.render.TextRenderer;
 import dev.based.vampyrix.impl.clickgui.frame.button.settings.*;
 import dev.based.vampyrix.api.module.setting.Setting;
-import net.minecraft.client.Minecraft;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class SettingComponent<T> extends AComponent implements TextRenderer {
-
     private final Setting<T> setting;
     private final List<SettingComponent<?>> subcomponents = new ArrayList<>();
     private boolean expanded;
