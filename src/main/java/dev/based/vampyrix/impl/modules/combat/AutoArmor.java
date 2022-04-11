@@ -1,4 +1,4 @@
-package dev.based.vampyrix.impl.module.combat;
+package dev.based.vampyrix.impl.modules.combat;
 
 import dev.based.vampyrix.api.module.Category;
 import dev.based.vampyrix.api.module.Module;
