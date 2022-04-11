@@ -36,7 +36,7 @@ public class ModuleManager implements Wrapper {
                 new ClickGUI(),
                 new Colour(),
                // Add combat modules
-               new AutoArmor(),
+               new AutoArmor()
             //sup
         );
 
