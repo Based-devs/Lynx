@@ -1,4 +1,4 @@
-package dev.based.vampyrix.api.events.network;
+package dev.based.vampyrix.api.event.network;
 
 import me.wolfsurge.cerauno.event.Cancellable;
 import net.minecraft.network.Packet;

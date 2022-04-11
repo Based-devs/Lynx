@@ -1,4 +1,4 @@
-package dev.based.vampyrix.managers;
+package dev.based.vampyrix.api.module.setting;
 
 import dev.based.vampyrix.api.util.Wrapper;
 import dev.based.vampyrix.api.module.Category;
@@ -8,16 +8,20 @@ import dev.based.vampyrix.impl.modules.movement.Flight;
 import dev.based.vampyrix.impl.modules.movement.Step;
 import dev.based.vampyrix.impl.modules.render.Tracers;
 import me.wolfsurge.cerauno.listener.Listener;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import org.lwjgl.input.Keyboard;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class ModuleManager implements Wrapper {
-
     private final List<Module> modules;
 
     public ModuleManager() {
@@ -50,11 +54,6 @@ public class ModuleManager implements Wrapper {
         return this.modules.stream().filter(module -> module.getName().toLowerCase().equals(name)).collect(Collectors.toList()).get(0);
     }
 
-    @Listener
-    private void onKeyTyped(InputEvent.KeyInputEvent event) {
-        this.getModules().stream().filter(module -> module.getKeybind().getValue().getKeyCode() == Keyboard.getEventKey()).forEach(Module::toggle);
-    }
-
     private int sortABC(Module module1, Module module2) {
         return module1.getName().compareTo(module2.getName());
     }
@@ -65,5 +64,37 @@ public class ModuleManager implements Wrapper {
 
     public List<Module> getModulesByCategory(Category c) {
         return this.modules.stream().filter(module -> module.getCategory() == c).collect(Collectors.toList());
+    }
+    
+    public void forEachEnabled(Consumer<Module> action) {
+        this.getModules().stream().filter(Module::isEnabled).forEach(Objects.requireNonNull(action));
+    }
+
+    @Listener
+    private void onKeyTyped(InputEvent.KeyInputEvent event) {
+        if (Keyboard.isCreated() && Keyboard.getEventKey() > 0) {
+            this.getModules().stream().filter(module -> module.getKeybind().getValue().getKeyCode() == Keyboard.getEventKey()).forEach(Module::toggle);
+        }
+    }
+
+    @Listener
+    private void onUpdate(LivingEvent.LivingUpdateEvent event) {
+        if (!nullCheck() && event.getEntity() == mc.player) {
+            this.forEachEnabled(Module::onUpdate);
+        }
+    }
+
+    @Listener
+    private void onRender2D(RenderGameOverlayEvent event) {
+        if (!nullCheck() && event.getType() == RenderGameOverlayEvent.ElementType.TEXT) {
+            this.forEachEnabled(Module::onRender2D);
+        }
+    }
+
+    @Listener
+    private void onRender3D(RenderWorldLastEvent event) {
+        if (!nullCheck()) {
+            this.forEachEnabled(Module::onRender3D);
+        }
     }
 }

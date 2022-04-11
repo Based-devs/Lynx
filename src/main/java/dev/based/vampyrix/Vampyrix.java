@@ -1,8 +1,8 @@
 package dev.based.vampyrix;
 
 import dev.based.vampyrix.impl.clickgui.ClickGUIScreen;
-import dev.based.vampyrix.managers.EventManager;
-import dev.based.vampyrix.managers.ModuleManager;
+import dev.based.vampyrix.api.event.EventManager;
+import dev.based.vampyrix.api.module.setting.ModuleManager;
 import me.wolfsurge.cerauno.EventBus;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -16,7 +16,6 @@ import org.lwjgl.opengl.Display;
 
 @Mod(modid = Vampyrix.MODID, name = Vampyrix.NAME, version = Vampyrix.VERSION)
 public class Vampyrix {
-
     public static final String MODID = "vampyrix", NAME = "Vampyrix", VERSION = "0.1";
 
     @Instance

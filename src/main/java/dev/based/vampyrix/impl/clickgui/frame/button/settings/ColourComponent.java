@@ -2,7 +2,7 @@ package dev.based.vampyrix.impl.clickgui.frame.button.settings;
 
 import dev.based.vampyrix.api.clickgui.button.SettingComponent;
 import dev.based.vampyrix.api.module.setting.Setting;
-import dev.based.vampyrix.api.util.maths.MathsUtil;
+import dev.based.vampyrix.api.util.maths.MathUtil;
 import dev.based.vampyrix.api.util.render.ColourUtil;
 import dev.based.vampyrix.api.util.render.GuiUtil;
 import dev.based.vampyrix.api.util.render.RenderUtil;
@@ -126,7 +126,7 @@ public class ColourComponent extends SettingComponent<Color> {
                 if (satDiff == 0) {
                     saturation = 0;
                 } else {
-                    saturation = (float) MathsUtil.roundDouble(((satDiff / pickerWidth) * 100), 0);
+                    saturation = (float) MathUtil.roundDouble(((satDiff / pickerWidth) * 100), 0);
                 }
 
                 float brightDiff = Math.min(pickerHeight, Math.max(0, pickerY + pickerHeight - mouseY));
@@ -134,7 +134,7 @@ public class ColourComponent extends SettingComponent<Color> {
                 if (brightDiff == 0) {
                     brightness = 0;
                 } else {
-                    brightness = (float) MathsUtil.roundDouble(((brightDiff / pickerHeight) * 100), 0);
+                    brightness = (float) MathUtil.roundDouble(((brightDiff / pickerHeight) * 100), 0);
                 }
 
                 this.finalColour = new Color(Color.HSBtoRGB(hue / 360, saturation / 100, brightness / 100));

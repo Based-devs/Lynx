@@ -17,5 +17,4 @@ public abstract class AComponent extends Rect {
         this.x = x;
         this.y = y;
     }
-
 }

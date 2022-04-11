@@ -83,7 +83,7 @@ public class Tracers extends Module {
         });
     }
 
-    public boolean isEntityValid(Entity entity) {
+    private boolean isEntityValid(Entity entity) {
         if (entity instanceof EntityPlayer && entity != mc.player && this.players.getValue()) {
             return true;
         }
@@ -95,7 +95,7 @@ public class Tracers extends Module {
         return entity instanceof EntityAnimal && this.passive.getValue();
     }
 
-    public Color getEntityColour(Entity entity) {
+    private Color getEntityColour(Entity entity) {
         if (entity instanceof EntityPlayer) {
             return this.playerColour.getValue();
         }
