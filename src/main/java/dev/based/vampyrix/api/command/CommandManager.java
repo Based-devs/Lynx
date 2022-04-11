@@ -8,9 +8,10 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class CommandManager implements Wrapper {
-    private final ArrayList<Command> commands = new ArrayList<>();
+    private final List<Command> commands;
 
     private String prefix = ":";
 
@@ -18,9 +19,9 @@ public class CommandManager implements Wrapper {
         this.getVampyrix().getEventBus().register(this);
         MinecraftForge.EVENT_BUS.register(this);
 
-        commands.addAll(Arrays.asList(
+        this.commands = Arrays.asList(
                 new CommandCoords()
-        ));
+        );
     }
 
     @SubscribeEvent
@@ -51,12 +52,12 @@ public class CommandManager implements Wrapper {
         }
     }
 
-    public ArrayList<Command> getCommands(){
-        return commands;
+    public List<Command> getCommands(){
+        return this.commands;
     }
 
     public String getPrefix(){
-        return prefix;
+        return this.prefix;
     }
 
     public void setPrefix(String prefix){

@@ -19,18 +19,18 @@ public abstract class Command {
     public abstract void onCommand(String[] args);
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public String getSyntax() {
-        return syntax;
+        return this.syntax;
     }
 
     public List<String> getAliases() {
-        return aliases;
+        return this.aliases;
     }
 }
