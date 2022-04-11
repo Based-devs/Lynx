@@ -45,6 +45,7 @@ public class Vampyrix {
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
+        clickGUIScreen = new ClickGUIScreen();
         Display.setTitle(Vampyrix.NAME + " " + Vampyrix.VERSION);
     }
 
