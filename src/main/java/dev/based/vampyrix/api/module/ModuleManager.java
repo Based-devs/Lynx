@@ -2,6 +2,7 @@ package dev.based.vampyrix.api.module;
 
 import dev.based.vampyrix.api.util.Wrapper;
 import dev.based.vampyrix.impl.modules.client.ClickGUI;
+import dev.based.vampyrix.impl.modules.combat.AutoArmor;
 import dev.based.vampyrix.impl.modules.client.Colour;
 import dev.based.vampyrix.impl.modules.movement.Flight;
 import dev.based.vampyrix.impl.modules.movement.Step;
