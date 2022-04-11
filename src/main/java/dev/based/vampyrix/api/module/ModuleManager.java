@@ -34,9 +34,9 @@ public class ModuleManager implements Wrapper {
 
                 // Add client modules
                 new ClickGUI(),
-                new Colour();
+                new Colour(),
                // Add combat modules
-               new AutoArmor();
+               new AutoArmor(),
             //sup
         );
 
