@@ -16,7 +16,7 @@ public class CommandManager implements Wrapper {
     private String prefix = ":";
 
     public CommandManager(){
-        this.getVampyrix().getEventBus().register(this);
+        this.getVampyrix().getEventBus().subscribe(this);
         MinecraftForge.EVENT_BUS.register(this);
 
         this.commands = Arrays.asList(

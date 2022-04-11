@@ -1,5 +1,8 @@
 package dev.based.vampyrix.api.module;
 
+import dev.based.vampyrix.api.event.entity.LivingUpdateEvent;
+import dev.based.vampyrix.api.event.render.RenderEvent;
+import dev.based.vampyrix.api.event.system.KeyEvent;
 import dev.based.vampyrix.api.util.Wrapper;
 import dev.based.vampyrix.impl.modules.client.ClickGUI;
 import dev.based.vampyrix.impl.modules.combat.AutoArmor;
@@ -7,7 +10,7 @@ import dev.based.vampyrix.impl.modules.client.Colour;
 import dev.based.vampyrix.impl.modules.movement.Flight;
 import dev.based.vampyrix.impl.modules.movement.Step;
 import dev.based.vampyrix.impl.modules.render.Tracers;
-import me.wolfsurge.cerauno.listener.Listener;
+import me.bush.eventbus.annotation.EventListener;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
@@ -50,7 +53,7 @@ public class ModuleManager implements Wrapper {
 
         this.modules.sort(this::sortABC);
 
-        this.getVampyrix().getEventBus().register(this);
+        this.getVampyrix().getEventBus().subscribe(this);
     }
 
     public Module getModuleByName(String name) {
@@ -69,29 +72,29 @@ public class ModuleManager implements Wrapper {
         this.modules.stream().filter(Module::isEnabled).forEach(Objects.requireNonNull(action));
     }
 
-    @Listener
-    private void onKeyTyped(InputEvent.KeyInputEvent event) {
+    @EventListener
+    private void onKeyTyped(KeyEvent event) {
         if (Keyboard.isCreated() && Keyboard.getEventKey() != 0) {
             this.modules.stream().filter(module -> module.getKeybind().getValue().getKeyCode() == Keyboard.getEventKey()).forEach(Module::toggle);
         }
     }
 
-    @Listener
-    private void onUpdate(LivingEvent.LivingUpdateEvent event) {
+    @EventListener
+    private void onUpdate(LivingUpdateEvent event) {
         if (!nullCheck() && event.getEntity() == mc.player) {
             this.forEachEnabled(Module::onUpdate);
         }
     }
 
-    @Listener
-    private void onRender2D(RenderGameOverlayEvent event) {
-        if (!nullCheck() && event.getType() == RenderGameOverlayEvent.ElementType.TEXT) {
+    @EventListener
+    private void onRender2D(RenderEvent.Render2D event) {
+        if (!nullCheck()) {
             this.forEachEnabled(Module::onRender2D);
         }
     }
 
-    @Listener
-    private void onRender3D(RenderWorldLastEvent event) {
+    @EventListener
+    private void onRender3D(RenderEvent.Render3D event) {
         if (!nullCheck()) {
             this.forEachEnabled(Module::onRender3D);
         }

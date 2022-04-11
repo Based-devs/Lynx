@@ -1,13 +1,13 @@
 package dev.based.vampyrix.api.event.network;
 
-import me.wolfsurge.cerauno.event.Cancellable;
+import dev.based.vampyrix.api.event.ClientEvent;
 import net.minecraft.network.Packet;
 
-public class PacketEvent extends Cancellable {
+public class PacketEvent extends ClientEvent {
     private final Packet<?> packet;
 
-    public PacketEvent(State state, Packet<?> packet) {
-        super(state);
+    public PacketEvent(Packet<?> packet) {
+        super(true);
         this.packet = packet;
     }
 
@@ -17,13 +17,13 @@ public class PacketEvent extends Cancellable {
 
     public static class Send extends PacketEvent {
         public Send(Packet<?> packet) {
-            super(State.PRE, packet);
+            super(packet);
         }
     }
 
     public static class Receive extends PacketEvent {
         public Receive(Packet<?> packet) {
-            super(State.POST, packet);
+            super(packet);
         }
     }
 }

@@ -51,7 +51,7 @@ public abstract class Module implements Wrapper, Toggleable {
             this.enabled = true;
 
             MinecraftForge.EVENT_BUS.register(this);
-            this.getVampyrix().getEventBus().register(this);
+            this.getVampyrix().getEventBus().subscribe(this);
             this.onEnable();
         }
     }
@@ -61,7 +61,7 @@ public abstract class Module implements Wrapper, Toggleable {
             this.enabled = false;
 
             MinecraftForge.EVENT_BUS.unregister(this);
-            this.getVampyrix().getEventBus().unregister(this);
+            this.getVampyrix().getEventBus().unsubscribe(this);
             this.onDisable();
         }
     }

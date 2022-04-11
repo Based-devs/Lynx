@@ -4,7 +4,7 @@ import dev.based.vampyrix.api.event.EventManager;
 import dev.based.vampyrix.api.module.ModuleManager;
 import dev.based.vampyrix.impl.clickgui.ClickGUIScreen;
 import dev.based.vampyrix.api.command.CommandManager;
-import me.wolfsurge.cerauno.EventBus;
+import me.bush.eventbus.bus.EventBus;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;

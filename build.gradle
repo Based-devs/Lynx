@@ -40,6 +40,10 @@ minecraft {
 repositories {
     mavenCentral()
 
+    flatDir {
+        dirs 'libs'
+    }
+
     maven {
         url = 'https://repo.spongepowered.org/repository/maven-public/'
     }
@@ -55,6 +59,8 @@ dependencies {
     }
 
     compile group: 'org.json', name: 'json', version: '20211205'
+
+    compile fileTree(include: ['*.jar'], dir: 'libs')
 }
 
 processResources {
