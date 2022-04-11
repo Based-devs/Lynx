@@ -65,7 +65,7 @@ public class Tracers extends Module {
 
             glBegin(GL_CURRENT_BIT);
 
-            glVertex3d(playerEyesVector.x, playerEyesVector.y + mc.player.eyeHeight, playerEyesVector.z);
+            glVertex3d(playerEyesVector.x, playerEyesVector.y + mc.player.eyeHeight - (mc.player.isSneaking() ? 0.08f : 0), playerEyesVector.z);
             glVertex3d(x, y, z);
 
             glEnd();

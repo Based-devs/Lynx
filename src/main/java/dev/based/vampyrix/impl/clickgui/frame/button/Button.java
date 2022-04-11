@@ -47,7 +47,7 @@ public class Button extends AToggleContainer implements TextRenderer {
     public void render(int mouseX, int mouseY, float partialTicks) {
         RenderUtil.drawRect(this.x, this.y, this.width, this.height, this.isWithin(mouseX, mouseY) ? new Color(23, 23, 23, 200).getRGB() : 0x90000000);
 
-        this.drawString(this.module.getName(), this.x + 4, y + 3.5f, this.module.isEnabled() ? ColourUtil.getClientColour().brighter().brighter().getRGB() : -1, true);
+        this.drawString(this.module.getName(), this.x + 4, y + 3.5f, this.module.isEnabled() ? ColourUtil.getClientColour().getRGB() : -1, true);
         this.drawString(this.expanded ? "-" : "+", this.x + this.width - 10, y + 3.5f, -1, false);
 
         if (this.expanded) {

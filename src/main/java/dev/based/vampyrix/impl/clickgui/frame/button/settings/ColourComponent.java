@@ -33,7 +33,7 @@ public class ColourComponent extends SettingComponent<Color> {
 
         float[] hsbValues = Color.RGBtoHSB(setting.getValue().getRed(), setting.getValue().getGreen(), setting.getValue().getBlue(), null);
 
-        this.hueSetting.setValue(hsbValues[0]);
+        this.hueSetting.setValue((int) (hsbValues[0] * 360));
         this.alphaSetting.setValue(setting.getValue().getAlpha());
 
         this.pickerComponents.add(new SliderComponent(x + 2, y + height, width - 2, height, this.hueSetting));

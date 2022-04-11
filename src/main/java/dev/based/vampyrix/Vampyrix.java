@@ -2,6 +2,7 @@ package dev.based.vampyrix;
 
 import dev.based.vampyrix.api.event.EventManager;
 import dev.based.vampyrix.api.module.ModuleManager;
+import dev.based.vampyrix.impl.clickgui.ClickGUIScreen;
 import me.wolfsurge.cerauno.EventBus;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -24,6 +25,8 @@ public class Vampyrix {
     private ModuleManager moduleManager;
     private EventManager eventManager;
 
+    private ClickGUIScreen clickGUIScreen;
+
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(INSTANCE);
@@ -35,6 +38,9 @@ public class Vampyrix {
 
         this.eventManager = new EventManager();
         this.logger.info("Events Initialized.");
+
+        this.clickGUIScreen = new ClickGUIScreen();
+        this.logger.info("ClickGUI Initialized.");
     }
 
     @Mod.EventHandler
@@ -56,5 +62,9 @@ public class Vampyrix {
 
     public EventManager getEventManager() {
         return this.eventManager;
+    }
+
+    public ClickGUIScreen getClickGUIScreen() {
+        return this.clickGUIScreen;
     }
 }

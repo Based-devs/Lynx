@@ -9,11 +9,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ClickGUIScreen extends GuiScreen implements Wrapper {
-    public static final ClickGUIScreen INSTANCE = new ClickGUIScreen();
-
     private final ArrayList<Frame> frames = new ArrayList<>();
 
-    private ClickGUIScreen() {
+    public ClickGUIScreen() {
         int xOffset = 10;
         for (Category category : Category.values()) {
             this.frames.add(new Frame(category, this.getVampyrix().getModuleManager().getModulesByCategory(category), 10 + xOffset, 10, 100, 16));

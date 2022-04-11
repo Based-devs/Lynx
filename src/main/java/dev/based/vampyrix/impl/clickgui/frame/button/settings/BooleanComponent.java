@@ -23,7 +23,7 @@ public class BooleanComponent extends SettingComponent<Boolean> implements Wrapp
 
         glScalef(0.75f, 0.75f, 0.75f);
 
-        drawString(this.getSetting().getName(), (x + 4) * scaleFactor, (y + 4.5f) * scaleFactor, this.getSetting().getValue() ? ColourUtil.getClientColour().brighter().brighter().getRGB() : -1, true);
+        drawString(this.getSetting().getName(), (x + 4) * scaleFactor, (y + 4.5f) * scaleFactor, this.getSetting().getValue() ? ColourUtil.getClientColour().getRGB() : -1, true);
 
         glScalef(scaleFactor, scaleFactor, scaleFactor);
 

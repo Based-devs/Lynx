@@ -2,6 +2,7 @@ package dev.based.vampyrix.api.module;
 
 import dev.based.vampyrix.api.util.Wrapper;
 import dev.based.vampyrix.impl.modules.client.ClickGUI;
+import dev.based.vampyrix.impl.modules.client.Colour;
 import dev.based.vampyrix.impl.modules.movement.Flight;
 import dev.based.vampyrix.impl.modules.movement.Step;
 import dev.based.vampyrix.impl.modules.render.Tracers;
@@ -31,7 +32,8 @@ public class ModuleManager implements Wrapper {
                 new Tracers(),
 
                 // Add client modules
-                new ClickGUI()
+                new ClickGUI(),
+                new Colour()
         );
 
         this.modules.forEach(module -> {
