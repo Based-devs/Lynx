@@ -5,7 +5,6 @@ import dev.based.vampyrix.api.module.setting.Setting;
 import dev.based.vampyrix.api.util.Wrapper;
 import dev.based.vampyrix.api.util.misc.Keybind;
 import net.minecraft.client.Minecraft;
-import net.minecraftforge.common.MinecraftForge;
 import org.lwjgl.input.Keyboard;
 
 import java.util.ArrayList;
@@ -40,17 +39,19 @@ public abstract class Module implements Wrapper, Toggleable {
     }
 
     public void onEnable() {}
+
     public void onDisable() {}
 
     public void onUpdate() {}
+
     public void onRender2D() {}
+
     public void onRender3D() {}
 
     public void enable() {
         if (!this.enabled) {
             this.enabled = true;
 
-            MinecraftForge.EVENT_BUS.register(this);
             this.getVampyrix().getEventBus().subscribe(this);
             this.onEnable();
         }
@@ -60,7 +61,6 @@ public abstract class Module implements Wrapper, Toggleable {
         if (this.enabled) {
             this.enabled = false;
 
-            MinecraftForge.EVENT_BUS.unregister(this);
             this.getVampyrix().getEventBus().unsubscribe(this);
             this.onDisable();
         }

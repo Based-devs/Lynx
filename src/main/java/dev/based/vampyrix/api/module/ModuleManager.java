@@ -25,15 +25,13 @@ public class ModuleManager implements Wrapper {
     public ModuleManager() {
         this.modules = Arrays.asList(
                 // Add movement modules
-                new Flight(),
-                new Step(),
+                new Flight(), new Step(),
 
                 // Add render modules
                 new Tracers(),
 
                 // Add client modules
-                new ClickGUI(),
-                Colors.INSTANCE,
+                new ClickGUI(), Colors.INSTANCE,
                 // Add combat modules
                 new AutoArmor()
                 //sup

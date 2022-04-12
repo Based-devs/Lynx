@@ -1,12 +1,12 @@
 package dev.based.vampyrix.api.clickgui.button;
 
+import dev.based.vampyrix.api.clickgui.component.AComponent;
+import dev.based.vampyrix.api.module.setting.Setting;
 import dev.based.vampyrix.api.util.misc.Keybind;
 import dev.based.vampyrix.api.util.render.ColourUtil;
 import dev.based.vampyrix.api.util.render.RenderUtil;
-import dev.based.vampyrix.api.clickgui.component.AComponent;
 import dev.based.vampyrix.api.util.render.TextRenderer;
 import dev.based.vampyrix.impl.clickgui.frame.button.settings.*;
-import dev.based.vampyrix.api.module.setting.Setting;
 
 import java.awt.*;
 import java.util.ArrayList;

@@ -1,19 +1,20 @@
 package dev.based.vampyrix.impl.commands;
 
 import dev.based.vampyrix.api.command.Command;
-import java.awt.datatransfer.StringSelection;
+
 import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
 
 import static dev.based.vampyrix.api.util.Wrapper.mc;
 
 public class Coordinates extends Command {
     public Coordinates() {
-        super("coordinates","coordinates","coordinates", "coords", "coordinates");
+        super("coordinates", "coordinates", "coordinates", "coords", "coordinates");
     }
 
     @Override
-    public void execute(String[] args){
-        if (mc.player == null ) {
+    public void execute(String[] args) {
+        if (mc.player == null) {
             return;
         }
 

@@ -6,7 +6,7 @@ import dev.based.vampyrix.api.module.Module;
 
 public class Toggle extends Command {
     public Toggle() {
-        super("Toggle", "toggle <module>", "t");
+        super("toggle", "toggle <module>", "t");
     }
 
 

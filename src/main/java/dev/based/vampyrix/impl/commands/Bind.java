@@ -20,8 +20,7 @@ public class Bind extends Command {
                 module.getKeybind().getValue().setKeyCode(Keyboard.getKeyIndex(arguments[1].toUpperCase()));
                 LoggerUtil.sendMessage(String.format("Bound %s to %s", module.getName(), arguments[1].toUpperCase()));
                 return;
-            }
-            catch (Exception ignored) {}
+            } catch (Exception ignored) {}
         }
 
         this.printUsage();

@@ -1,10 +1,10 @@
 package dev.based.vampyrix.impl.clickgui.frame.button.settings;
 
+import dev.based.vampyrix.api.clickgui.button.SettingComponent;
+import dev.based.vampyrix.api.module.setting.Setting;
 import dev.based.vampyrix.api.util.Wrapper;
 import dev.based.vampyrix.api.util.misc.StringFormatter;
 import dev.based.vampyrix.api.util.render.RenderUtil;
-import dev.based.vampyrix.api.clickgui.button.SettingComponent;
-import dev.based.vampyrix.api.module.setting.Setting;
 
 import java.awt.*;
 

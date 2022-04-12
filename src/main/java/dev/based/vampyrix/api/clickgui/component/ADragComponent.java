@@ -1,9 +1,9 @@
 package dev.based.vampyrix.api.clickgui.component;
 
 public abstract class ADragComponent extends AComponent {
-    private float dragX, dragY;
     public boolean dragging;
-	
+    private float dragX, dragY;
+
     public ADragComponent(float x, float y, float width, float height) {
         super(x, y, width, height);
     }

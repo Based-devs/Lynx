@@ -19,12 +19,10 @@ import static org.lwjgl.opengl.GL11.glScalef;
 
 public class ColourComponent extends SettingComponent<Color> {
 
-    private boolean open;
-
     private final List<SettingComponent<?>> pickerComponents = new ArrayList<>();
     private final Setting<Number> hueSetting = new Setting<>("Hue", 0f, 0f, 360f, 1f);
     private final Setting<Number> alphaSetting = new Setting<>("Alpha", 0f, 0f, 255f, 1f);
-
+    private boolean open;
     private boolean draggingPicker;
     private Color finalColour;
 
@@ -119,9 +117,7 @@ public class ColourComponent extends SettingComponent<Color> {
             }
 
             if (this.draggingPicker) {
-                float saturation,
-                        brightness,
-                        satDiff = Math.min(pickerWidth, Math.max(0, mouseX - pickerX));
+                float saturation, brightness, satDiff = Math.min(pickerWidth, Math.max(0, mouseX - pickerX));
 
                 if (satDiff == 0) {
                     saturation = 0;
@@ -178,8 +174,7 @@ public class ColourComponent extends SettingComponent<Color> {
     }
 
     @Override
-    public void keyTyped(char keyChar, int keyCode) {
-    }
+    public void keyTyped(char keyChar, int keyCode) {}
 
     @Override
     public float getTotalHeight() {

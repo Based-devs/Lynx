@@ -50,7 +50,7 @@ public class Vampyrix {
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-         Display.setTitle(Vampyrix.NAME + " " + Vampyrix.VERSION);
+        Display.setTitle(Vampyrix.NAME + " " + Vampyrix.VERSION);
     }
 
     public Logger getLogger() {

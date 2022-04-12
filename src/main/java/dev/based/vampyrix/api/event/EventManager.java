@@ -42,6 +42,6 @@ public class EventManager implements Wrapper {
 
     @SubscribeEvent
     public void onChat(ClientChatEvent event) {
-        this.getVampyrix().getEventBus().post(new ChatEvent(event.getOriginalMessage()));
+        if (this.getVampyrix().getEventBus().post(new ChatEvent(event.getOriginalMessage()))) event.setCanceled(true);
     }
 }

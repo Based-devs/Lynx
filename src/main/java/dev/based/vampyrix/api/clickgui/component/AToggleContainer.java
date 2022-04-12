@@ -9,9 +9,8 @@ public abstract class AToggleContainer extends AComponent {
     }
 
     public abstract float getTotalHeight();
-    
+
     public Toggleable getToggleable() {
         return toggleable;
     }
-
 }

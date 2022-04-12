@@ -1,10 +1,6 @@
 package dev.based.vampyrix.impl.commands;
 
-import dev.based.vampyrix.Vampyrix;
 import dev.based.vampyrix.api.command.Command;
-import dev.based.vampyrix.api.module.Module;
-import dev.based.vampyrix.api.module.setting.Setting;
-import dev.based.vampyrix.api.util.LoggerUtil;
 
 public class Set extends Command {
     public Set() {

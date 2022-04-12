@@ -1,8 +1,8 @@
 package dev.based.vampyrix.impl.clickgui;
 
+import dev.based.vampyrix.api.module.Category;
 import dev.based.vampyrix.api.util.Wrapper;
 import dev.based.vampyrix.impl.clickgui.frame.Frame;
-import dev.based.vampyrix.api.module.Category;
 import net.minecraft.client.gui.GuiScreen;
 
 import java.io.IOException;

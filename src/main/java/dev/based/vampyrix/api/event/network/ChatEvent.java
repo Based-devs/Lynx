@@ -6,6 +6,8 @@ public class ChatEvent extends ClientEvent {
     private final String message;
 
     public ChatEvent(String message) {
+        super(true, Era.PRE);
+
         this.message = message;
     }
 

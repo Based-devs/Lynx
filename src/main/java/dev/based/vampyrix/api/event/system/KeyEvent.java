@@ -7,13 +7,13 @@ public class KeyEvent extends ClientEvent {
 
     private int key;
 
-    public int getKey() {
-        return this.key;
-    }
-
     public static KeyEvent get(int key) {
         INSTANCE.key = key;
 
         return INSTANCE;
+    }
+
+    public int getKey() {
+        return this.key;
     }
 }
