@@ -10,7 +10,7 @@ public class Setting<T> {
     private final String name;
     private final List<Setting<?>> subsettings = new ArrayList<>();
     private String description;
-    // Bad system, we store these values even when they aren't used which is wasteful in memory
+    // Bad system, we store these values even when they aren't used
     private T value, min, max, incrementation;
     private int index;
     private Supplier<Boolean> isVisible = () -> true;
@@ -54,11 +54,11 @@ public class Setting<T> {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public Setting<T> setDescription(String description) {
@@ -69,7 +69,7 @@ public class Setting<T> {
     // Getters
 
     public T getValue() {
-        return value;
+        return this.value;
     }
 
     public void setValue(T value) {
@@ -77,15 +77,15 @@ public class Setting<T> {
     }
 
     public T getMin() {
-        return min;
+        return this.min;
     }
 
     public T getMax() {
-        return max;
+        return this.max;
     }
 
     public T getIncrementation() {
-        return incrementation;
+        return this.incrementation;
     }
 
     public T getNextMode() {
@@ -114,6 +114,6 @@ public class Setting<T> {
     }
 
     public List<Setting<?>> getSubsettings() {
-        return subsettings;
+        return this.subsettings;
     }
 }
