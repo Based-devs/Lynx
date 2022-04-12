@@ -1,66 +1,60 @@
-package dev.based.vampyrix.api.command;
+package dev.base.vampyrix.api.command;
 
-import dev.based.vampyrix.impl.commands.CommandCoords;
-import dev.based.vampyrix.api.util.Wrapper;
-import net.minecraftforge.client.event.ClientChatEvent;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import dev.base.vampyrix.api.util.LoggerUtil;
+import dev.base.vampyrix.api.command.commands.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
-public class CommandManager implements Wrapper {
-    private final List<Command> commands;
 
-    private String prefix = ":";
+public class CommandManager
+{
+	private final ArrayList<Command> commands = new ArrayList<>();
+	private String prefix = ".";
 
-    public CommandManager(){
-        this.getVampyrix().getEventBus().subscribe(this);
-        MinecraftForge.EVENT_BUS.register(this);
+	public CommandManager()
+	{
+		commands.add(new Help("Help", new String[]{"h", "help"}, "help"));
+		commands.add(new Prefix("Prefix", new String[]{"prefix"}, "prefix <char>"));
+		commands.add(new Bind("Bind", new String[]{"bind"}, "bind <module> <key>"));
+	}
 
-        this.commands = Arrays.asList(
-                new CommandCoords()
-        );
-    }
+	public void runCommand(String args)
+	{
+		boolean found = false;
+		String[] split = args.split(" ");
+		String startCommand = split[0];
+		String arguments = args.substring(startCommand.length()).trim();
 
-    @SubscribeEvent
-    public void onChatSent(ClientChatEvent event) {
-        String message = event.getMessage();
+		for (Command command : getCommands())
+		{
+			for (String alias : command.getAlias())
+			{
+				if (startCommand.equals(getPrefix() + alias))
+				{
+					command.onTrigger(arguments);
+					found = true;
+				}
+			}
+		}
 
-        if (message.startsWith(getPrefix())) {
-            event.setCanceled(true);
-            message = message.substring(getPrefix().length());
+		if (!found)
+		{
+			LoggerUtil.sendMessage("Unknown command");
+		}
+	}
 
-            if (message.split(" ").length > 0) {
-                String name = message.split(" ")[0];
-                boolean found = false;
+	public ArrayList<Command> getCommands()
+	{
+		return commands;
+	}
 
-                for (Command command : this.getCommands()) {
-                    if (command.getAliases().contains(name.toLowerCase()) || command.getName().equalsIgnoreCase(name)) {
-                        mc.ingameGUI.getChatGUI().addToSentMessages(event.getMessage());
-                        command.onCommand(Arrays.copyOfRange(message.split(" "), 1, message.split(" ").length));
-                        found = true;
-                        break;
-                    }
-                }
+	public String getPrefix()
+	{
+		return prefix;
+	}
 
-                if (!found) {
-                    System.out.println("not found");
-                }
-            }
-        }
-    }
-
-    public List<Command> getCommands(){
-        return this.commands;
-    }
-
-    public String getPrefix(){
-        return this.prefix;
-    }
-
-    public void setPrefix(String prefix){
-        this.prefix = prefix;
-    }
+	public void setPrefix(String prefix)
+	{
+		this.prefix = prefix;
+	}
 }
