@@ -5,8 +5,7 @@ import net.minecraft.util.text.TextComponentString;
 
 import java.util.logging.Logger;
 
-public class LoggerUtil
-{
+public class LoggerUtil {
 	public static void sendMessage(String message)
 	{
 		sendMessage(message, true);

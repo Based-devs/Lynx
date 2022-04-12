@@ -1,58 +1,35 @@
-package dev.base.vampyrix.api.command;
+package dev.based.vampyrix.api.command;
 
-import dev.base.vampyrix.Vampyrix;
-import dev.base.vampyrix.api.util.LoggerUtil;
+import dev.based.vampyrix.Vampyrix;
+import dev.based.vampyrix.api.util.LoggerUtil;
 
 
-public abstract class Command
-{
-	private String name;
-	private String[] alias;
-	private String usage;
+public abstract class Command {
+	private final String name;
+	private final String usage;
+	private final String[] aliases;
 
-	public Command(String name, String[] alias, String usage)
-	{
-		setName(name);
-		setAlias(alias);
-		setUsage(usage);
+	public Command(String name, String usage, String... aliases) {
+		this.name = name;
+		this.usage = usage;
+		this.aliases = aliases;
 	}
 
-	public void onTrigger(String arguments) {}
-
-	public void printUsage()
-	{
-		LoggerUtil.sendMessage("Usage: " + Vampyrix.commandManager.getPrefix() + usage);
+	public void printUsage() {
+		LoggerUtil.sendMessage("Usage: " + Vampyrix.INSTANCE.getCommandManager().getPrefix() + usage);
 	}
 
-	public String getName()
-	{
+	public String getName() {
 		return name;
 	}
 
-	public void setName(String name)
-	{
-		this.name = name;
-	}
-
-	public String[] getAlias()
-	{
-		return alias;
-	}
-
-	public void setAlias(String[] alias)
-	{
-		this.alias = alias;
-	}
-
-	public String getUsage()
-	{
+	public String getUsage() {
 		return usage;
 	}
 
-	public void setUsage(String usage)
-	{
-		this.usage = usage;
+	public String[] getAliases() {
+		return aliases;
 	}
 
-    public abstract void onRun(String arguments);
+    public abstract void execute(String[] arguments);
 }

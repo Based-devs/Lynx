@@ -52,6 +52,10 @@ public class ModuleManager implements Wrapper {
         this.getVampyrix().getEventBus().subscribe(this);
     }
 
+    public List<Module> getModules() {
+        return this.modules;
+    }
+
     public Module getModuleByName(String name) {
         return this.modules.stream().filter(module -> module.getName().toLowerCase().equals(name)).collect(Collectors.toList()).get(0);
     }
