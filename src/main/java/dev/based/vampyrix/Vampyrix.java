@@ -1,9 +1,9 @@
 package dev.based.vampyrix;
 
+import dev.based.vampyrix.api.command.CommandManager;
 import dev.based.vampyrix.api.event.EventManager;
 import dev.based.vampyrix.api.module.ModuleManager;
 import dev.based.vampyrix.impl.clickgui.ClickGUIScreen;
-import dev.based.vampyrix.api.command.CommandManager;
 import me.bush.eventbus.bus.EventBus;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -27,8 +27,6 @@ public class Vampyrix {
     private EventManager eventManager;
     private CommandManager commandManager;
 
-    private ClickGUIScreen clickGUIScreen;
-
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(INSTANCE);
@@ -43,15 +41,11 @@ public class Vampyrix {
 
         this.commandManager = new CommandManager();
         this.logger.info("Commands Initialized.");
-
-        this.clickGUIScreen = new ClickGUIScreen();
-        this.logger.info("ClickGUI Initialized.");
     }
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        clickGUIScreen = new ClickGUIScreen();
-        Display.setTitle(Vampyrix.NAME + " " + Vampyrix.VERSION);
+         Display.setTitle(Vampyrix.NAME + " " + Vampyrix.VERSION);
     }
 
     public Logger getLogger() {
@@ -66,15 +60,11 @@ public class Vampyrix {
         return this.moduleManager;
     }
 
-    public CommandManager getCommandManager(){
+    public CommandManager getCommandManager() {
         return this.commandManager;
     }
 
     public EventManager getEventManager() {
         return this.eventManager;
-    }
-
-    public ClickGUIScreen getClickGUIScreen() {
-        return this.clickGUIScreen;
     }
 }

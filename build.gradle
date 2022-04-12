@@ -18,8 +18,8 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'org.spongepowered.mixin'
 
-version = '0.1'
-group = 'dev.based.vampyrix'
+version '0.1'
+group 'dev.based.vampyrix'
 archivesBaseName = 'Vampyrix'
 
 sourceCompatibility = targetCompatibility = '1.8'
@@ -40,12 +40,14 @@ minecraft {
 repositories {
     mavenCentral()
 
-    flatDir {
-        dirs 'libs'
+    repositories {
+        maven {
+            url 'https://jitpack.io'
+        }
     }
 
     maven {
-        url = 'https://repo.spongepowered.org/repository/maven-public/'
+        url 'https://repo.spongepowered.org/repository/maven-public/'
     }
 }
 
@@ -58,9 +60,10 @@ dependencies {
         exclude module: 'log4j-core'
     }
 
+    compile 'com.github.therealbush:eventbus:1.0.2'
+
     compile group: 'org.json', name: 'json', version: '20211205'
 
-    compile fileTree(include: ['*.jar'], dir: 'libs')
 }
 
 processResources {
@@ -69,7 +72,7 @@ processResources {
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
 
-        expand 'version':project.version
+        expand 'version': project.version
     }
 
     from(sourceSets.main.resources.srcDirs) {
@@ -95,5 +98,12 @@ jar {
             'FMLCorePlugin': 'dev.based.vampyrix.asm.VampyrixMixinLoader',
             'ForceLoadAsMod': 'true'
         )
+    }
+
+    // pasted lol
+    from {
+        configurations.compile.collect { file ->
+            file.isDirectory() ? file : zipTree(file)
+        }
     }
 }

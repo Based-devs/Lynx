@@ -9,18 +9,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ClickGUIScreen extends GuiScreen implements Wrapper {
-    public static ClickGUIScreen INSTANCE;
+    public static final ClickGUIScreen INSTANCE = new ClickGUIScreen();
 
     private final ArrayList<Frame> frames = new ArrayList<>();
 
-    public ClickGUIScreen() {
+    protected ClickGUIScreen() {
         int xOffset = 10;
+
         for (Category category : Category.values()) {
             this.frames.add(new Frame(category, this.getVampyrix().getModuleManager().getModulesByCategory(category), 10 + xOffset, 10, 100, 16));
             xOffset += 105;
         }
-
-        INSTANCE = this;
     }
 
     @Override
