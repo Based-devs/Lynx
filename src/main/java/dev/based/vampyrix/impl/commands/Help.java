@@ -2,7 +2,7 @@ package dev.based.vampyrix.impl.commands;
 
 import dev.based.vampyrix.Vampyrix;
 import dev.based.vampyrix.api.command.Command;
-import dev.based.vampyrix.api.util.LoggerUtil;
+import dev.based.vampyrix.api.util.chat.ChatUtil;
 
 public class Help extends Command {
     public Help() {
@@ -11,10 +11,10 @@ public class Help extends Command {
 
     @Override
     public void execute(String[] arguments) {
-        LoggerUtil.sendMessage("Vampyrix");
+        ChatUtil.sendMessage("Vampyrix");
 
         for (Command command : Vampyrix.INSTANCE.getCommandManager().getCommands()) {
-            LoggerUtil.sendMessage(command.getName() + " - " + command.getUsage());
+            ChatUtil.sendMessage(command.getName() + " - " + command.getUsage());
         }
     }
 }

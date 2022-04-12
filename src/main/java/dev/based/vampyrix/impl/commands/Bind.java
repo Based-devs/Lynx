@@ -3,7 +3,7 @@ package dev.based.vampyrix.impl.commands;
 import dev.based.vampyrix.Vampyrix;
 import dev.based.vampyrix.api.command.Command;
 import dev.based.vampyrix.api.module.Module;
-import dev.based.vampyrix.api.util.LoggerUtil;
+import dev.based.vampyrix.api.util.chat.ChatUtil;
 import org.lwjgl.input.Keyboard;
 
 public class Bind extends Command {
@@ -18,7 +18,7 @@ public class Bind extends Command {
         if (module != null) {
             try {
                 module.getKeybind().getValue().setKeyCode(Keyboard.getKeyIndex(arguments[1].toUpperCase()));
-                LoggerUtil.sendMessage(String.format("Bound %s to %s", module.getName(), arguments[1].toUpperCase()));
+                ChatUtil.sendMessage(String.format("Bound %s to %s", module.getName(), arguments[1].toUpperCase()));
                 return;
             } catch (Exception ignored) {}
         }

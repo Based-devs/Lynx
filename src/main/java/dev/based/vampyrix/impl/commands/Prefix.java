@@ -2,7 +2,7 @@ package dev.based.vampyrix.impl.commands;
 
 import dev.based.vampyrix.Vampyrix;
 import dev.based.vampyrix.api.command.Command;
-import dev.based.vampyrix.api.util.LoggerUtil;
+import dev.based.vampyrix.api.util.chat.ChatUtil;
 
 public class Prefix extends Command {
     public Prefix() {
@@ -17,6 +17,6 @@ public class Prefix extends Command {
         }
 
         Vampyrix.INSTANCE.getCommandManager().setPrefix(arguments[1]);
-        LoggerUtil.sendMessage("Prefix set to " + arguments[1]);
+        ChatUtil.sendMessage("Prefix set to " + arguments[1]);
     }
 }

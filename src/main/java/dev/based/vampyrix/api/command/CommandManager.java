@@ -1,7 +1,7 @@
 package dev.based.vampyrix.api.command;
 
 import dev.based.vampyrix.api.event.network.ChatEvent;
-import dev.based.vampyrix.api.util.LoggerUtil;
+import dev.based.vampyrix.api.util.chat.ChatUtil;
 import dev.based.vampyrix.api.util.Wrapper;
 import dev.based.vampyrix.impl.commands.*;
 import me.bush.eventbus.annotation.EventListener;
@@ -51,7 +51,7 @@ public class CommandManager implements Wrapper {
         }
 
         if (!found) {
-            LoggerUtil.sendMessage("Unknown command");
+            ChatUtil.sendMessage("Unknown command");
         }
     }
 }
