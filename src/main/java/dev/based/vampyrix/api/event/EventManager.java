@@ -1,6 +1,5 @@
 package dev.based.vampyrix.api.event;
 
-import dev.based.vampyrix.Vampyrix;
 import dev.based.vampyrix.api.event.entity.LivingUpdateEvent;
 import dev.based.vampyrix.api.event.network.ChatEvent;
 import dev.based.vampyrix.api.event.render.RenderEvent;
@@ -22,12 +21,12 @@ public class EventManager implements Wrapper {
 
     @SubscribeEvent
     public void onLivingUpdate(LivingEvent.LivingUpdateEvent event) {
-        Vampyrix.INSTANCE.getEventBus().post(LivingUpdateEvent.get(event.getEntityLiving()));
+        this.getVampyrix().getEventBus().post(LivingUpdateEvent.get(event.getEntityLiving()));
     }
 
     @SubscribeEvent
     public void onKey(InputEvent.KeyInputEvent event) {
-        Vampyrix.INSTANCE.getEventBus().post(KeyEvent.get(Keyboard.getEventKey()));
+        this.getVampyrix().getEventBus().post(KeyEvent.get(Keyboard.getEventKey()));
     }
 
     @SubscribeEvent
