@@ -9,11 +9,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ClickGUIScreen extends GuiScreen implements Wrapper {
-    public static final ClickGUIScreen INSTANCE = new ClickGUIScreen();
-
     private final ArrayList<Frame> frames = new ArrayList<>();
 
-    protected ClickGUIScreen() {
+    public ClickGUIScreen() {
         int xOffset = 10;
 
         for (Category category : Category.values()) {

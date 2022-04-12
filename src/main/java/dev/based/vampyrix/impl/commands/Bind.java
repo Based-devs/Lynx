@@ -6,8 +6,7 @@ import dev.based.vampyrix.api.module.Module;
 import dev.based.vampyrix.api.util.LoggerUtil;
 import org.lwjgl.input.Keyboard;
 
-public class Bind extends Command
-{
+public class Bind extends Command {
     public Bind() {
         super("bind", "bind <module> <key>", "b");
     }

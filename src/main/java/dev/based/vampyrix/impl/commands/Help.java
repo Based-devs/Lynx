@@ -10,8 +10,7 @@ public class Help extends Command {
 	}
 
 	@Override
-	public void execute(String[] arguments)
-	{
+	public void execute(String[] arguments) {
 		LoggerUtil.sendMessage("Vampyrix");
 
 		for (Command command : Vampyrix.INSTANCE.getCommandManager().getCommands()) {

@@ -27,26 +27,6 @@ public class CommandManager implements Wrapper {
 		this.getVampyrix().getEventBus().subscribe(this);
 	}
 
-	public void runCommand(String args) {
-		boolean found = false;
-		String[] split = args.split(" ");
-		String startCommand = split[0];
-		String arguments = args.substring(startCommand.length()).trim();
-
-		for (Command command : getCommands()) {
-			for (String alias : command.getAliases()) {
-				if (startCommand.equals(getPrefix() + alias)) {
-					command.execute(arguments.split(" "));
-					found = true;
-				}
-			}
-		}
-
-		if (!found) {
-			LoggerUtil.sendMessage("Unknown command");
-		}
-	}
-
 	public List<Command> getCommands() {
 		return this.commands;
 	}
@@ -61,6 +41,23 @@ public class CommandManager implements Wrapper {
 
 	@EventListener
 	private void onChat(ChatEvent event) {
+		if (!event.getMessage().startsWith(this.getPrefix())) return;
 
+		boolean found = false;
+		String[] args = event.getMessage().split(" ");
+		String startCommand = args[0];
+
+		for (Command command : this.getCommands()) {
+			for (String alias : command.getAliases()) {
+				if (startCommand.equals(this.getPrefix() + alias)) {
+					command.execute(Arrays.copyOfRange(args, 1, args.length - 1));
+					found = true;
+				}
+			}
+		}
+
+		if (!found) {
+			LoggerUtil.sendMessage("Unknown command");
+		}
 	}
 }

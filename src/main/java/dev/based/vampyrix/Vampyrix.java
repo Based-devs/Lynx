@@ -27,6 +27,8 @@ public class Vampyrix {
     private EventManager eventManager;
     private CommandManager commandManager;
 
+    private ClickGUIScreen clickGUIScreen;
+
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(INSTANCE);
@@ -41,6 +43,8 @@ public class Vampyrix {
 
         this.commandManager = new CommandManager();
         this.logger.info("Commands Initialized.");
+
+        this.clickGUIScreen = new ClickGUIScreen();
     }
 
     @Mod.EventHandler
@@ -66,5 +70,9 @@ public class Vampyrix {
 
     public EventManager getEventManager() {
         return this.eventManager;
+    }
+
+    public ClickGUIScreen getClickGUIScreen() {
+        return this.clickGUIScreen;
     }
 }

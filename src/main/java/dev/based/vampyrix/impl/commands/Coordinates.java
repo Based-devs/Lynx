@@ -8,12 +8,12 @@ import static dev.based.vampyrix.api.util.Wrapper.mc;
 
 public class Coordinates extends Command {
     public Coordinates() {
-        super("Coordinates","Copies your coords to the clipboard.","coordinates", "coords", "coordinates");
+        super("coordinates","coordinates","coordinates", "coords", "coordinates");
     }
 
     @Override
     public void execute(String[] args){
-        if (mc.player == null ){
+        if (mc.player == null ) {
             return;
         }
 
