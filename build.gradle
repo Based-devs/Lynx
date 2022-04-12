@@ -105,9 +105,16 @@ jar {
     )
 
     // pasted lol
-    from {
+    from({
         configurations.embed.collect { file ->
             file.isDirectory() ? file : zipTree(file)
         }
+    }) {
+        // Excludes/Removes useless bloat files from the compiled jar.
+        exclude 'dummyThing',
+                'LICENSE.txt',
+                'META-INF/MUMFREY.RSA',
+                'META-INF/maven/**',
+                'org/**/*.html'
     }
 }
