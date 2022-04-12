@@ -45,6 +45,7 @@ public class Vampyrix {
         this.logger.info("Commands Initialized.");
 
         this.clickGUIScreen = new ClickGUIScreen();
+        this.logger.info("ClickGui initialized.");
     }
 
     @Mod.EventHandler

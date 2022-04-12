@@ -2,11 +2,11 @@ package dev.based.vampyrix.api.event;
 
 import dev.based.vampyrix.Vampyrix;
 import dev.based.vampyrix.api.event.entity.LivingUpdateEvent;
+import dev.based.vampyrix.api.event.network.ChatEvent;
 import dev.based.vampyrix.api.event.render.RenderEvent;
 import dev.based.vampyrix.api.event.system.KeyEvent;
 import dev.based.vampyrix.api.util.Wrapper;
 import net.minecraftforge.client.event.ClientChatEvent;
-import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -42,6 +42,6 @@ public class EventManager implements Wrapper {
 
     @SubscribeEvent
     public void onChat(ClientChatEvent event) {
-
+        this.getVampyrix().getEventBus().post(new ChatEvent(event.getOriginalMessage()));
     }
 }
