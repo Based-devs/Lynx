@@ -5,16 +5,12 @@ import dev.based.vampyrix.api.event.render.RenderEvent;
 import dev.based.vampyrix.api.event.system.KeyEvent;
 import dev.based.vampyrix.api.util.Wrapper;
 import dev.based.vampyrix.impl.modules.client.ClickGUI;
+import dev.based.vampyrix.impl.modules.client.Colors;
 import dev.based.vampyrix.impl.modules.combat.AutoArmor;
-import dev.based.vampyrix.impl.modules.client.Colour;
 import dev.based.vampyrix.impl.modules.movement.Flight;
 import dev.based.vampyrix.impl.modules.movement.Step;
 import dev.based.vampyrix.impl.modules.render.Tracers;
 import me.bush.eventbus.annotation.EventListener;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderWorldLastEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.fml.common.gameevent.InputEvent;
 import org.lwjgl.input.Keyboard;
 
 import java.util.Arrays;
@@ -37,10 +33,10 @@ public class ModuleManager implements Wrapper {
 
                 // Add client modules
                 new ClickGUI(),
-                new Colour(),
-               // Add combat modules
-               new AutoArmor()
-            //sup
+                Colors.INSTANCE,
+                // Add combat modules
+                new AutoArmor()
+                //sup
         );
 
         this.modules.forEach(module -> {
@@ -67,7 +63,7 @@ public class ModuleManager implements Wrapper {
     public List<Module> getModulesByCategory(Category c) {
         return this.modules.stream().filter(module -> module.getCategory() == c).collect(Collectors.toList());
     }
-    
+
     public void forEachEnabled(Consumer<Module> action) {
         this.modules.stream().filter(Module::isEnabled).forEach(Objects.requireNonNull(action));
     }

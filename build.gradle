@@ -37,6 +37,12 @@ minecraft {
     clientRunArgs += '--mixin mixins.vampyrix.json'
 }
 
+configurations {
+    embed
+
+    compile.extendsFrom embed
+}
+
 repositories {
     mavenCentral()
 
@@ -89,20 +95,18 @@ mixin {
 }
 
 jar {
-    manifest {
-        attributes(
+    manifest.attributes(
             'MixinConfigs': 'mixins.vampyrix.json',
             'tweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
             'TweakOrder': 0,
             'FMLCorePluginContainsFMLMod': 'true',
             'FMLCorePlugin': 'dev.based.vampyrix.asm.VampyrixMixinLoader',
             'ForceLoadAsMod': 'true'
-        )
-    }
+    )
 
     // pasted lol
     from {
-        configurations.compile.collect { file ->
+        configurations.embed.collect { file ->
             file.isDirectory() ? file : zipTree(file)
         }
     }

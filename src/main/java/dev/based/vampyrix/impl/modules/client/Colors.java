@@ -6,13 +6,13 @@ import dev.based.vampyrix.api.module.setting.Setting;
 
 import java.awt.*;
 
-public class Colour extends Module {
+public class Colors extends Module {
 
-    public static Colour INSTANCE;
+    public static Colors INSTANCE = new Colors();
 
     public final Setting<Color> colour = new Setting<>("Colour", new Color(50, 80, 255)).setDescription("The client's main colour");
 
-    public Colour() {
+    protected Colors() {
         super("Colour", "The client's main colour", Category.CLIENT);
         INSTANCE = this;
     }

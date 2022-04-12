@@ -1,12 +1,12 @@
 package dev.based.vampyrix.api.util.render;
 
-import dev.based.vampyrix.impl.modules.client.Colour;
+import dev.based.vampyrix.impl.modules.client.Colors;
 
 import java.awt.*;
 
 public class ColourUtil {
     public static Color getClientColour() {
-        return Colour.INSTANCE.colour.getValue();
+        return Colors.INSTANCE.colour.getValue();
     }
 
     public static Color integrateAlpha(Color colour, float alpha) {
