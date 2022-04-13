@@ -1,4 +1,4 @@
-package dev.based.vampyrix.asm.mixins.render.gui;
+package dev.based.vampyrix.asm.mixins;
 
 import dev.based.vampyrix.Vampyrix;
 import dev.based.vampyrix.api.util.render.ColourUtil;
