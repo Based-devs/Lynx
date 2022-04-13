@@ -85,14 +85,14 @@ public abstract class Module implements Wrapper, Toggleable {
     }
 
     public boolean isEnabled() {
-        return enabled;
+        return this.enabled;
     }
 
     public Setting<Keybind> getKeybind() {
-        return keybind;
+        return this.keybind;
     }
 
     public List<Setting<?>> getSettings() {
-        return settings;
+        return this.settings;
     }
 }
