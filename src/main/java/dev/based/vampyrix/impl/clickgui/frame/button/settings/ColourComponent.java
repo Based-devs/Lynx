@@ -14,7 +14,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.lwjgl.opengl.GL11.glScalef;
+import static org.lwjgl.opengl.GL11.*;
 
 public class ColourComponent extends SettingComponent<Color> {
 
