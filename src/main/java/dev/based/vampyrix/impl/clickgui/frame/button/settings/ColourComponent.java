@@ -2,9 +2,8 @@ package dev.based.vampyrix.impl.clickgui.frame.button.settings;
 
 import dev.based.vampyrix.api.clickgui.button.SettingComponent;
 import dev.based.vampyrix.api.module.setting.Setting;
-import dev.based.vampyrix.api.util.maths.MathUtil;
+import dev.based.vampyrix.api.util.misc.MathUtil;
 import dev.based.vampyrix.api.util.render.ColourUtil;
-import dev.based.vampyrix.api.util.render.GuiUtil;
 import dev.based.vampyrix.api.util.render.RenderUtil;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
@@ -162,7 +161,7 @@ public class ColourComponent extends SettingComponent<Color> {
         if (this.open) {
             this.pickerComponents.forEach(component -> component.mouseClicked(mouseX, mouseY, mouseButton));
 
-            if (GuiUtil.isMouseOver(this.x + 3, this.y + this.height + (this.pickerComponents.size() * this.height) + 2, 93, 70, mouseX, mouseY)) {
+            if (RenderUtil.isMouseWitin(this.x + 3, this.y + this.height + (this.pickerComponents.size() * this.height) + 2, 93, 70, mouseX, mouseY)) {
                 this.draggingPicker = true;
             }
         }
@@ -174,7 +173,8 @@ public class ColourComponent extends SettingComponent<Color> {
     }
 
     @Override
-    public void keyTyped(char keyChar, int keyCode) {}
+    public void keyTyped(char keyChar, int keyCode) {
+    }
 
     @Override
     public float getTotalHeight() {

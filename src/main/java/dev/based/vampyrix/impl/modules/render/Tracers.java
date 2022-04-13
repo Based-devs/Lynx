@@ -3,14 +3,14 @@ package dev.based.vampyrix.impl.modules.render;
 import dev.based.vampyrix.api.module.Category;
 import dev.based.vampyrix.api.module.Module;
 import dev.based.vampyrix.api.module.setting.Setting;
-import dev.based.vampyrix.api.util.maths.InterpolationUtil;
+import dev.based.vampyrix.api.util.misc.MathUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.Vec3d;
 
-import java.awt.*;
+import java.awt.Color;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -41,7 +41,7 @@ public class Tracers extends Module {
     @Override
     public void onRender3D() {
         mc.world.loadedEntityList.stream().filter(this::isEntityValid).forEach(entity -> {
-            Vec3d vector = InterpolationUtil.getInterpolatedPosition(entity);
+            Vec3d vector = MathUtil.getInterpolatedPosition(entity);
 
             double x = vector.x - mc.getRenderManager().viewerPosX;
             double y = vector.y - mc.getRenderManager().viewerPosY;

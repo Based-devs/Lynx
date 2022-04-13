@@ -1,10 +1,19 @@
-package dev.based.vampyrix.api.util.maths;
+package dev.based.vampyrix.api.util.misc;
 
 import dev.based.vampyrix.api.util.Wrapper;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.Vec3d;
 
-public class InterpolationUtil implements Wrapper {
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
+public class MathUtil implements Wrapper {
+    public static double roundDouble(double number, int scale) {
+        BigDecimal bd = new BigDecimal(number);
+        bd = bd.setScale(scale, RoundingMode.HALF_UP);
+        return bd.doubleValue();
+    }
+
     public static Vec3d getInterpolatedPosition(Entity entityIn) {
         return new Vec3d(entityIn.lastTickPosX, entityIn.lastTickPosY, entityIn.lastTickPosZ).add(getInterpolatedAmount(entityIn, mc.getRenderPartialTicks()));
     }

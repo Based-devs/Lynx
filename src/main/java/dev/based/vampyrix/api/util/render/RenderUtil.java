@@ -31,4 +31,8 @@ public class RenderUtil {
         GlStateManager.enableTexture2D();
         GlStateManager.popMatrix();
     }
+
+    public static boolean isMouseWitin(float x, float y, float width, float height, float mouseX, float mouseY) {
+        return mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + height;
+    }
 }
