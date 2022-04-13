@@ -11,7 +11,6 @@ import dev.based.vampyrix.impl.modules.movement.Flight;
 import dev.based.vampyrix.impl.modules.movement.Step;
 import dev.based.vampyrix.impl.modules.render.Tracers;
 import me.bush.eventbus.annotation.EventListener;
-import org.lwjgl.input.Keyboard;
 
 import java.util.Arrays;
 import java.util.List;
