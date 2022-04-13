@@ -33,7 +33,7 @@ public class Vampyrix {
     public void init(FMLInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(INSTANCE);
 
-        this.logger.info("Setting up Vampyrix {}...", Vampyrix.VERSION);
+        this.logger.info("Setting up {} {}...", Vampyrix.MODID, Vampyrix.VERSION);
 
         this.moduleManager = new ModuleManager();
         this.logger.info("Modules Initialized.");
