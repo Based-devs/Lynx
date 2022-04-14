@@ -27,7 +27,7 @@ public abstract class Module implements Wrapper, Toggleable {
     /**
      * Sets up the settings. Only add parent settings to this method.
      */
-    public void setupSettings() {}
+    public abstract void setupSettings();
 
     /**
      * Registers a setting to the list
@@ -90,6 +90,10 @@ public abstract class Module implements Wrapper, Toggleable {
 
     public Setting<Keybind> getKeybind() {
         return this.keybind;
+    }
+
+    public int getKey() {
+        return this.keybind.getValue().getKeyCode();
     }
 
     public List<Setting<?>> getSettings() {

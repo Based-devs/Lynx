@@ -25,7 +25,7 @@ public class Frame extends ADragComponent implements TextRenderer {
         this.category = category;
 
         for (Module module : modules) {
-            buttons.add(new Button(module, x, y, width, 14));
+            this.buttons.add(new Button(module, x, y, width, 14));
         }
     }
 

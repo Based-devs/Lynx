@@ -1,4 +1,4 @@
-package dev.based.vampyrix.api.event.network;
+package dev.based.vampyrix.api.event.events;
 
 import dev.based.vampyrix.api.event.ClientEvent;
 

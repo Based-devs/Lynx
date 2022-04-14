@@ -1,8 +1,8 @@
 package dev.based.vampyrix.api.module;
 
-import dev.based.vampyrix.api.event.entity.LivingUpdateEvent;
-import dev.based.vampyrix.api.event.render.RenderEvent;
-import dev.based.vampyrix.api.event.system.KeyEvent;
+import dev.based.vampyrix.api.event.events.LivingUpdateEvent;
+import dev.based.vampyrix.api.event.events.RenderEvent;
+import dev.based.vampyrix.api.event.events.KeyEvent;
 import dev.based.vampyrix.api.util.Wrapper;
 import dev.based.vampyrix.impl.modules.client.ClickGUI;
 import dev.based.vampyrix.impl.modules.client.Colors;
@@ -24,17 +24,18 @@ public class ModuleManager implements Wrapper {
     public ModuleManager() {
         this.modules = Arrays.asList(
                 // Add movement modules
-                new Flight(), new Step(),
+                new Flight(),
+                new Step(),
 
                 // Add render modules
                 new Tracers(),
 
                 // Add client modules
-                new ClickGUI(), Colors.INSTANCE,
+                new ClickGUI(),
+                Colors.INSTANCE,
+
                 // Add combat modules
-                new AutoArmor()
-                //sup
-        );
+                new AutoArmor());
 
         this.modules.forEach(module -> {
             // Setup module settings
@@ -53,8 +54,14 @@ public class ModuleManager implements Wrapper {
         return this.modules;
     }
 
+    /**
+     * This method is used to find modules from unknown strings.
+     *
+     * @param name should be an unknown string. If you know what module you want to access, access it from an instance class.
+     * @return the module with a name matching the parameter. Will return null if the module is not found.
+     */
     public Module getModuleByName(String name) {
-        return this.modules.stream().filter(module -> module.getName().toLowerCase().equals(name)).collect(Collectors.toList()).get(0);
+        return this.modules.stream().filter(module -> module.getName().toLowerCase().equals(name)).findFirst().orElse(null);
     }
 
     private int sortABC(Module module1, Module module2) {
@@ -72,7 +79,7 @@ public class ModuleManager implements Wrapper {
     @EventListener
     private void onKeyTyped(KeyEvent event) {
         if (event.getKey() != 0) {
-            this.modules.stream().filter(module -> module.getKeybind().getValue().getKeyCode() == event.getKey()).forEach(Module::toggle);
+            this.modules.stream().filter(module -> module.getKey() == event.getKey()).forEach(Module::toggle);
         }
     }
 

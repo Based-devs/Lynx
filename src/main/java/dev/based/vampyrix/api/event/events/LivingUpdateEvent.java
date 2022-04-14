@@ -1,4 +1,4 @@
-package dev.based.vampyrix.api.event.entity;
+package dev.based.vampyrix.api.event.events;
 
 import dev.based.vampyrix.api.event.ClientEvent;
 import net.minecraft.entity.EntityLivingBase;

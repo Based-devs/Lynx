@@ -1,9 +1,6 @@
 package dev.based.vampyrix.api.event;
 
-import dev.based.vampyrix.api.event.entity.LivingUpdateEvent;
-import dev.based.vampyrix.api.event.network.ChatEvent;
-import dev.based.vampyrix.api.event.render.RenderEvent;
-import dev.based.vampyrix.api.event.system.KeyEvent;
+import dev.based.vampyrix.api.event.events.*;
 import dev.based.vampyrix.api.util.Wrapper;
 import net.minecraftforge.client.event.ClientChatEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -12,11 +9,17 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 import org.lwjgl.input.Keyboard;
 
 public class EventManager implements Wrapper {
     public EventManager() {
         MinecraftForge.EVENT_BUS.register(this);
+    }
+
+    @SubscribeEvent
+    public void onTick(TickEvent.ClientTickEvent event) {
+        this.getVampyrix().getEventBus().post(new ClientTickEvent(ClientEvent.Era.POST));
     }
 
     @SubscribeEvent
@@ -26,7 +29,7 @@ public class EventManager implements Wrapper {
 
     @SubscribeEvent
     public void onKey(InputEvent.KeyInputEvent event) {
-        this.getVampyrix().getEventBus().post(KeyEvent.get(Keyboard.getEventKey()));
+        this.getVampyrix().getEventBus().post(new KeyEvent(Keyboard.getEventKey()));
     }
 
     @SubscribeEvent
