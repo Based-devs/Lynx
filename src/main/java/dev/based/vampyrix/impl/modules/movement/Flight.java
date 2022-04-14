@@ -9,6 +9,9 @@ public class Flight extends Module {
     }
 
     @Override
+    public void setupSettings() {}
+
+    @Override
     public void onDisable() {
         mc.player.capabilities.isFlying = false;
     }

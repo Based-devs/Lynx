@@ -11,6 +11,9 @@ public class ClickGUI extends Module {
     }
 
     @Override
+    public void setupSettings() {}
+
+    @Override
     public void onEnable() {
         if (!nullCheck()) {
             mc.displayGuiScreen(this.getVampyrix().getClickGUIScreen());

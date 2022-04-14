@@ -16,6 +16,9 @@ public class AutoArmor extends Module {
         super("AutoArmor", "yes", Category.COMBAT);
     }
 
+    @Override
+    public void setupSettings() {}
+
     @SubscribeEvent
     public void onTick(TickEvent.ClientTickEvent event) {
         if (mc.player == null || mc.world == null || mc.player.ticksExisted % 2 == 0 || mc.currentScreen instanceof GuiContainer && !(mc.currentScreen instanceof InventoryEffectRenderer)) {
