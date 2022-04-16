@@ -1,0 +1,117 @@
+buildscript {
+    repositories {
+        maven {
+            url = 'https://files.minecraftforge.net/maven'
+        }
+
+        maven {
+            url = 'https://repo.spongepowered.org/repository/maven-public/'
+        }
+    }
+    
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3.4'
+        classpath 'org.spongepowered:mixingradle:0.6-SNAPSHOT'
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'org.spongepowered.mixin'
+
+version '0.2'
+group 'dev.based.lynx'
+archivesBaseName = 'Lynx'
+
+sourceCompatibility = targetCompatibility = '1.8'
+compileJava {
+    sourceCompatibility = targetCompatibility = '1.8'
+    options.encoding = 'UTF-8'
+}
+
+minecraft {
+    version = '1.12.2-14.23.5.2768'
+    runDir = 'run'
+    mappings = 'stable_39'
+    makeObfSourceJar = false
+    clientJvmArgs += '-Dfml.coreMods.load=dev.based.lynx.mixin.LynxMixinLoader'
+    clientRunArgs += '--mixin mixins.Lynx.json'
+}
+
+configurations {
+    embed
+
+    compile.extendsFrom embed
+}
+
+repositories {
+    mavenCentral()
+
+    repositories {
+        maven {
+            url 'https://jitpack.io'
+        }
+    }
+
+    maven {
+        url 'https://repo.spongepowered.org/repository/maven-public/'
+    }
+}
+
+dependencies {
+    compile('org.spongepowered:mixin:0.7.11-SNAPSHOT') {
+        exclude module: 'launchwrapper'
+        exclude module: 'guava'
+        exclude module: 'gson'
+        exclude module: 'commons-io'
+        exclude module: 'log4j-core'
+    }
+
+    compile 'com.github.therealbush:eventbus:1.0.2'
+
+    compile group: 'org.json', name: 'json', version: '20211205'
+
+}
+
+processResources {
+    inputs.property 'version', project.version
+
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+
+        expand 'version': project.version
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
+
+mixin {
+    defaultObfuscationEnv searge
+
+    add sourceSets.main, 'mixins.lynx.refmap.json'
+}
+
+jar {
+    manifest.attributes(
+        'MixinConfigs': 'mixins.lynx.json',
+        'tweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
+        'TweakOrder': 0,
+        'FMLCorePluginContainsFMLMod': 'true',
+        'FMLCorePlugin': 'dev.based.lynx.mixin.LynxMixinLoader',
+        'ForceLoadAsMod': 'true'
+    )
+
+    // pasted lol
+    from({
+        configurations.embed.collect { file ->
+            file.isDirectory() ? file : zipTree(file)
+        }
+    }) {
+        exclude 'dummyThing',
+                'LICENSE.txt',
+                'META-INF/MUMFREY.RSA',
+                'META-INF/maven/**',
+                'org/**/*.html'
+    }
+}
