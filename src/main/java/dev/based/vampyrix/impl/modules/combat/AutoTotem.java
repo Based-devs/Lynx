@@ -88,7 +88,7 @@ public class AutoTotem extends Module
                 mc.playerController.windowClick(0, t < 9 ? t + 36 : t, 0, ClickType.PICKUP, mc.player);
                 moving = true;
             }
-            else if (!soft.getBooleanValue())
+            else if (!soft.getValue())
             {
                 int t = -1;
                 for (int i = 0; i < 45; i++) 
