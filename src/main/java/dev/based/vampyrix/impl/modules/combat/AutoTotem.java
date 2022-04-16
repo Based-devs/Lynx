@@ -52,7 +52,7 @@ public class AutoTotem extends Module
         }
         else 
         {
-            if (soft.getBooleanValue() && !mc.player.getHeldItemOffhand().isEmpty()) 
+            if (soft.getValue() && !mc.player.getHeldItemOffhand().isEmpty()) 
             {
                 return;
             }
