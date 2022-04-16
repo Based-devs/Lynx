@@ -22,6 +22,10 @@ public class AutoTotem extends Module
 	{
 		super("AutoTotem", "", Category.COMBAT);
 	}
+    @Override
+    public void setupSettings() {
+        this.registerSetting(soft);
+} 
 	
 	@SubscribeEvent
 	public void onUpdate(final TickEvent.ClientTickEvent event)
