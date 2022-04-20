@@ -33,7 +33,7 @@ minecraft {
     runDir = 'run'
     mappings = 'stable_39'
     makeObfSourceJar = false
-    clientJvmArgs += '-Dfml.coreMods.load=dev.based.vampyrix.asm.LynxMixinLoader'
+    clientJvmArgs += '-Dfml.coreMods.load=dev.based.lynx.asm.LynxMixinLoader'
     clientRunArgs += '--mixin mixins.lynx.json'
 }
 
