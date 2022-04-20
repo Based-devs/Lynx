@@ -14,6 +14,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinGuiMainMenu {
     @Inject(method = "drawScreen", at = @At("TAIL"))
     public void onDrawScreen(int mouseX, int mouseY, float partialTicks, CallbackInfo info) {
-        Minecraft.getMinecraft().fontRenderer.drawStringWithShadow("Vampyrix " + TextFormatting.GRAY + Lynx.VERSION, 2, 2, ColourUtil.getClientColour().getRGB());
+        Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(Lynx.NAME + TextFormatting.GRAY + Lynx.VERSION, 2, 2, ColourUtil.getClientColour().getRGB());
     }
 }

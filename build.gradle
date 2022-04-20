@@ -78,9 +78,7 @@ processResources {
         include 'mcmod.info'
 
         expand 'version': project.version
-    }
 
-    from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
 }
@@ -88,16 +86,16 @@ processResources {
 mixin {
     defaultObfuscationEnv searge
 
-    add sourceSets.main, 'mixins.vampyrix.refmap.json'
+    add sourceSets.main, 'mixins.lynx.refmap.json'
 }
 
 jar {
     manifest.attributes(
-        'MixinConfigs': 'mixins.vampyrix.json',
+        'MixinConfigs': 'mixins.lynx.json',
         'tweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
         'TweakOrder': 0,
         'FMLCorePluginContainsFMLMod': 'true',
-        'FMLCorePlugin': 'dev.based.vampyrix.asm.VampyrixMixinLoader',
+        'FMLCorePlugin': 'dev.based.lynx.asm.LynxMixinLoader',
         'ForceLoadAsMod': 'true'
     )
 

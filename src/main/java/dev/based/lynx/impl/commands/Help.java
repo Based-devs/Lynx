@@ -2,6 +2,7 @@ package dev.based.lynx.impl.commands;
 
 import dev.based.lynx.Lynx;
 import dev.based.lynx.api.command.Command;
+import dev.based.lynx.api.util.Wrapper;
 import dev.based.lynx.api.util.chat.ChatUtil;
 
 public class Help extends Command {
@@ -11,7 +12,7 @@ public class Help extends Command {
 
     @Override
     public void execute(String[] arguments) {
-        ChatUtil.sendMessage("Vampyrix");
+        ChatUtil.sendMessage(Lynx.NAME);
 
         for (Command command : Lynx.INSTANCE.getCommandManager().getCommands()) {
             ChatUtil.sendMessage(command.getName() + " - " + command.getUsage());

@@ -10,7 +10,7 @@ public class Set extends Command {
     @Override
     public void execute(String[] arguments) {
         /**
-        for (Module module : Vampyrix.INSTANCE.getModuleManager().getModules()) {
+        for (Module module : Lynx.INSTANCE.getModuleManager().getModules()) {
             if (module.getName().equalsIgnoreCase(arguments[0])) {
                 for (Setting<?> setting : module.getSettings()) {
                     if (arguments[1].equalsIgnoreCase(setting.getName())) {
