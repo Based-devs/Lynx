@@ -1,7 +1,7 @@
 {
   "required": true,
   "package": "dev.based.lynx.asm.mixins",
-  "refmap": "mixins.vampyrix.refmap.json",
+  "refmap": "mixins.lynx.refmap.json",
   "minVersion": "0.7.11",
   "compatibilityLevel": "JAVA_8",
   "client": [
