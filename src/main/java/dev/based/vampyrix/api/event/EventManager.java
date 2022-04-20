@@ -19,31 +19,31 @@ public class EventManager implements Wrapper {
 
     @SubscribeEvent
     public void onTick(TickEvent.ClientTickEvent event) {
-        this.getVampyrix().getEventBus().post(new ClientTickEvent(ClientEvent.Era.POST));
+        this.getLynx().getEventBus().post(new ClientTickEvent(ClientEvent.Era.POST));
     }
 
     @SubscribeEvent
     public void onLivingUpdate(LivingEvent.LivingUpdateEvent event) {
-        this.getVampyrix().getEventBus().post(LivingUpdateEvent.get(event.getEntityLiving()));
+        this.getLynx().getEventBus().post(LivingUpdateEvent.get(event.getEntityLiving()));
     }
 
     @SubscribeEvent
     public void onKey(InputEvent.KeyInputEvent event) {
-        this.getVampyrix().getEventBus().post(new KeyEvent(Keyboard.getEventKey()));
+        this.getLynx().getEventBus().post(new KeyEvent(Keyboard.getEventKey()));
     }
 
     @SubscribeEvent
     public void onRender2D(RenderGameOverlayEvent event) {
-        this.getVampyrix().getEventBus().post(new RenderEvent.Render2D(event.getPartialTicks()));
+        this.getLynx().getEventBus().post(new RenderEvent.Render2D(event.getPartialTicks()));
     }
 
     @SubscribeEvent
     public void onRender3D(RenderWorldLastEvent event) {
-        this.getVampyrix().getEventBus().post(new RenderEvent.Render3D(event.getPartialTicks()));
+        this.getLynx().getEventBus().post(new RenderEvent.Render3D(event.getPartialTicks()));
     }
 
     @SubscribeEvent
     public void onChat(ClientChatEvent event) {
-        if (this.getVampyrix().getEventBus().post(new ChatEvent(event.getOriginalMessage()))) event.setCanceled(true);
+        if (this.getLynx().getEventBus().post(new ChatEvent(event.getOriginalMessage()))) event.setCanceled(true);
     }
 }

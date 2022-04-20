@@ -1,6 +1,6 @@
 package dev.based.vampyrix.api.command;
 
-import dev.based.vampyrix.Vampyrix;
+import dev.based.vampyrix.Lynx;
 import dev.based.vampyrix.api.util.chat.ChatUtil;
 
 public abstract class Command {
@@ -14,7 +14,7 @@ public abstract class Command {
     }
 
     public void printUsage() {
-        ChatUtil.sendMessage("Usage: " + Vampyrix.INSTANCE.getCommandManager().getPrefix() + usage);
+        ChatUtil.sendMessage("Usage: " + Lynx.INSTANCE.getCommandManager().getPrefix() + usage);
     }
 
     public String getName() {

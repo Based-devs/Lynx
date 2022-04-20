@@ -1,6 +1,6 @@
 package dev.based.vampyrix.impl.commands;
 
-import dev.based.vampyrix.Vampyrix;
+import dev.based.vampyrix.Lynx;
 import dev.based.vampyrix.api.command.Command;
 import dev.based.vampyrix.api.util.chat.ChatUtil;
 
@@ -16,7 +16,7 @@ public class Prefix extends Command {
             return;
         }
 
-        Vampyrix.INSTANCE.getCommandManager().setPrefix(arguments[1]);
+        Lynx.INSTANCE.getCommandManager().setPrefix(arguments[1]);
         ChatUtil.sendMessage("Prefix set to " + arguments[1]);
     }
 }

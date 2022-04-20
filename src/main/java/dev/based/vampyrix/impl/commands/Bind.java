@@ -1,6 +1,6 @@
 package dev.based.vampyrix.impl.commands;
 
-import dev.based.vampyrix.Vampyrix;
+import dev.based.vampyrix.Lynx;
 import dev.based.vampyrix.api.command.Command;
 import dev.based.vampyrix.api.module.Module;
 import dev.based.vampyrix.api.util.chat.ChatUtil;
@@ -13,7 +13,7 @@ public class Bind extends Command {
 
     @Override
     public void execute(String[] arguments) {
-        Module module = Vampyrix.INSTANCE.getModuleManager().getModuleByName(arguments[0]);
+        Module module = Lynx.INSTANCE.getModuleManager().getModuleByName(arguments[0]);
 
         if (module != null) {
             try {

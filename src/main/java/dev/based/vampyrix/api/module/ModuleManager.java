@@ -47,7 +47,7 @@ public class ModuleManager implements Wrapper {
 
         this.modules.sort(this::sortABC);
 
-        this.getVampyrix().getEventBus().subscribe(this);
+        this.getLynx().getEventBus().subscribe(this);
     }
 
     public List<Module> getModules() {

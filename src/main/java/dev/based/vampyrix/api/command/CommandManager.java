@@ -16,7 +16,7 @@ public class CommandManager implements Wrapper {
     public CommandManager() {
         this.commands = Arrays.asList(new Bind(), new Coordinates(), new Help(), new Prefix(), new Set(), new Toggle());
 
-        this.getVampyrix().getEventBus().subscribe(this);
+        this.getLynx().getEventBus().subscribe(this);
     }
 
     public List<Command> getCommands() {

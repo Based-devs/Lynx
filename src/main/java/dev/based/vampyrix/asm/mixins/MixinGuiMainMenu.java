@@ -1,6 +1,6 @@
 package dev.based.vampyrix.asm.mixins;
 
-import dev.based.vampyrix.Vampyrix;
+import dev.based.vampyrix.Lynx;
 import dev.based.vampyrix.api.util.render.ColourUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiMainMenu;
@@ -14,6 +14,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinGuiMainMenu {
     @Inject(method = "drawScreen", at = @At("TAIL"))
     public void onDrawScreen(int mouseX, int mouseY, float partialTicks, CallbackInfo info) {
-        Minecraft.getMinecraft().fontRenderer.drawStringWithShadow("Vampyrix " + TextFormatting.GRAY + Vampyrix.VERSION, 2, 2, ColourUtil.getClientColour().getRGB());
+        Minecraft.getMinecraft().fontRenderer.drawStringWithShadow("Vampyrix " + TextFormatting.GRAY + Lynx.VERSION, 2, 2, ColourUtil.getClientColour().getRGB());
     }
 }

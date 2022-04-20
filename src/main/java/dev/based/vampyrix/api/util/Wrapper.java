@@ -1,6 +1,6 @@
 package dev.based.vampyrix.api.util;
 
-import dev.based.vampyrix.Vampyrix;
+import dev.based.vampyrix.Lynx;
 import net.minecraft.client.Minecraft;
 
 public interface Wrapper {
@@ -10,7 +10,7 @@ public interface Wrapper {
         return mc.player == null || mc.world == null;
     }
 
-    default Vampyrix getVampyrix() {
-        return Vampyrix.INSTANCE;
+    default Lynx getLynx() {
+        return Lynx.INSTANCE;
     }
 }

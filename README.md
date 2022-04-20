@@ -2,8 +2,8 @@
 [![discord](https://img.shields.io/badge/Discord-Invite-8080c0)](https://discord.gg/Cf4TsM8JKV)
 ![minecraft](https://img.shields.io/badge/Key--bind-p-purple)
 
-# Vampyrix-Client
-Vampyrix client is a utility mod for 1.12.2 anarchy servers.
+# Lynx-Client
+Lynx client is a utility mod for 1.12.2 anarchy servers.
 
 
 # Usage

@@ -52,7 +52,7 @@ public abstract class Module implements Wrapper, Toggleable {
         if (!this.enabled) {
             this.enabled = true;
 
-            this.getVampyrix().getEventBus().subscribe(this);
+            this.getLynx().getEventBus().subscribe(this);
             this.onEnable();
         }
     }
@@ -61,7 +61,7 @@ public abstract class Module implements Wrapper, Toggleable {
         if (this.enabled) {
             this.enabled = false;
 
-            this.getVampyrix().getEventBus().unsubscribe(this);
+            this.getLynx().getEventBus().unsubscribe(this);
             this.onDisable();
         }
     }

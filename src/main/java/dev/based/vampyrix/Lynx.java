@@ -13,12 +13,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;
 
-@Mod(modid = Vampyrix.MODID, name = Vampyrix.NAME, version = Vampyrix.VERSION)
-public class Vampyrix {
-    public static final String MODID = "vampyrix", NAME = "Vampyrix", VERSION = "0.1";
+@Mod(modid = Lynx.MODID, name = Lynx.NAME, version = Lynx.VERSION)
+public class Lynx {
+    public static final String MODID = "lynx", NAME = "Lynx", VERSION = "0.1";
 
     @Mod.Instance
-    public static Vampyrix INSTANCE;
+    public static Lynx INSTANCE;
 
     private final Logger logger = LogManager.getLogger(MODID);
     private final EventBus eventBus = new EventBus();
@@ -33,7 +33,7 @@ public class Vampyrix {
     public void init(FMLInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(INSTANCE);
 
-        this.logger.info("Setting up {} {}...", Vampyrix.MODID, Vampyrix.VERSION);
+        this.logger.info("Setting up {} {}...", Lynx.MODID, Lynx.VERSION);
 
         this.moduleManager = new ModuleManager();
         this.logger.info("Modules Initialized.");
@@ -50,7 +50,7 @@ public class Vampyrix {
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        Display.setTitle(Vampyrix.NAME + " " + Vampyrix.VERSION);
+        Display.setTitle(Lynx.NAME + " " + Lynx.VERSION);
     }
 
     public Logger getLogger() {
