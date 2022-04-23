@@ -1,7 +1,55 @@
+package com.based.lynx.module.combat;
+
+import com.based.lynx.event.PacketEvent;
+import com.based.lynx.module.Category;
+import com.based.lynx.module.Module;
+import com.based.lynx.setting.Setting;
+import com.based.lynx.util.BlockUtil;
+import com.based.lynx.util.EntityUtil;
+import com.based.lynx.util.Timer;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderGlobal;
+import net.minecraft.client.renderer.culling.Frustum;
+import net.minecraft.client.renderer.culling.ICamera;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.item.EntityEnderCrystal;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.init.MobEffects;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemEndCrystal;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemSword;
+import net.minecraft.network.play.client.CPacketPlayer;
+import net.minecraft.network.play.server.SPacketSoundEffect;
+import net.minecraft.util.*;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.Explosion;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.GL11;
+
+import java.awt.*;
+import java.util.*;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
+
 public class AutoCrystal extends Module {
 
     public AutoCrystal() {
-        super("AutoCrystal", "Automatically places and breaks crystals to deal damage", Category.COMBAT, true, false, false);
+        super("AutoCrystal", "Automatically places and breaks crystals to deal damage", Category.COMBAT);
     }
 
     public enum Logic {
@@ -15,42 +63,115 @@ public class AutoCrystal extends Module {
         None
     }
 
-    public final Setting<Logic> logic = this.register(new Setting("Logic", Logic.BreakPlace));
-    public final Setting<Float> enemyRange = this.register(new Setting("Enemy Range", 10.0f, 0.0f, 20.0f));
-    public final Setting<Float> placeRange = this.register(new Setting("Place Range", 5.0f, 0.0f, 10.0f));
-    public final Setting<Float> placeWallRange = this.register(new Setting("Place Wall Range", 3.5f, 0.0f, 10.0f));
-    public final Setting<Integer> placeDelay = this.register(new Setting("Place Delay", 0, 0, 500));
-    public final Setting<Float> minPlaceDamage = this.register(new Setting("Min Place Damage", 7.0f, 0.0f, 36.0f));
-    public final Setting<Float> maxSelfPlace = this.register(new Setting("Max Self Place", 8.0f, 0.0f, 36.0f));
-    public final Setting<Boolean> placeSwing = this.register(new Setting("Place Swing", true));
-    public final Setting<Float> breakRange = this.register(new Setting("Break Range", 5.0f, 0.0f, 10.0f));
-    public final Setting<Float> breakWallRange = this.register(new Setting("Break Wall Range", 3.5f, 0.0f, 10.0f));
-    public final Setting<Integer> breakDelay = this.register(new Setting("Break Delay", 50, 0, 500));
-    public final Setting<Float> minBreakDamage = this.register(new Setting("Min Break Damage", 7.0f, 0.0f, 36.0f));
-    public final Setting<Float> maxSelfBreak = this.register(new Setting("Max Self Break", 10.0f, 0.0f, 36.0f));
-    public final Setting<Boolean> antiSuicide = this.register(new Setting("Anti Suicide", true));
-    public final Setting<Boolean> breakSwing = this.register(new Setting("Break Swing", true));
-    public final Setting<Switch> switchMode = this.register(new Setting("Switch Mode", Switch.Silent));
-    public final Setting<Boolean> packet = this.register(new Setting("Packet", true));
-    public final Setting<Boolean> rotate = this.register(new Setting("Rotate", false));
-    public final Setting<Integer> ticksExisted = this.register(new Setting("Ticks Existed", 1, 0, 10));
-    public final Setting<Boolean> oneDotThirteen = this.register(new Setting("1.13+", true));
-    public final Setting<Boolean> terrainTrace = this.register(new Setting("Terrain Trace", true));
-    public final Setting<Boolean> antiWeakness = this.register(new Setting("Anti Weakness", true));
-    public final Setting<Boolean> raytrace = this.register(new Setting("Raytrace", false));
-    public final Setting<Float> facePlaceHP = this.register(new Setting("Face Place HP", 14.0f, 0.0f, 36.0f));
-    public final Setting<Integer> facePlaceDelay = this.register(new Setting("Face Place Delay", 10, 0, 150));
-    public final Setting<Bind> facePlaceBind = this.register(new Setting("Face Place Bind", new Bind(-1)));
-    public final Setting<Float> facePlaceArmor = this.register(new Setting("Face Place Armor %", 20.0f, 0.0f, 100.0f));
-    public final Setting<Boolean> render = this.register(new Setting("Render", true));
-    public final Setting<Boolean> box = this.register(new Setting("Box", true));
-    public final Setting<Boolean> outline = this.register(new Setting("Outline", true));
-    public final Setting<Float> lineWidth = this.register(new Setting("Line Width", 2.0f));
-    public final Setting<Integer> fadeTime = this.register(new Setting("Fade Time", 300, 0, 1000));
-    public final Setting<Integer> red = this.register(new Setting("Red", 255, 0, 255));
-    public final Setting<Integer> green = this.register(new Setting("Green", 255, 0, 255));
-    public final Setting<Integer> blue = this.register(new Setting("Blue", 255, 0, 255));
-    public final Setting<Float> startAlpha = this.register(new Setting("Start Alpha", 100, 0, 255));
+    // uh idk
+    public final Setting<Logic> logic = new Setting<>("Logic", Logic.PlaceBreak)
+            .setDescription("What order to perform actions in");
+
+
+    // targeting
+    public final Setting<Float> enemyRange = new Setting<>("EnemyRange", 10F, 1F, 20F, 0.1f)
+            .setDescription("The range to target enemies");
+
+
+    // placing
+    public final Setting<Float> placeRange = new Setting<>("PlaceRange", 5.0f, 0.0f, 10.0f, 0.1f)
+            .setDescription("The max distance to place crystals");
+
+    public final Setting<Float> placeWallRange = new Setting<>("PlaceWallRange", 3.5f, 0.0f, 10.0f, 0.1f)
+            .setDescription("The max distance to place crystals through walls");
+
+    public final Setting<Integer> placeDelay = new Setting<>("PlaceDelay", 0, 0, 500, 1)
+            .setDescription("The delay between placing crystals");
+
+    public final Setting<Float> minPlaceDamage = new Setting<>("MinPlaceDamage", 7.0f, 0.0f, 36.0f, 1F)
+            .setDescription("The minimum damage to deal to place crystals");
+
+    public final Setting<Float> maxSelfPlace = new Setting<>("MaxSelfPlace", 8.0f, 0.0f, 36.0f, 1F)
+            .setDescription("The maximum damage to deal to yourself when placing crystals");
+
+    public final Setting<Boolean> placeSwing = new Setting<>("PlaceSwing", true)
+            .setDescription("Whether to swing when placing crystals");
+
+
+    // breaking
+    public final Setting<Float> breakRange = new Setting<>("BreakRange", 5.0f, 0.0f, 10.0f, 0.1f)
+            .setDescription("The max distance to break crystals");
+
+    public final Setting<Float> breakWallRange = new Setting<>("BreakWallRange", 3.5f, 0.0f, 10.0f, 0.1f)
+            .setDescription("The max distance to break crystals through walls");
+
+    public final Setting<Integer> breakDelay = new Setting<>("BreakDelay", 0, 0, 500, 1)
+            .setDescription("The delay between breaking crystals");
+
+    public final Setting<Float> minBreakDamage = new Setting<>("MinBreakDamage", 7.0f, 0.0f, 36.0f, 1F)
+            .setDescription("The minimum damage to deal to break crystals");
+
+    public final Setting<Float> maxSelfBreak = new Setting<>("MaxSelfBreak", 8.0f, 0.0f, 36.0f, 1F)
+            .setDescription("The maximum damage to deal to yourself when breaking crystals");
+
+    public final Setting<Boolean> breakSwing = new Setting<>("BreakSwing", true)
+            .setDescription("Whether to swing when breaking crystals");
+
+    public final Setting<Boolean> antiSuicide = new Setting<>("AntiSuicide", true)
+            .setDescription("Do not break crystals if they will pop / kill you");
+
+    public final Setting<Switch> switchMode = new Setting<>("Switch", Switch.Silent)
+            .setDescription("How to switch to a sword");
+
+    public final Setting<Boolean> packet = new Setting<>("Packet", true)
+            .setDescription("Whether to use packets to break crystals");
+
+    public final Setting<Boolean> rotate = new Setting<>("Rotate", true)
+            .setDescription("Whether to rotate when breaking crystals");
+
+    public final Setting<Float> ticksExisted = new Setting<>("TicksExisted", 1f, 0.0f, 5f, 1F)
+            .setDescription("The amount of ticks that the crystal has existed for before breaking");
+
+    public final Setting<Boolean> oneDotThirteen = new Setting<>("1.13", false)
+            .setDescription("someone change this desc idk what it does");
+
+    public final Setting<Boolean> terrainTrace = new Setting<>("TerrainTrace", true)
+            .setDescription("idk what this does");
+
+    public final Setting<Boolean> antiWeakness = new Setting<>("AntiWeakness", true)
+            .setDescription("Switches to a sword if you have the weakness effect applied");
+
+    public final Setting<Boolean> raytrace = new Setting<>("Raytrace", true)
+            .setDescription("Checks you can see the crystal before breaking it");
+
+
+    // override
+    public final Setting<Float> facePlaceHP = new Setting<>("FacePlaceHP", 10.0f, 0.0f, 36.0F, 1F)
+            .setDescription("Override minimum damage if the player is at this health or lower");
+
+    public final Setting<Float> facePlaceDelay = new Setting<>("FacePlaceDelay", 0.0f, 0.0f, 100.0F, 1F)
+            .setDescription("The delay between face placing crystals");
+
+    public final Setting<AtomicInteger> facePlaceBind = new Setting<>("FacePlaceBind", new AtomicInteger(0))
+            .setDescription("The key to hold to force face placing");
+
+    public final Setting<Float> facePlaceArmor = new Setting<>("FacePlaceArmor", 20.0f, 0.0f, 100.0F, 1F)
+            .setDescription("Forces face placing if one of the player's armor pieces is at this health percentage or lower");
+
+
+    // render
+    public final Setting<Boolean> render = new Setting<>("Render", true)
+            .setDescription("Render highlights");
+
+    public final Setting<Boolean> box = new Setting<>("Box", true)
+            .setDescription("Renders a box");
+
+    public final Setting<Boolean> outline = new Setting<>("Outline", true)
+            .setDescription("Renders an outline");
+
+    public final Setting<Float> lineWidth = new Setting<>("LineWidth", 1.0F, 0.1F, 3.0F, 0.1F)
+            .setDescription("Line width of the outline");
+
+    public final Setting<Float> fadeTime = new Setting<>("FadeTime", 300F, 0.0F, 1000.0F, 0.1F)
+            .setDescription("Time it takes for the highlight to fade");
+
+    public final Setting<Color> colour = new Setting<>("Colour", Color.WHITE);
+
     public HashMap<BlockPos, Long> renderMap = new HashMap<>();
     public Timer placeTimer = new Timer();
     public Timer breakTimer = new Timer();
@@ -62,10 +183,19 @@ public class AutoCrystal extends Module {
 
     @Override
     public void onUpdate() {
-        EntityLivingBase target = EntityUtil.getClosestEnemy(enemyRange.getValue());
+        if (nullCheck()) {
+            return;
+        }
+
+        // Is this bad? yes. can i be bothered to fix it? no.
+        List<EntityPlayer> targets = mc.world.playerEntities.stream().filter(e -> e.getHealth() > 0 && e.getDistance(mc.player) <= enemyRange.getValue()).collect(Collectors.toList());
+        targets.sort(Comparator.comparingDouble(e -> mc.player.getDistance(e)));
+        EntityPlayer target = targets.get(0);
+
         if (target == null || target.isDead) {
             return;
         }
+
         List<BlockPos> placeList = new ArrayList<>(getSphere(new BlockPos(mc.player.getPositionVector()), placeRange.getValue(), placeRange.getValue().intValue(), false, true, 0).stream().filter(pos -> canPlaceCrystal(pos, true, oneDotThirteen.getValue())).collect(Collectors.toList()));
         if (logic.getValue() == Logic.BreakPlace) {
             breakCrystals(target);
@@ -83,7 +213,7 @@ public class AutoCrystal extends Module {
     }
 
     public void placeCrystals(EntityLivingBase target, List<BlockPos> placements) {
-        float minDamage = (target.getHealth() + target.getAbsorptionAmount() < facePlaceHP.getValue()) || shouldArmorFacePlace(target) || facePlaceBind.getValue().isDown() ? 1.5f : minPlaceDamage.getValue();
+        float minDamage = (target.getHealth() + target.getAbsorptionAmount() < facePlaceHP.getValue()) || shouldArmorFacePlace(target) || Keyboard.isKeyDown(facePlaceBind.getValue().get()) ? 1.5f : minPlaceDamage.getValue();
         NonNullList<BlockPos> finalPlacements = NonNullList.create();
         for (BlockPos pos : placements) {
             if (calculateDamage(pos, target, terrainTrace.getValue()) < minDamage) continue;
@@ -107,18 +237,16 @@ public class AutoCrystal extends Module {
             if (switchMode.getValue() == Switch.Auto) {
                 mc.player.inventory.currentItem = findHotbarBlock(ItemEndCrystal.class);
             }
-            if (target.getHealth() + target.getAbsorptionAmount() < facePlaceHP.getValue()) {
-                placeTimer.setMs(facePlaceDelay.getValue());
-            }
-            if (placeTimer.passedMs(placeDelay.getValue())) {
-                BlockUtil.placeCrystalOnBlock(finalPlacePos, crystalHand, placeSwing.getValue(), false, switchMode.getValue() == Switch.Silent);
+
+            if (placeTimer.hasTimePassed(placeDelay.getValue(), Timer.TimeFormat.MILLISECONDS)) {
+                BlockUtil.placeCrystalOnBlock(finalPlacePos, crystalHand, placeSwing.getValue(), switchMode.getValue() == Switch.Silent);
                 placeTimer.reset();
             }
         }
     }
 
     public void breakCrystals(EntityLivingBase target) {
-        float minDamage = (target.getHealth() + target.getAbsorptionAmount() < facePlaceHP.getValue()) || shouldArmorFacePlace(target) || facePlaceBind.getValue().isDown() ? 1.5f : minBreakDamage.getValue();
+        float minDamage = (target.getHealth() + target.getAbsorptionAmount() < facePlaceHP.getValue()) || shouldArmorFacePlace(target) || Keyboard.isKeyDown(facePlaceBind.getValue().get()) ? 1.5f : minBreakDamage.getValue();
         for (Entity entity : mc.world.loadedEntityList) {
             if (!(entity instanceof EntityEnderCrystal) || entity.getPositionVector().distanceTo(mc.player.getPositionVector()) > breakRange.getValue() && canSeePos(new BlockPos(entity.getPositionVector())) || entity.getPositionVector().distanceTo(mc.player.getPositionVector()) > breakWallRange.getValue() && !canSeePos(new BlockPos(entity.getPositionVector()))) {
                 continue;
@@ -127,7 +255,7 @@ public class AutoCrystal extends Module {
                 if (rotate.getValue()) {
                     rotateTo(entity);
                 }
-                if (breakTimer.passedMs(breakDelay.getValue()) || entity.ticksExisted > ticksExisted.getValue()) {
+                if (breakTimer.hasTimePassed(breakDelay.getValue(), Timer.TimeFormat.MILLISECONDS) || entity.ticksExisted > ticksExisted.getValue()) {
                     int swordSlot = findHotbarBlock(ItemSword.class);
                     int oldSlot = mc.player.inventory.currentItem;
                     if (antiWeakness.getValue()) {
@@ -161,12 +289,12 @@ public class AutoCrystal extends Module {
     }
 
     @SubscribeEvent
-    public void onRender3D(Render3DEvent event) {
+    public void onRender3D(RenderWorldLastEvent event) {
         try {
             for (Map.Entry<BlockPos, Long> map : renderMap.entrySet()) {
                 if (System.currentTimeMillis() - map.getValue() < fadeTime.getValue()) {
-                    float finalAlpha = startAlpha.getValue();
-                    drawBoxESP(map.getKey(), new Color(red.getValue(), green.getValue(), blue.getValue()), finalAlpha, lineWidth.getValue(), outline.getValue(), box.getValue(), finalAlpha);
+                    float finalAlpha = 255;
+                    drawBoxESP(map.getKey(), colour.getValue(), finalAlpha, lineWidth.getValue(), outline.getValue(), box.getValue(), finalAlpha);
                 } else {
                     renderMap.remove(map.getKey());
                 }
@@ -183,10 +311,10 @@ public class AutoCrystal extends Module {
     }
 
     public static void drawBoxESP(BlockPos pos, Color color, float alpha, float lineWidth, boolean outline, boolean box, float boxAlpha) {
-        AxisAlignedBB bb = new AxisAlignedBB((double) pos.getX() - RenderUtil.mc.getRenderManager().viewerPosX, (double) pos.getY() - RenderUtil.mc.getRenderManager().viewerPosY, (double) pos.getZ() - RenderUtil.mc.getRenderManager().viewerPosZ, (double) (pos.getX() + 1) - RenderUtil.mc.getRenderManager().viewerPosX, (double) (pos.getY() + 1) - RenderUtil.mc.getRenderManager().viewerPosY, (double) (pos.getZ() + 1) - RenderUtil.mc.getRenderManager().viewerPosZ);
+        AxisAlignedBB bb = new AxisAlignedBB((double) pos.getX() - mc.getRenderManager().viewerPosX, (double) pos.getY() - mc.getRenderManager().viewerPosY, (double) pos.getZ() - mc.getRenderManager().viewerPosZ, (double) (pos.getX() + 1) - mc.getRenderManager().viewerPosX, (double) (pos.getY() + 1) - mc.getRenderManager().viewerPosY, (double) (pos.getZ() + 1) - mc.getRenderManager().viewerPosZ);
         ICamera camera = new Frustum();
-        camera.setPosition(Objects.requireNonNull(RenderUtil.mc.getRenderViewEntity()).posX, RenderUtil.mc.getRenderViewEntity().posY, RenderUtil.mc.getRenderViewEntity().posZ);
-        if (camera.isBoundingBoxInFrustum(new AxisAlignedBB(bb.minX + RenderUtil.mc.getRenderManager().viewerPosX, bb.minY + RenderUtil.mc.getRenderManager().viewerPosY, bb.minZ + RenderUtil.mc.getRenderManager().viewerPosZ, bb.maxX + RenderUtil.mc.getRenderManager().viewerPosX, bb.maxY + RenderUtil.mc.getRenderManager().viewerPosY, bb.maxZ + RenderUtil.mc.getRenderManager().viewerPosZ))) {
+        camera.setPosition(Objects.requireNonNull(mc.getRenderViewEntity()).posX, mc.getRenderViewEntity().posY, mc.getRenderViewEntity().posZ);
+        if (camera.isBoundingBoxInFrustum(new AxisAlignedBB(bb.minX + mc.getRenderManager().viewerPosX, bb.minY + mc.getRenderManager().viewerPosY, bb.minZ + mc.getRenderManager().viewerPosZ, bb.maxX + mc.getRenderManager().viewerPosX, bb.maxY + mc.getRenderManager().viewerPosY, bb.maxZ + mc.getRenderManager().viewerPosZ))) {
             GlStateManager.pushMatrix();
             GlStateManager.enableBlend();
             GlStateManager.disableDepth();
@@ -214,7 +342,7 @@ public class AutoCrystal extends Module {
     public static int findHotbarBlock(Class clazz) {
         for (int i = 0; i < 9; ++i) {
             Block block;
-            ItemStack stack = InventoryUtil.mc.player.inventory.getStackInSlot(i);
+            ItemStack stack = mc.player.inventory.getStackInSlot(i);
             if (stack == ItemStack.EMPTY) continue;
             if (clazz.isInstance(stack.getItem())) {
                 return i;
@@ -242,10 +370,13 @@ public class AutoCrystal extends Module {
 
     @SubscribeEvent
     public void onPacketSend(PacketEvent.Send event) {
-        if (event.getStage() == 0 && event.getPacket() instanceof CPacketPlayer && isRotating && rotate.getValue()) {
-            ((CPacketPlayer) event.getPacket()).yaw = rotYaw;
-            ((CPacketPlayer) event.getPacket()).pitch = rotPitch;
+        if (event.getPacket() instanceof CPacketPlayer && isRotating && rotate.getValue()) {
+            // FIX THIS USING AN ACCESSOR
+            // ((CPacketPlayer) event.getPacket()).yaw = rotYaw;
+            // ((CPacketPlayer) event.getPacket()).pitch = rotPitch;
+
             spoofed++;
+
             if (spoofed >= 1) {
                 isRotating = false;
                 spoofed = 0;

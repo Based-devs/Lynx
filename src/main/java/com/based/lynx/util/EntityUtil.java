@@ -1,6 +1,7 @@
 package com.based.lynx.util;
 
 import net.minecraft.block.BlockLiquid;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLivingBase;
@@ -10,6 +11,8 @@ import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.network.play.client.CPacketUseEntity;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -84,7 +87,7 @@ public class EntityUtil {
     }
 
     public static Vec3d getInterpolatedRenderPos(Entity entity, float ticks) {
-        return getInterpolatedPos(entity, ticks).subtract(Wrapper.getMinecraft().getRenderManager().renderPosX, Wrapper.getMinecraft().getRenderManager().renderPosY, Wrapper.getMinecraft().getRenderManager().renderPosZ);
+        return getInterpolatedPos(entity, ticks).subtract(Wrapper.getMinecraft().getRenderManager().viewerPosX, Wrapper.getMinecraft().getRenderManager().viewerPosY, Wrapper.getMinecraft().getRenderManager().viewerPosZ);
     }
 
     public static Vec3d getInterpolatedEyePos(Entity entity, float ticks) {
@@ -161,6 +164,18 @@ public class EntityUtil {
 
     public static double getRelativeZ(float yaw) {
         return MathHelper.cos(yaw * 0.017453292F);
+    }
+
+    public static void attackEntity(Entity entity, boolean packet, boolean swing) {
+        if (packet) {
+            Wrapper.getPlayer().connection.sendPacket(new CPacketUseEntity(entity));
+        } else {
+            Wrapper.getPlayer().attackEntityAsMob(entity);
+        }
+
+        if (swing) {
+            Wrapper.getPlayer().swingArm(EnumHand.MAIN_HAND);
+        }
     }
 
 }

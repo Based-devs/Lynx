@@ -55,7 +55,7 @@ public class Jesus extends Module {
         if (event.getPacket() instanceof CPacketPlayer) {
             if (EntityUtil.isAboveWater(mc.player, true) && !EntityUtil.isInWater(mc.player) && !isAboveLand(mc.player)) {
                 int ticks = mc.player.ticksExisted % 2;
-                if (ticks == 0) ((CPacketPlayer) event.getPacket()).y += 0.02D;
+                // if (ticks == 0) ((CPacketPlayer) event.getPacket()).y += 0.02D;
             }
         }
     }

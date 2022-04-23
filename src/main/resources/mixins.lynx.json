@@ -1,12 +1,9 @@
 {
   "required": true,
   "compatibilityLevel": "JAVA_8",
-  "package": "com.based.lynx.mixin.mixins.mixin",
+  "package": "com.based.lynx.mixin.mixins",
   "refmap": "mixins.lynx.refmap.json",
   "mixins": [
-    "NetworkManagerMixin",
-  ],
-  "client": [
-    "EntityPlayerSPMixin"
+    "render.gui.MixinGuiMainMenu"
   ]
 }

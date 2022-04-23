@@ -1,4 +1,4 @@
-package com.based.lynx;
+package com.based.lynx.event;
 
 import com.based.lynx.Lynx;
 import com.based.lynx.module.Module;
@@ -14,9 +14,10 @@ import org.lwjgl.input.Keyboard;
 public class EventHandler {
     @SubscribeEvent
     public void onTick(TickEvent.ClientTickEvent event) {
-        if (Minecraft.getMinecraft().player == null) {
+        if (Minecraft.getMinecraft().player == null || Minecraft.getMinecraft().world == null) {
             return;
         }
+
         ModuleManager.onUpdate();
     }
 

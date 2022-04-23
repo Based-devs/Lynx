@@ -8,8 +8,7 @@ import org.spongepowered.asm.mixin.MixinEnvironment;
 import org.spongepowered.asm.mixin.Mixins;
 
 @IFMLLoadingPlugin.MCVersion(value = "1.12.2")
-public class MixinLoader
-        implements IFMLLoadingPlugin {
+public class MixinLoader implements IFMLLoadingPlugin {
     public MixinLoader() {
         MixinBootstrap.init();
         Mixins.addConfiguration("mixins.lynx.json");

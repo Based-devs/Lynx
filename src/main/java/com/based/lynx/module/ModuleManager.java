@@ -1,27 +1,52 @@
 package com.based.lynx.module;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import com.based.lynx.Lynx;
 import com.based.lynx.module.Category;
 import com.based.lynx.module.Module;
+import com.based.lynx.module.client.Colours;
+import com.based.lynx.module.combat.AutoArmor;
+import com.based.lynx.module.combat.AutoCrystal;
+import com.based.lynx.module.combat.AutoLog;
+import com.based.lynx.module.combat.Criticals;
+import com.based.lynx.module.exploit.PacketCanceller;
+import com.based.lynx.module.exploit.PortalGodmode;
+import com.based.lynx.module.movement.Jesus;
+import com.based.lynx.module.movement.NoSlow;
+import com.based.lynx.module.movement.Sprint;
+import com.based.lynx.module.movement.Velocity;
 
 public class ModuleManager {
-    private final ArrayList<Module> modules = new ArrayList();
+    private final List<Module> modules;
 
     public ModuleManager() {
-        this.modules.add(new AutoArmor("AutoArmor", "", Category.COMBAT));
-        this.modules.add(new AutoLog("AutoLog", "", Category.COMBAT));
-        this.modules.add(new Criticals("Criticals", "", Category.COMBAT));
-//gonna do this later too tired rn
+        this.modules = Arrays.asList(
+                new AutoArmor(),
+                new AutoCrystal(),
+                new AutoLog(),
+                new Criticals(),
+
+                new PacketCanceller(),
+                new PortalGodmode(),
+
+                new Jesus(),
+                new NoSlow(),
+                new Sprint(),
+                new Velocity(),
+
+                new Colours()
+        );
     }
 
     public static void onUpdate() {
         Lynx.moduleManager.getModules().stream().filter(Module::isEnabled).forEach(Module::onUpdate);
     }
 
-    public ArrayList<Module> getModules() {
+    public List<Module> getModules() {
         return this.modules;
     }
 

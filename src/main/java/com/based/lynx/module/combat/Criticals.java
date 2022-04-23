@@ -2,7 +2,7 @@ package com.based.lynx.module.combat;
 
 import com.based.lynx.module.Category;
 import com.based.lynx.module.Module;
-importcom.based.lynx.event.PacketSendEvent;
+import com.based.lynx.event.PacketSendEvent;
 
 import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.network.play.client.CPacketUseEntity;

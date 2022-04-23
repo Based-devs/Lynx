@@ -1,5 +1,6 @@
 package com.based.lynx.module.movement;
 
+import com.based.lynx.event.PacketReceiveEvent;
 import com.based.lynx.module.Category;
 import com.based.lynx.module.Module;
 import net.minecraft.network.play.server.SPacketEntityVelocity;
@@ -8,6 +9,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class Velocity extends Module {
+
     public Velocity() {
         super("Velocity", "", Category.MOVEMENT);
     }
@@ -27,4 +29,5 @@ public class Velocity extends Module {
         if (nullCheck()) return;
         mc.player.entityCollisionReduction = 1.0f;
     }
+
 }

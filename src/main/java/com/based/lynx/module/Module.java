@@ -6,6 +6,9 @@ import com.based.lynx.setting.Setting;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Module {
     protected static final Minecraft mc = Minecraft.getMinecraft();
     private String name;
@@ -13,6 +16,8 @@ public class Module {
     private Category category;
     private int bind;
     private boolean enabled;
+
+    private final List<Setting<?>> settings = new ArrayList<>();
 
     public Module(String name, Category category) {
         this.name = name;
@@ -58,8 +63,8 @@ public class Module {
         return Module.mc.player == null || Module.mc.world == null;
     }
 
-    public void addSetting(Setting setting) {
-        Lynx.settingManager.addSetting(setting);
+    public void addSetting(Setting<?> setting) {
+        this.settings.add(setting);
     }
 
     public String getName() {
@@ -100,5 +105,9 @@ public class Module {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public List<Setting<?>> getSettings() {
+        return settings;
     }
 }
