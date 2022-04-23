@@ -21,15 +21,15 @@ public class LynxMenu extends GuiScreen {
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        float xOffset = -1.0f * ((mouseX - this.width / 10.0f) / (this.width / 10.0f));
-        float yOffset = -1.0f * ((mouseY - this.height / 10.0f) / (this.height / 10.0f));
+        float xOffset = -1.0f * ((mouseX - this.width / 2.0f) / (this.width / 10.0f));
+        float yOffset = -1.0f * ((mouseY - this.height / 2.0f) / (this.height / 10.0f));
 
         Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("lynx", "textures/background.png"));
         RenderUtil.drawModalRectWithCustomSizedTexture(-10.0f + xOffset, -10.0f + yOffset, 0, 0, this.width + 10f,this.height + 10f);
 
         glPushMatrix();
         glScalef(4, 4, 4);
-        drawCenteredString(mc.fontRenderer, "Lynx", (width / 10) / 2, ((height - 10) / 4) / 2, 0xFFFFFF);
+        drawCenteredString(mc.fontRenderer, "Lynx", (width / 4) / 2, ((height - 70) / 4) / 2, 0xFFFFFF);
         glPopMatrix();
 
         super.drawScreen(mouseX, mouseY, partialTicks);
