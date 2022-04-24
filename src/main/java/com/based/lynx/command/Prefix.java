@@ -10,7 +10,7 @@ public class Prefix extends Command {
     }
 
     @Override
-    public void onTrigger(String[] arguments) {
+    public void execute(String[] arguments) {
         if (arguments[0].equals("")) {
             this.printUsage();
             return;

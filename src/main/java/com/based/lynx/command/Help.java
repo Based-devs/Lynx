@@ -9,7 +9,7 @@ public class Help extends Command {
     }
 
     @Override
-    public void onTrigger(String[] arguments) {
+    public void execute(String[] arguments) {
         LoggerUtil.sendMessage("Lynx");
         for (Command command : Lynx.commandManager.getCommands()) {
             LoggerUtil.sendMessage(command.getName() + " - " + command.getUsage());

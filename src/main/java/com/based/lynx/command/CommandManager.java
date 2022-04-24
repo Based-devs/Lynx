@@ -16,13 +16,13 @@ public class CommandManager {
     public void runCommand(String message) {
         boolean found = false;
 
-        String[] split = message.split(" ");
-        String startCommand = split[0];
+        String[] args = message.split(" ");
+        String startCommand = args[0];
 
         for (Command command : this.getCommands()) {
             for (String alias : command.getAlias()) {
                 if (!startCommand.equals(this.getPrefix() + alias)) {
-                    command.onTrigger(split);
+                    command.execute(args);
                     found = true;
                 }
             }
