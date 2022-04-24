@@ -1,7 +1,5 @@
 package com.based.lynx.module;
 
-import com.based.lynx.Lynx;
-import com.based.lynx.module.Category;
 import com.based.lynx.setting.Setting;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
