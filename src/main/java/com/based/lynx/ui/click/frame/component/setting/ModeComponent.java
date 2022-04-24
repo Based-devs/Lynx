@@ -1,10 +1,7 @@
 package com.based.lynx.ui.click.frame.component.setting;
 
-import com.based.lynx.module.client.Colours;
 import com.based.lynx.setting.Setting;
 import com.based.lynx.ui.click.frame.component.module.ModuleComponent;
-import com.based.lynx.util.Animation;
-import com.based.lynx.util.FontUtil;
 import com.based.lynx.util.RenderUtil;
 import net.minecraft.client.Minecraft;
 
@@ -25,10 +22,10 @@ public class ModeComponent extends SettingComponent<Enum<?>> {
         glScalef(0.75f, 0.75f, 0.75f);
         float scaleFactor = 1 / 0.75f;
 
-        FontUtil.drawStringWithShadow(getSetting().getName(), (getX() + 5) * scaleFactor, (getY() + 4) * scaleFactor, -1, true);
+        RenderUtil.drawStringWithShadow(getSetting().getName(), (getX() + 5) * scaleFactor, (getY() + 4) * scaleFactor, -1, true);
 
         float modeX = (getX() + getWidth() - 2 - (Minecraft.getMinecraft().fontRenderer.getStringWidth(this.getSetting().getValue().name()) * 0.75f)) * scaleFactor;
-        FontUtil.drawStringWithShadow(getSetting().getValue().name(), modeX, (getY() + 4) * scaleFactor, new Color(175, 175, 175).getRGB(), true);
+        RenderUtil.drawStringWithShadow(getSetting().getValue().name(), modeX, (getY() + 4) * scaleFactor, new Color(175, 175, 175).getRGB(), true);
 
         glScalef(scaleFactor, scaleFactor, scaleFactor);
 

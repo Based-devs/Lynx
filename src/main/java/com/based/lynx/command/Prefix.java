@@ -6,8 +6,8 @@ import com.based.lynx.util.LoggerUtil;
 
 public class Prefix
         extends Command {
-    public Prefix(String name, String[] alias, String usage) {
-        super(name, alias, usage);
+    public Prefix() {
+        super("Prefix", new String[]{"prefix"}, "prefix <char>");
     }
 
     @Override

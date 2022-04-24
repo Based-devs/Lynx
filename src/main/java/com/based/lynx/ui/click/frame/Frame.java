@@ -7,7 +7,6 @@ import com.based.lynx.ui.click.frame.component.Component;
 import com.based.lynx.ui.click.frame.component.module.ModuleComponent;
 import com.based.lynx.ui.click.frame.component.setting.SettingComponent;
 import com.based.lynx.util.Animation;
-import com.based.lynx.util.FontUtil;
 import com.based.lynx.util.RenderUtil;
 import net.minecraft.util.math.MathHelper;
 import org.lwjgl.input.Mouse;
@@ -25,7 +24,7 @@ public class Frame {
     private float height;
     private final float maxHeight = 325;
     private boolean open = true;
-    private Category category;
+    private final Category category;
 
     private final List<ModuleComponent> components = new ArrayList<>();
 
@@ -50,7 +49,7 @@ public class Frame {
     public void drawFrame(int mouseX, int mouseY) {
         RenderUtil.drawRect(x, y, width, barHeight, isHovered(mouseX, mouseY) ? new Color(40, 40, 45).getRGB() : new Color(35, 35, 40).getRGB());
 
-        FontUtil.drawCenteredString(category.getName(), x + width / 2, y + 4, 0xFFFFFF, true);
+        RenderUtil.drawCenteredString(category.getName(), x + width / 2, y + 4, 0xFFFFFF, true);
 
         float moduleOffset = (components.isEmpty() ? 0 : components.get(0).getY());
 

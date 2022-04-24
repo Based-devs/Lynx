@@ -1,4 +1,4 @@
-package com.based.lynx.mixin.loader;
+package com.based.lynx.mixin;
 
 import java.util.Map;
 

@@ -1,10 +1,9 @@
 package com.based.lynx.ui.click.frame.component.setting;
 
-import com.based.lynx.module.client.Colours;
+import com.based.lynx.module.client.Colors;
 import com.based.lynx.setting.Setting;
 import com.based.lynx.ui.click.frame.component.module.ModuleComponent;
 import com.based.lynx.util.Animation;
-import com.based.lynx.util.FontUtil;
 import com.based.lynx.util.RenderUtil;
 
 import java.awt.*;
@@ -28,12 +27,12 @@ public class BooleanComponent extends SettingComponent<Boolean> {
         glScalef(0.75f, 0.75f, 0.75f);
         float scaleFactor = 1 / 0.75f;
 
-        FontUtil.drawStringWithShadow(getSetting().getName(), (getX() + 7) * scaleFactor, (getY() + 4) * scaleFactor, -1, true);
+        RenderUtil.drawStringWithShadow(getSetting().getName(), (getX() + 7) * scaleFactor, (getY() + 4) * scaleFactor, -1, true);
 
         glScalef(scaleFactor, scaleFactor, scaleFactor);
 
         RenderUtil.drawRect(getX() + getWidth() - 12, getY() + 1.5f, 10, 10, new Color(20, 20, 25).getRGB());
-        RenderUtil.drawRect((getX() + getWidth() - 12) + (5 * (1 - animation.getAnimationFactor())), getY() + 1.5f + (5 * (1 - animation.getAnimationFactor())), 10 * animation.getAnimationFactor(), 10 * animation.getAnimationFactor(), Colours.INSTANCE.colour.getValue().getRGB());
+        RenderUtil.drawRect((getX() + getWidth() - 12) + (5 * (1 - animation.getAnimationFactor())), getY() + 1.5f + (5 * (1 - animation.getAnimationFactor())), 10 * animation.getAnimationFactor(), 10 * animation.getAnimationFactor(), Colors.INSTANCE.colour.getValue().getRGB());
 
         super.renderComponent(mouseX, mouseY);
     }

@@ -3,19 +3,20 @@ package com.based.lynx.command;
 import com.based.lynx.Lynx;
 import com.based.lynx.util.LoggerUtil;
 
-public class Command {
-    private String name;
-    private String[] alias;
-    private String usage;
+import java.util.Arrays;
+import java.util.List;
 
-    public Command(String name, String[] alias, String usage) {
-        this.setName(name);
-        this.setAlias(alias);
-        this.setUsage(usage);
+public abstract class Command {
+    private final String name, usage;
+    private String[] aliases;
+
+    public Command(String name, String usage, String... aliases) {
+        this.name = name;
+        this.usage = usage;
+        this.aliases = aliases;
     }
 
-    public void onTrigger(String arguments) {
-    }
+    public abstract void onTrigger(String arguments);
 
     public void printUsage() {
         LoggerUtil.sendMessage("Usage: " + Lynx.commandManager.getPrefix() + this.usage);
@@ -25,23 +26,15 @@ public class Command {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public List<String> getAlias() {
+        return Arrays.asList(aliases);
     }
 
-    public String[] getAlias() {
-        return this.alias;
-    }
-
-    public void setAlias(String[] alias) {
-        this.alias = alias;
+    public void setAlias(String[] aliases) {
+        this.aliases = aliases;
     }
 
     public String getUsage() {
         return this.usage;
-    }
-
-    public void setUsage(String usage) {
-        this.usage = usage;
     }
 }

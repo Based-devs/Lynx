@@ -8,12 +8,12 @@ import com.based.lynx.command.Prefix;
 import com.based.lynx.util.LoggerUtil;
 
 public class CommandManager {
-    private final ArrayList<Command> commands = new ArrayList();
+    private final ArrayList<Command> commands = new ArrayList<>();
     private String prefix = "+";
 
     public CommandManager() {
-        this.commands.add(new Help("Help", new String[]{"h", "help"}, "help"));
-        this.commands.add(new Prefix("Prefix", new String[]{"prefix"}, "prefix <char>"));
+        this.commands.add(new Help());
+        this.commands.add(new Prefix());
     }
 
     public void runCommand(String args) {

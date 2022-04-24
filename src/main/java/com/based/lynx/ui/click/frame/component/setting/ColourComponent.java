@@ -47,7 +47,7 @@ public class ColourComponent extends SettingComponent<Color> {
         glScalef(0.75f, 0.75f, 0.75f);
         float scaleFactor = 1 / 0.75f;
 
-        FontUtil.drawStringWithShadow(getSetting().getName(), (getX() + 5 + (2 * animation.getAnimationFactor())) * scaleFactor, (getY() + 4) * scaleFactor, -1, true);
+        RenderUtil.drawStringWithShadow(getSetting().getName(), (getX() + 5 + (2 * animation.getAnimationFactor())) * scaleFactor, (getY() + 4) * scaleFactor, -1, true);
 
         glScalef(scaleFactor, scaleFactor, scaleFactor);
 

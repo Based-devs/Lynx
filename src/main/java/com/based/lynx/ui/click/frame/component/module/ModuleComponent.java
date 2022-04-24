@@ -1,13 +1,12 @@
 package com.based.lynx.ui.click.frame.component.module;
 
 import com.based.lynx.module.Module;
-import com.based.lynx.module.client.Colours;
+import com.based.lynx.module.client.Colors;
 import com.based.lynx.setting.Setting;
 import com.based.lynx.ui.click.frame.Frame;
 import com.based.lynx.ui.click.frame.component.Component;
 import com.based.lynx.ui.click.frame.component.setting.*;
 import com.based.lynx.util.Animation;
-import com.based.lynx.util.FontUtil;
 import com.based.lynx.util.RenderUtil;
 
 import java.awt.*;
@@ -19,7 +18,7 @@ import static org.lwjgl.opengl.GL11.glScalef;
 
 public class ModuleComponent extends Component {
 
-    private Module module;
+    private final Module module;
     private final List<SettingComponent<?>> settingComponents = new ArrayList<>();
     private final Animation animation = new Animation(200, false);
     private final Animation openAnimation = new Animation(200, false);
@@ -61,7 +60,7 @@ public class ModuleComponent extends Component {
         glScalef(0.75f, 0.75f, 0.75f);
         float scaleFactor = 1 / 0.75f;
 
-        FontUtil.drawStringWithShadow(module.getName(), (getX() + 5 + (2 * animation.getAnimationFactor())) * scaleFactor, (getY() + 4) * scaleFactor, -1, true);
+        RenderUtil.drawStringWithShadow(module.getName(), (getX() + 5 + (2 * animation.getAnimationFactor())) * scaleFactor, (getY() + 4) * scaleFactor, -1, true);
 
         glScalef(scaleFactor, scaleFactor, scaleFactor);
 
@@ -70,12 +69,12 @@ public class ModuleComponent extends Component {
             for (SettingComponent<?> component : settingComponents) {
                 component.setY(yOffset);
                 component.renderComponent(mouseX, mouseY);
-                RenderUtil.drawRect(getX(), yOffset, 1, component.getHeight(), Colours.INSTANCE.colour.getValue().getRGB());
+                RenderUtil.drawRect(getX(), yOffset, 1, component.getHeight(), Colors.INSTANCE.colour.getValue().getRGB());
                 yOffset += component.getAbsoluteHeight();
             }
         }
 
-        RenderUtil.drawRect(getX(), getY() + getHeight() - (getHeight() * animation.getAnimationFactor()), 1, getHeight() * animation.getAnimationFactor(), Colours.INSTANCE.colour.getValue().getRGB());
+        RenderUtil.drawRect(getX(), getY() + getHeight() - (getHeight() * animation.getAnimationFactor()), 1, getHeight() * animation.getAnimationFactor(), Colors.INSTANCE.colour.getValue().getRGB());
     }
 
     @Override

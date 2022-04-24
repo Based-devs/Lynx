@@ -1,9 +1,8 @@
 package com.based.lynx.ui.click.frame.component.setting;
 
-import com.based.lynx.module.client.Colours;
+import com.based.lynx.module.client.Colors;
 import com.based.lynx.setting.Setting;
 import com.based.lynx.ui.click.frame.component.module.ModuleComponent;
-import com.based.lynx.util.FontUtil;
 import com.based.lynx.util.RenderUtil;
 import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Mouse;
@@ -27,10 +26,10 @@ public class SliderComponent extends SettingComponent<Number> {
         glScalef(0.75f, 0.75f, 0.75f);
         float scaleFactor = 1 / 0.75f;
 
-        FontUtil.drawStringWithShadow(getSetting().getName(), (getX() + 5) * scaleFactor, (getY() + 4) * scaleFactor, -1, true);
+        RenderUtil.drawStringWithShadow(getSetting().getName(), (getX() + 5) * scaleFactor, (getY() + 4) * scaleFactor, -1, true);
 
         float modeX = (getX() + getWidth() - 2 - (Minecraft.getMinecraft().fontRenderer.getStringWidth(String.valueOf(getSetting().getValue())) * 0.75f)) * scaleFactor;
-        FontUtil.drawStringWithShadow(String.valueOf(getSetting().getValue()), modeX, (getY() + 4) * scaleFactor, new Color(175, 175, 175).getRGB(), true);
+        RenderUtil.drawStringWithShadow(String.valueOf(getSetting().getValue()), modeX, (getY() + 4) * scaleFactor, new Color(175, 175, 175).getRGB(), true);
 
         glScalef(scaleFactor, scaleFactor, scaleFactor);
 
@@ -55,7 +54,7 @@ public class SliderComponent extends SettingComponent<Number> {
         }
 
         float renderWidth = ((getWidth() - 5) * (this.getSetting().getValue().floatValue() - min) / (max - min));
-        RenderUtil.drawRect(getX() + 5, getY() + getHeight() - 1, renderWidth, 1, Colours.INSTANCE.colour.getValue().getRGB());
+        RenderUtil.drawRect(getX() + 5, getY() + getHeight() - 1, renderWidth, 1, Colors.INSTANCE.colour.getValue().getRGB());
 
         super.renderComponent(mouseX, mouseY);
     }
