@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.based.lynx.Lynx;
-import com.based.lynx.module.Category;
-import com.based.lynx.module.Module;
 import com.based.lynx.module.client.Colours;
 import com.based.lynx.module.combat.AutoArmor;
 import com.based.lynx.module.combat.AutoCrystal;
@@ -15,6 +13,7 @@ import com.based.lynx.module.combat.AutoLog;
 import com.based.lynx.module.combat.Criticals;
 import com.based.lynx.module.exploit.PacketCanceller;
 import com.based.lynx.module.exploit.PortalGodmode;
+import com.based.lynx.module.misc.FakePlayer;
 import com.based.lynx.module.movement.Jesus;
 import com.based.lynx.module.movement.NoSlow;
 import com.based.lynx.module.movement.Sprint;
@@ -32,6 +31,8 @@ public class ModuleManager {
 
                 new PacketCanceller(),
                 new PortalGodmode(),
+
+                new FakePlayer(),
 
                 new Jesus(),
                 new NoSlow(),
