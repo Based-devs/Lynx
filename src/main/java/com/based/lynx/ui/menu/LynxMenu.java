@@ -25,7 +25,7 @@ public class LynxMenu extends GuiScreen {
         float yOffset = -1.0f * ((mouseY - this.height / 2.0f) / (this.height / 10.0f));
 
         Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("lynx", "textures/background.png"));
-        RenderUtil.drawModalRectWithCustomSizedTexture(-10.0f + xOffset, -10.0f + yOffset, 0, 0, this.width + 10f,this.height + 10f, 1920, 1080);
+        RenderUtil.drawModalRectWithCustomSizedTexture(-10.0f + xOffset, -10.0f + yOffset, 0, 0, this.width + 10f,this.height + 10f, this.width + 10f, this.height + 10f);
 
         glPushMatrix();
         glScalef(4, 4, 4);

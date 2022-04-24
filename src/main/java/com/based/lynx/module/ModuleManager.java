@@ -6,18 +6,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.based.lynx.Lynx;
-import com.based.lynx.module.client.Colours;
-import com.based.lynx.module.combat.AutoArmor;
-import com.based.lynx.module.combat.AutoCrystal;
-import com.based.lynx.module.combat.AutoLog;
-import com.based.lynx.module.combat.Criticals;
-import com.based.lynx.module.exploit.PacketCanceller;
-import com.based.lynx.module.exploit.PortalGodmode;
-import com.based.lynx.module.misc.FakePlayer;
-import com.based.lynx.module.movement.Jesus;
-import com.based.lynx.module.movement.NoSlow;
-import com.based.lynx.module.movement.Sprint;
-import com.based.lynx.module.movement.Velocity;
+import com.based.lynx.module.client.*;
+import com.based.lynx.module.combat.*;
+import com.based.lynx.module.exploit.*;
+import com.based.lynx.module.misc.*;
+import com.based.lynx.module.movement.*;
 
 public class ModuleManager {
     private final List<Module> modules;
@@ -39,6 +32,7 @@ public class ModuleManager {
                 new Sprint(),
                 new Velocity(),
 
+                new ClickGUI(),
                 new Colours()
         );
     }

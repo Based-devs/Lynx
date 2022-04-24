@@ -3,16 +3,17 @@ package com.based.lynx.module;
 import com.based.lynx.setting.Setting;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Module {
     protected static final Minecraft mc = Minecraft.getMinecraft();
     private String name;
     private String description;
     private Category category;
-    private int bind;
+    private final Setting<AtomicInteger> bind = new Setting<>("Keybind", new AtomicInteger(0))
+            .setDescription("The keybind to toggle this module");
     private boolean enabled;
 
     private final List<Setting<?>> settings = new ArrayList<>();
@@ -20,12 +21,16 @@ public class Module {
     public Module(String name, Category category) {
         this.name = name;
         this.category = category;
+
+        addSetting(bind);
     }
 
     public Module(String name, String description, Category category) {
         this.name = name;
         this.description = description;
         this.category = category;
+
+        addSetting(bind);
     }
 
     public void onUpdate() {
@@ -90,11 +95,11 @@ public class Module {
     }
 
     public int getBind() {
-        return this.bind;
+        return this.bind.getValue().get();
     }
 
     public void setBind(int bind) {
-        this.bind = bind;
+        this.bind.setValue(new AtomicInteger(bind));
     }
 
     public boolean isEnabled() {
