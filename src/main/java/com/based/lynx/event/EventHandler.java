@@ -2,7 +2,6 @@ package com.based.lynx.event;
 
 import com.based.lynx.Lynx;
 import com.based.lynx.module.Module;
-import com.based.lynx.module.ModuleManager;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.ClientChatEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;

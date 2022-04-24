@@ -9,9 +9,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public abstract class Module {
     protected static final Minecraft mc = Minecraft.getMinecraft();
-    private String name;
-    private String description;
-    private Category category;
+    private final String name, description;
+    private final Category category;
     private final Setting<AtomicInteger> bind = new Setting<>("Keybind", new AtomicInteger(0))
             .setDescription("The keybind to toggle this module");
     private boolean enabled;
@@ -67,24 +66,12 @@ public abstract class Module {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getDescription() {
         return this.description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public Category getCategory() {
         return this.category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 
     public int getBind() {
@@ -99,7 +86,7 @@ public abstract class Module {
         return this.enabled;
     }
 
-    public void setEnabled(boolean enabled) {
+    private void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
 
