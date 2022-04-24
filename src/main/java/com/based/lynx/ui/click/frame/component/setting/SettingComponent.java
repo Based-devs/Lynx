@@ -58,7 +58,7 @@ public class SettingComponent<T> extends Component {
 
                 subcomponent.setY(yOffset);
                 subcomponent.renderComponent(mouseX, mouseY);
-                RenderUtil.drawRect(getX(), yOffset, 2, subcomponent.getHeight(), Colours.INSTANCE.colour.getValue().getRGB());
+                RenderUtil.drawRect(getX(), yOffset, 2, subcomponent.getHeight(), Colors.INSTANCE.colour.getValue().getRGB());
                 yOffset += subcomponent.getAbsoluteHeight();
             }
         }
