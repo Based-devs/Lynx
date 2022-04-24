@@ -18,13 +18,13 @@ public class FakePlayer extends Module {
         if (this.nullCheck()) {
             return;
         }
-        EntityOtherPlayerMP fakePlayer = new EntityOtherPlayerMP(FakePlayer.mc.world, new GameProfile(UUID.fromString("e4146954-57b4-46fd-ab97-4ab8d8034c31"), "FakePlayer"));
-        fakePlayer.copyLocationAndAnglesFrom(FakePlayer.mc.player);
-        FakePlayer.mc.world.addEntityToWorld(69420, fakePlayer);
+        EntityOtherPlayerMP fakePlayer = new EntityOtherPlayerMP(mc.world, new GameProfile(UUID.fromString("e4146954-57b4-46fd-ab97-4ab8d8034c31"), "FakePlayer"));
+        fakePlayer.copyLocationAndAnglesFrom(mc.player);
+        mc.world.addEntityToWorld(69420, fakePlayer);
     }
 
     @Override
     public void onDisable() {
-        FakePlayer.mc.world.removeEntityFromWorld(69420);
+        mc.world.removeEntityFromWorld(69420);
     }
 }

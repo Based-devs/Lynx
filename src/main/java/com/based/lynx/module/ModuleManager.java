@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.based.lynx.Lynx;
 import com.based.lynx.module.client.*;
 import com.based.lynx.module.combat.*;
 import com.based.lynx.module.exploit.*;
@@ -31,14 +30,13 @@ public class ModuleManager {
                 new NoSlow(),
                 new Sprint(),
                 new Velocity(),
-
                 new ClickGUI(),
-                new Colours()
+                new Colors()
         );
     }
 
-    public static void onUpdate() {
-        Lynx.moduleManager.getModules().stream().filter(Module::isEnabled).forEach(Module::onUpdate);
+    public void onUpdate() {
+        this.getModules().stream().filter(Module::isEnabled).forEach(Module::onUpdate);
     }
 
     public List<Module> getModules() {
@@ -54,7 +52,7 @@ public class ModuleManager {
     }
 
     public ArrayList<Module> getModules(Category category) {
-        ArrayList<Module> mods = new ArrayList<Module>();
+        ArrayList<Module> mods = new ArrayList<>();
         for (Module module : this.modules) {
             if (!module.getCategory().equals(category)) continue;
             mods.add(module);

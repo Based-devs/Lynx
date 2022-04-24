@@ -1,8 +1,7 @@
 package com.based.lynx.module.movement;
 
 import com.based.lynx.event.AddCollisionBoxToListEvent;
-import com.based.lynx.event.EventSendPacket;
-import com.based.lynx.event.EventTarget;
+import com.based.lynx.event.PacketEvent;
 import com.based.lynx.module.Category;
 import com.based.lynx.module.Module;
 import com.based.lynx.util.EntityUtil;
@@ -14,6 +13,7 @@ import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class Jesus extends Module {
 
@@ -33,7 +33,7 @@ public class Jesus extends Module {
         }
     }
 
-    @EventTarget
+    @SubscribeEvent
     public void onCollision(AddCollisionBoxToListEvent event) {
         if (mc.player != null
                 && (event.getBlock() instanceof BlockLiquid)
@@ -50,8 +50,8 @@ public class Jesus extends Module {
         }
     }
 
-    @EventTarget
-    public void onPacket(EventSendPacket event) {
+    @SubscribeEvent
+    public void onPacket(PacketEvent.Send event) {
         if (event.getPacket() instanceof CPacketPlayer) {
             if (EntityUtil.isAboveWater(mc.player, true) && !EntityUtil.isInWater(mc.player) && !isAboveLand(mc.player)) {
                 int ticks = mc.player.ticksExisted % 2;
@@ -60,7 +60,6 @@ public class Jesus extends Module {
         }
     }
 
-    @SuppressWarnings("deprecation")
     private static boolean isAboveLand(Entity entity) {
         if (entity == null) return false;
 
@@ -70,7 +69,7 @@ public class Jesus extends Module {
             for (int z = MathHelper.floor(entity.posZ); z < MathHelper.ceil(entity.posZ); z++) {
                 BlockPos pos = new BlockPos(x, MathHelper.floor(y), z);
 
-                if (Wrapper.getWorld().getBlockState(pos).getBlock().isFullBlock(Wrapper.getWorld().getBlockState(pos)))
+                if (Wrapper.getWorld().getBlockState(pos).isFullBlock())
                     return true;
             }
 

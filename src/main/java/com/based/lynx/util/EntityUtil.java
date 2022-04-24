@@ -21,7 +21,7 @@ public class EntityUtil {
 
     public static boolean isPassive(Entity e) {
         if (e instanceof EntityWolf && ((EntityWolf) e).isAngry()) return false;
-        if (e instanceof EntityAnimal || e instanceof EntityAgeable || e instanceof EntityTameable || e instanceof EntityAmbientCreature || e instanceof EntitySquid)
+        if (e instanceof EntityAgeable || e instanceof EntityAmbientCreature || e instanceof EntitySquid)
             return true;
         return e instanceof EntityIronGolem && ((EntityIronGolem) e).getRevengeTarget() == null;
     }

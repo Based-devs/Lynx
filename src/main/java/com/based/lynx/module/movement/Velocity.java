@@ -1,6 +1,6 @@
 package com.based.lynx.module.movement;
 
-import com.based.lynx.event.PacketReceiveEvent;
+import com.based.lynx.event.PacketEvent;
 import com.based.lynx.module.Category;
 import com.based.lynx.module.Module;
 import net.minecraft.network.play.server.SPacketEntityVelocity;
@@ -15,7 +15,7 @@ public class Velocity extends Module {
     }
 
     @SubscribeEvent
-    public void onPacket(PacketReceiveEvent event) {
+    public void onPacket(PacketEvent.Receive event) {
         if (nullCheck()) return;
         if (event.getPacket() instanceof SPacketEntityVelocity) {
             if (((SPacketEntityVelocity) event.getPacket()).getEntityID() == mc.player.getEntityId())

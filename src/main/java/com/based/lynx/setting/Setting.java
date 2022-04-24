@@ -14,7 +14,7 @@ public class Setting<T> {
     private final String name;
     private final List<Setting<?>> subsettings = new ArrayList<>();
     private String description;
-    // Bad system, we store these values even when they aren't used. (but no one actually gives a fuck)
+    // Bad system, we store these values even when they aren't used.
     private T value, min, max, incrementation;
     private int index;
     private Supplier<Boolean> isVisible = () -> true;

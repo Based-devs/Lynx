@@ -6,19 +6,19 @@ import com.based.lynx.module.ModuleManager;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.ClientChatEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
 import org.lwjgl.input.Keyboard;
 
 public class EventHandler {
     @SubscribeEvent
-    public void onTick(TickEvent.ClientTickEvent event) {
+    public void onUpdate(LivingEvent.LivingUpdateEvent event) {
         if (Minecraft.getMinecraft().player == null || Minecraft.getMinecraft().world == null) {
             return;
         }
 
-        ModuleManager.onUpdate();
+        Lynx.moduleManager.onUpdate();
     }
 
     @SubscribeEvent

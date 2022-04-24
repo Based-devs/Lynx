@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Module {
+public abstract class Module {
     protected static final Minecraft mc = Minecraft.getMinecraft();
     private String name;
     private String description;
@@ -17,13 +17,6 @@ public class Module {
     private boolean enabled;
 
     private final List<Setting<?>> settings = new ArrayList<>();
-
-    public Module(String name, Category category) {
-        this.name = name;
-        this.category = category;
-
-        addSetting(bind);
-    }
 
     public Module(String name, String description, Category category) {
         this.name = name;
@@ -62,11 +55,11 @@ public class Module {
         }
     }
 
-    public boolean nullCheck() {
-        return Module.mc.player == null || Module.mc.world == null;
+    protected boolean nullCheck() {
+        return mc.player == null || mc.world == null;
     }
 
-    public void addSetting(Setting<?> setting) {
+    protected void addSetting(Setting<?> setting) {
         this.settings.add(setting);
     }
 

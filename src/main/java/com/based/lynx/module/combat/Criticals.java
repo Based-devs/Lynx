@@ -1,8 +1,8 @@
 package com.based.lynx.module.combat;
 
+import com.based.lynx.event.PacketEvent;
 import com.based.lynx.module.Category;
 import com.based.lynx.module.Module;
-import com.based.lynx.event.PacketSendEvent;
 
 import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.network.play.client.CPacketUseEntity;
@@ -14,7 +14,7 @@ public class Criticals extends Module {
     }
 
     @SubscribeEvent
-    public void onPacketSend(PacketSendEvent event) {
+    public void onPacketSend(PacketEvent.Send event) {
         if (nullCheck()) return;
 
         if (event.getPacket() instanceof CPacketUseEntity && ((CPacketUseEntity) event.getPacket()).getAction() == CPacketUseEntity.Action.ATTACK && mc.player.onGround) {

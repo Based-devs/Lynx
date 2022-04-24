@@ -21,7 +21,6 @@ public class AddCollisionBoxToListEvent extends Event {
     private final boolean bool;
 
     public AddCollisionBoxToListEvent(Block block, IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean bool) {
-        super();
         this.block = block;
         this.state = state;
         this.world = worldIn;

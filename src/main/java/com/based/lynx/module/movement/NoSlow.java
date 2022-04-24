@@ -1,12 +1,9 @@
 package com.based.lynx.module.movement;
 
-import com.based.lynx.event.EventTarget;
 import com.based.lynx.module.Category;
 import com.based.lynx.module.Module;
 import net.minecraftforge.client.event.InputUpdateEvent;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import org.lwjgl.input.Keyboard;
 
 public class NoSlow extends Module {
 
@@ -21,6 +18,4 @@ public class NoSlow extends Module {
             event.getMovementInput().moveForward *= 5;
         }
     }
-
-
 }

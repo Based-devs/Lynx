@@ -66,8 +66,6 @@ dependencies {
         exclude module: 'log4j-core'
     }
 
-    embed 'com.github.therealbush:eventbus:1.0.2'
-
     embed group: 'org.json', name: 'json', version: '20211205'
 }
 

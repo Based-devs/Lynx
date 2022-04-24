@@ -1,6 +1,6 @@
 package com.based.lynx.ui.menu;
 
-import com.based.lynx.module.client.Colours;
+import com.based.lynx.module.client.Colors;
 import com.based.lynx.util.RenderUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
@@ -26,7 +26,7 @@ public class LynxButton extends GuiButton {
 
             this.mouseDragged(mc, mouseX, mouseY);
 
-            this.drawCenteredString(mc.fontRenderer, this.displayString, this.x + this.width / 2, this.y + (this.height - 8) / 2, this.hovered ? Colours.INSTANCE.colour.getValue().getRGB() : -1);
+            this.drawCenteredString(mc.fontRenderer, this.displayString, this.x + this.width / 2, this.y + (this.height - 8) / 2, this.hovered ? Colors.INSTANCE.colour.getValue().getRGB() : -1);
         }
     }
 }
