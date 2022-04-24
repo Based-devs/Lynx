@@ -1,6 +1,6 @@
 package com.based.lynx.ui.click.frame.component.setting;
 
-import com.based.lynx.module.client.Colours;
+import com.based.lynx.module.client.Colors;
 import com.based.lynx.setting.Setting;
 import com.based.lynx.ui.click.frame.component.Component;
 import com.based.lynx.ui.click.frame.component.module.ModuleComponent;
