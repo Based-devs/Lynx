@@ -14,7 +14,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class SettingComponent<T> extends Component {
 
-    private Setting<T> setting;
+    private final Setting<T> setting;
     private final List<SettingComponent<?>> subsettings = new ArrayList<>();
     private final Animation openAnimation = new Animation(200, false);
     private boolean open;

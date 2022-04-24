@@ -16,7 +16,7 @@ public abstract class Command {
         this.aliases = aliases;
     }
 
-    public abstract void onTrigger(String arguments);
+    public abstract void onTrigger(String[] arguments);
 
     public void printUsage() {
         LoggerUtil.sendMessage("Usage: " + Lynx.commandManager.getPrefix() + this.usage);

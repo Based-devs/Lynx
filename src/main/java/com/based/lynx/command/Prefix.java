@@ -4,19 +4,18 @@ import com.based.lynx.Lynx;
 import com.based.lynx.command.Command;
 import com.based.lynx.util.LoggerUtil;
 
-public class Prefix
-        extends Command {
+public class Prefix extends Command {
     public Prefix() {
-        super("Prefix", new String[]{"prefix"}, "prefix <char>");
+        super("Prefix", "prefix <char>", "prefix");
     }
 
     @Override
-    public void onTrigger(String arguments) {
-        if (arguments.equals("")) {
+    public void onTrigger(String[] arguments) {
+        if (arguments[0].equals("")) {
             this.printUsage();
             return;
         }
-        Lynx.commandManager.setPrefix(arguments);
-        LoggerUtil.sendMessage("Prefix set to " + arguments);
+        Lynx.commandManager.setPrefix(arguments[0]);
+        LoggerUtil.sendMessage("Prefix set to " + arguments[0]);
     }
 }

@@ -2,9 +2,6 @@ package com.based.lynx.command;
 
 import java.util.ArrayList;
 
-import com.based.lynx.command.Command;
-import com.based.lynx.command.Help;
-import com.based.lynx.command.Prefix;
 import com.based.lynx.util.LoggerUtil;
 
 public class CommandManager {
@@ -18,14 +15,16 @@ public class CommandManager {
 
     public void runCommand(String args) {
         boolean found = false;
+
         String[] split = args.split(" ");
         String startCommand = split[0];
-        String arguments = args.substring(startCommand.length()).trim();
+
         for (Command command : this.getCommands()) {
             for (String alias : command.getAlias()) {
-                if (!startCommand.equals(this.getPrefix() + alias)) continue;
-                command.onTrigger(arguments);
-                found = true;
+                if (!startCommand.equals(this.getPrefix() + alias)) {
+                    command.onTrigger(split);
+                    found = true;
+                }
             }
         }
         if (!found) {

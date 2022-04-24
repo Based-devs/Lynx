@@ -5,11 +5,11 @@ import com.based.lynx.util.LoggerUtil;
 
 public class Help extends Command {
     public Help() {
-        super("Help", new String[]{"h", "help"}, "help");
+        super("Help", "help", "h", "help");
     }
 
     @Override
-    public void onTrigger(String arguments) {
+    public void onTrigger(String[] arguments) {
         LoggerUtil.sendMessage("Lynx");
         for (Command command : Lynx.commandManager.getCommands()) {
             LoggerUtil.sendMessage(command.getName() + " - " + command.getUsage());
