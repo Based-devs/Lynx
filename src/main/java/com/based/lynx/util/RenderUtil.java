@@ -33,6 +33,7 @@ public class RenderUtil {
         GlStateManager.popMatrix();
     }
 
+
     public static void drawModalRectWithCustomSizedTexture(float x, float y, int u, int v, float width, float height, int textureWidth, int textureHeight) {
         float f = 1.0F / textureWidth;
         float f1 = 1.0F / textureHeight;
@@ -45,3 +46,4 @@ public class RenderUtil {
         bufferbuilder.pos(x, y, 0.0D).tex(u * f, v * f1).endVertex();
         tessellator.draw();
     }
+}
