@@ -13,10 +13,10 @@ public class CommandManager {
         this.commands.add(new Prefix());
     }
 
-    public void runCommand(String args) {
+    public void runCommand(String message) {
         boolean found = false;
 
-        String[] split = args.split(" ");
+        String[] split = message.split(" ");
         String startCommand = split[0];
 
         for (Command command : this.getCommands()) {
