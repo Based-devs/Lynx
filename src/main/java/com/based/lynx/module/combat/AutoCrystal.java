@@ -89,7 +89,7 @@ public class AutoCrystal extends Module {
     public final Setting<Float> placeWallRange = new Setting<>("PlaceWallRange", 3.5f, 0.0f, 10.0f, 0.1f)
             .setDescription("The max distance to place crystals through walls").setParentSetting(place);
 
-    public final Setting<Integer> placeDelay = new Setting<>("PlaceDelay", 0, 0, 500, 1)
+    public final Setting<Double> placeDelay = new Setting<>("PlaceDelay", 0, 0, 500, 1)
             .setDescription("The delay between placing crystals").setParentSetting(place);
 
     public final Setting<Float> minPlaceDamage = new Setting<>("MinPlaceDamage", 7.0f, 0.0f, 36.0f, 1F)
@@ -112,7 +112,7 @@ public class AutoCrystal extends Module {
     public final Setting<Float> breakWallRange = new Setting<>("BreakWallRange", 3.5f, 0.0f, 10.0f, 0.1f)
             .setDescription("The max distance to break crystals through walls").setParentSetting(breakk);
 
-    public final Setting<Integer> breakDelay = new Setting<>("BreakDelay", 0, 0, 500, 1)
+    public final Setting<Double> breakDelay = new Setting<>("BreakDelay", 0, 0, 500, 1)
             .setDescription("The delay between breaking crystals").setParentSetting(breakk);
 
     public final Setting<Float> minBreakDamage = new Setting<>("MinBreakDamage", 7.0f, 0.0f, 36.0f, 1F)
