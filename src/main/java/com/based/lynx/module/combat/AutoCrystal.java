@@ -50,10 +50,10 @@ public class AutoCrystal extends Module {
 
     public AutoCrystal() {
         super("AutoCrystal", "Automatically places and breaks crystals to deal damage", Category.COMBAT);
-        addSetting(logic);
+        /*addSetting(logic);
         addSetting(enemyRange);
         addSetting(place);
-        addSetting(breakk);
+        addSetting(break);
         addSetting(override);
         addSetting(render);
     }
@@ -103,53 +103,53 @@ public class AutoCrystal extends Module {
 
 
     // breaking
-    public final Setting<Boolean> breakk = new Setting<>("Break", true)
+    public final Setting<Boolean> break = new Setting<>("Break", true)
             .setDescription("Automatically break crystals");
 
     public final Setting<Float> breakRange = new Setting<>("BreakRange", 5.0f, 0.0f, 10.0f, 0.1f)
-            .setDescription("The max distance to break crystals").setParentSetting(breakk);
+            .setDescription("The max distance to break crystals").setParentSetting(break);
 
     public final Setting<Float> breakWallRange = new Setting<>("BreakWallRange", 3.5f, 0.0f, 10.0f, 0.1f)
-            .setDescription("The max distance to break crystals through walls").setParentSetting(breakk);
+            .setDescription("The max distance to break crystals through walls").setParentSetting(break);
 
     public final Setting<Double> breakDelay = new Setting<>("BreakDelay", 0, 0, 500, 1)
-            .setDescription("The delay between breaking crystals").setParentSetting(breakk);
+            .setDescription("The delay between breaking crystals").setParentSetting(break);
 
     public final Setting<Float> minBreakDamage = new Setting<>("MinBreakDamage", 7.0f, 0.0f, 36.0f, 1F)
-            .setDescription("The minimum damage to deal to break crystals").setParentSetting(breakk);
+            .setDescription("The minimum damage to deal to break crystals").setParentSetting(break);
 
     public final Setting<Float> maxSelfBreak = new Setting<>("MaxSelfBreak", 8.0f, 0.0f, 36.0f, 1F)
-            .setDescription("The maximum damage to deal to yourself when breaking crystals").setParentSetting(breakk);
+            .setDescription("The maximum damage to deal to yourself when breaking crystals").setParentSetting(break);
 
     public final Setting<Boolean> breakSwing = new Setting<>("BreakSwing", true)
-            .setDescription("Whether to swing when breaking crystals").setParentSetting(breakk);
+            .setDescription("Whether to swing when breaking crystals").setParentSetting(break);
 
     public final Setting<Boolean> antiSuicide = new Setting<>("AntiSuicide", true)
-            .setDescription("Do not break crystals if they will pop / kill you").setParentSetting(breakk);
+            .setDescription("Do not break crystals if they will pop / kill you").setParentSetting(break);
 
     public final Setting<Switch> switchMode = new Setting<>("Switch", Switch.Silent)
-            .setDescription("How to switch to a sword").setParentSetting(breakk);
+            .setDescription("How to switch to a sword").setParentSetting(break);
 
     public final Setting<Boolean> packet = new Setting<>("Packet", true)
-            .setDescription("Whether to use packets to break crystals").setParentSetting(breakk);
+            .setDescription("Whether to use packets to break crystals").setParentSetting(break);
 
     public final Setting<Boolean> rotate = new Setting<>("Rotate", true)
-            .setDescription("Whether to rotate when breaking crystals").setParentSetting(breakk);
+            .setDescription("Whether to rotate when breaking crystals").setParentSetting(break);
 
     public final Setting<Float> ticksExisted = new Setting<>("TicksExisted", 1f, 0.0f, 5f, 1F)
-            .setDescription("The amount of ticks that the crystal has existed for before breaking").setParentSetting(breakk);
+            .setDescription("The amount of ticks that the crystal has existed for before breaking").setParentSetting(break);
 
     public final Setting<Boolean> oneDotThirteen = new Setting<>("1.13", false)
-            .setDescription("someone change this desc idk what it does").setParentSetting(breakk);
+            .setDescription("someone change this desc idk what it does").setParentSetting(break);
 
     public final Setting<Boolean> terrainTrace = new Setting<>("TerrainTrace", true)
-            .setDescription("idk what this does").setParentSetting(breakk);
+            .setDescription("idk what this does").setParentSetting(break);
 
     public final Setting<Boolean> antiWeakness = new Setting<>("AntiWeakness", true)
-            .setDescription("Switches to a sword if you have the weakness effect applied").setParentSetting(breakk);
+            .setDescription("Switches to a sword if you have the weakness effect applied").setParentSetting(break);
 
     public final Setting<Boolean> raytrace = new Setting<>("Raytrace", true)
-            .setDescription("Checks you can see the crystal before breaking it").setParentSetting(breakk);
+            .setDescription("Checks you can see the crystal before breaking it").setParentSetting(break);
 
 
     // override
@@ -182,7 +182,7 @@ public class AutoCrystal extends Module {
     public final Setting<Float> fadeTime = new Setting<>("FadeTime", 300F, 0.0F, 1000.0F, 0.1F)
             .setDescription("Time it takes for the highlight to fade").setParentSetting(render);
 
-    public final Setting<Color> colour = new Setting<>("Colour", Color.WHITE)
+    public final Setting<Color> colour = new Setting<>("Color", Color.WHITE)
             .setDescription("The colour of the highlight").setParentSetting(render);
 
     public HashMap<BlockPos, Long> renderMap = new HashMap<>();
@@ -633,6 +633,6 @@ public class AutoCrystal extends Module {
             return false;
         }
         return true;
-    }
+    }*/
 
 }
