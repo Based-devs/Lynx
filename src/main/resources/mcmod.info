@@ -1,5 +1,4 @@
-[
-  {
+{
     "modid": "lynx",
     "name": "Lynx",
     "description": "Minecraft 1.12.2 utility mod for anarchy servers",
@@ -15,4 +14,4 @@
     "screenshots": [],
     "dependencies": []
   }
-]
+
