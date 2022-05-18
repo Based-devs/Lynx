@@ -46,7 +46,7 @@ repositories {
 
     repositories {
         maven {
-            url 'https://jitpack.io'
+            url 'jcenter()'
         }
     }
 
