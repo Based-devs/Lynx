@@ -1,17 +1,15 @@
 buildscript {
     repositories {
+        mavenCentral()
         maven {
-            url = 'https://files.minecraftforge.net/maven'
-        }
-
-        maven {
-            url = 'https://repo.spongepowered.org/repository/maven-public/'
+            name = "forge"
+            url = "https://maven.minecraftforge.net"
         }
     }
-    
     dependencies {
-        classpath 'ncom.anatawa12.forge:ForgeGradle:2.3-1.0.1'
-        classpath 'org.spongepowered:mixingradle:0.6-SNAPSHOT'
+        classpath("com.anatawa12.forge:ForgeGradle:2.3-1.0.+") {
+            changing = true
+        }
     }
 }
 
