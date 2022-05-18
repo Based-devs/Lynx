@@ -1,4 +1,4 @@
-package com.based.lynx.module.combat;
+/*package com.based.lynx.module.combat;
 
 import com.based.lynx.event.PacketEvent;
 import com.based.lynx.module.Category;
@@ -50,7 +50,7 @@ public class AutoCrystal extends Module {
 
     public AutoCrystal() {
         super("AutoCrystal", "Automatically places and breaks crystals to deal damage", Category.COMBAT);
-        /*addSetting(logic);
+        addSetting(logic);
         addSetting(enemyRange);
         addSetting(place);
         addSetting(break);
