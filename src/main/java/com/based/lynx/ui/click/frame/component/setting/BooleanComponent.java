@@ -32,7 +32,7 @@ public class BooleanComponent extends SettingComponent<Boolean> {
         glScalef(scaleFactor, scaleFactor, scaleFactor);
 
         RenderUtil.drawRect(getX() + getWidth() - 12, getY() + 1.5f, 10, 10, new Color(20, 20, 25).getRGB());
-        RenderUtil.drawRect((getX() + getWidth() - 12) + (5 * (1 - animation.getAnimationFactor())), getY() + 1.5f + (5 * (1 - animation.getAnimationFactor())), 10 * animation.getAnimationFactor(), 10 * animation.getAnimationFactor(), Colors.INSTANCE.colour.getValue().getRGB());
+        RenderUtil.drawRect((getX() + getWidth() - 12) + (5 * (1 - animation.getAnimationFactor())), getY() + 1.5f + (5 * (1 - animation.getAnimationFactor())), 10 * animation.getAnimationFactor(), 10 * animation.getAnimationFactor(), Colors.INSTANCE.color.getValue().getRGB());
 
         super.renderComponent(mouseX, mouseY);
     }

@@ -12,11 +12,11 @@ import static org.lwjgl.opengl.GL11.glScissor;
 
 public class RenderUtil {
 
-    public static void drawRect(float x, float y, float width, float height, int colour) {
-        float c = (float) (colour >> 24 & 255) / 255.0F;
-        float c1 = (float) (colour >> 16 & 255) / 255.0F;
-        float c2 = (float) (colour >> 8 & 255) / 255.0F;
-        float c3 = (float) (colour & 255) / 255.0F;
+    public static void drawRect(float x, float y, float width, float height, int color) {
+        float c = (float) (color >> 24 & 255) / 255.0F;
+        float c1 = (float) (color >> 16 & 255) / 255.0F;
+        float c2 = (float) (color >> 8 & 255) / 255.0F;
+        float c3 = (float) (color & 255) / 255.0F;
 
         GlStateManager.pushMatrix();
         GlStateManager.disableTexture2D();
@@ -78,11 +78,11 @@ public class RenderUtil {
         glScissor((int) x, (int) (y - height), (int) width, (int) height);
     }
 
-    public static void drawStringWithShadow(String name, float x, float y, int colour, boolean shadow) {
-        Wrapper.getMinecraft().fontRenderer.drawString(name, x, y, colour, shadow);
+    public static void drawStringWithShadow(String name, float x, float y, int color, boolean shadow) {
+        Wrapper.getMinecraft().fontRenderer.drawString(name, x, y, color, shadow);
     }
 
-    public static void drawCenteredString(String name, float x, float y, int colour, boolean shadow) {
-        Wrapper.getMinecraft().fontRenderer.drawString(name, x - (Wrapper.getMinecraft().fontRenderer.getStringWidth(name) / 2f), y, colour, shadow);
+    public static void drawCenteredString(String name, float x, float y, int color, boolean shadow) {
+        Wrapper.getMinecraft().fontRenderer.drawString(name, x - (Wrapper.getMinecraft().fontRenderer.getStringWidth(name) / 2f), y, color, shadow);
     }
 }

@@ -35,7 +35,7 @@ public class SettingComponent<T> extends Component {
                 subsettings.add(new ModeComponent((Setting<Enum<?>>) subsetting, x + 1, yOffset, width - 1, height, moduleComponent));
                 yOffset += height;
             } else if (subsetting.getValue() instanceof Color) {
-                subsettings.add(new ColourComponent((Setting<Color>) subsetting, x + 1, yOffset, width - 1, height, moduleComponent));
+                subsettings.add(new ColorComponent((Setting<Color>) subsetting, x + 1, yOffset, width - 1, height, moduleComponent));
                 yOffset += height;
             } else if (subsetting.getValue() instanceof AtomicInteger) {
                 subsettings.add(new KeybindComponent((Setting<AtomicInteger>) subsetting, x + 1, yOffset, width - 1, height, moduleComponent));
@@ -58,7 +58,7 @@ public class SettingComponent<T> extends Component {
 
                 subcomponent.setY(yOffset);
                 subcomponent.renderComponent(mouseX, mouseY);
-                RenderUtil.drawRect(getX(), yOffset, 2, subcomponent.getHeight(), Colors.INSTANCE.colour.getValue().getRGB());
+                RenderUtil.drawRect(getX(), yOffset, 2, subcomponent.getHeight(), Colors.INSTANCE.color.getValue().getRGB());
                 yOffset += subcomponent.getAbsoluteHeight();
             }
         }

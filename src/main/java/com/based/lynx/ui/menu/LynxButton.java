@@ -26,7 +26,7 @@ public class LynxButton extends GuiButton {
 
             this.mouseDragged(mc, mouseX, mouseY);
 
-            this.drawCenteredString(mc.fontRenderer, this.displayString, this.x + this.width / 2, this.y + (this.height - 8) / 2, this.hovered ? Colors.INSTANCE.colour.getValue().getRGB() : -1);
+            this.drawCenteredString(mc.fontRenderer, this.displayString, this.x + this.width / 2, this.y + (this.height - 8) / 2, this.hovered ? Colors.INSTANCE.color.getValue().getRGB() : -1);
         }
     }
 }

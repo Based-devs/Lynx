@@ -54,7 +54,7 @@ public class SliderComponent extends SettingComponent<Number> {
         }
 
         float renderWidth = ((getWidth() - 5) * (this.getSetting().getValue().floatValue() - min) / (max - min));
-        RenderUtil.drawRect(getX() + 5, getY() + getHeight() - 1, renderWidth, 1, Colors.INSTANCE.colour.getValue().getRGB());
+        RenderUtil.drawRect(getX() + 5, getY() + getHeight() - 1, renderWidth, 1, Colors.INSTANCE.color.getValue().getRGB());
 
         super.renderComponent(mouseX, mouseY);
     }

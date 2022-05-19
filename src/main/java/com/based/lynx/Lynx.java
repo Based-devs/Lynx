@@ -11,10 +11,10 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 
-@Mod(modid = "lynx", name = "Lynx", version = "1.0.0")
+@Mod(modid = "lynx", name = "Lynx", version = "1.0.1")
 public class Lynx {
     public static final String name = "Lynx";
-    public static final String version = "1.0.0";
+    public static final String version = "1.0.1";
     public static ModuleManager moduleManager;
     public static CommandManager commandManager;
     public static final EventHandler EVENT_MANAGER;

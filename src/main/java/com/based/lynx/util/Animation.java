@@ -4,7 +4,7 @@ import net.minecraft.util.math.MathHelper;
 
 /**
  * @author Tigermouthbear, linustouchtips
- * @since 06/08/2021
+ * @since 06/08/2021 //rewrite this so its not skidded -Master7720
  */
 public class Animation {
 

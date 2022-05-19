@@ -9,12 +9,12 @@ import java.awt.*;
 public class Colors extends Module {
     public static Colors INSTANCE;
 
-    public final Setting<Color> colour = new Setting<>("Colour", new Color(50, 80, 255))
+    public final Setting<Color> color = new Setting<>("Color", new Color(50, 80, 255))
             .setDescription("The client's main colour");
 
     public Colors() {
         super("Colors", "Control client colors", Category.CLIENT);
-        addSetting(colour);
+        addSetting(color);
         INSTANCE = this;
     }
 

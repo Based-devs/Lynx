@@ -41,7 +41,7 @@ public class ModuleComponent extends Component {
                 settingComponents.add(new ModeComponent((Setting<Enum<?>>) setting, x, yOffset, width, height, this));
                 yOffset += height;
             } else if (setting.getValue() instanceof Color) {
-                settingComponents.add(new ColourComponent((Setting<Color>) setting, x, yOffset, width, height, this));
+                settingComponents.add(new ColorComponent((Setting<Color>) setting, x, yOffset, width, height, this));
                 yOffset += height;
             } else if (setting.getValue() instanceof AtomicInteger) {
                 settingComponents.add(new KeybindComponent((Setting<AtomicInteger>) setting, x, yOffset, width, height, this));
@@ -69,12 +69,12 @@ public class ModuleComponent extends Component {
             for (SettingComponent<?> component : settingComponents) {
                 component.setY(yOffset);
                 component.renderComponent(mouseX, mouseY);
-                RenderUtil.drawRect(getX(), yOffset, 1, component.getHeight(), Colors.INSTANCE.colour.getValue().getRGB());
+                RenderUtil.drawRect(getX(), yOffset, 1, component.getHeight(), Colors.INSTANCE.color.getValue().getRGB());
                 yOffset += component.getAbsoluteHeight();
             }
         }
 
-        RenderUtil.drawRect(getX(), getY() + getHeight() - (getHeight() * animation.getAnimationFactor()), 1, getHeight() * animation.getAnimationFactor(), Colors.INSTANCE.colour.getValue().getRGB());
+        RenderUtil.drawRect(getX(), getY() + getHeight() - (getHeight() * animation.getAnimationFactor()), 1, getHeight() * animation.getAnimationFactor(), Colors.INSTANCE.color.getValue().getRGB());
     }
 
     @Override
