@@ -50,6 +50,7 @@ public class Setting<T> {
 
     /**
      * Sets the visibility of this setting
+     *
      * @param isVisible Supplier that returns true if the setting should be visible
      * @return This setting
      */
@@ -60,6 +61,7 @@ public class Setting<T> {
 
     /**
      * Gets the name of this setting
+     *
      * @return The name of this setting
      */
     public String getName() {
@@ -68,6 +70,7 @@ public class Setting<T> {
 
     /**
      * Gets the description of this setting
+     *
      * @return The description of this setting
      */
     public String getDescription() {
@@ -76,6 +79,7 @@ public class Setting<T> {
 
     /**
      * Sets the description of this setting
+     *
      * @param description The new description
      * @return This setting
      */
@@ -86,6 +90,7 @@ public class Setting<T> {
 
     /**
      * Gets the setting's value
+     *
      * @return The setting's value
      */
     public T getValue() {
@@ -94,6 +99,7 @@ public class Setting<T> {
 
     /**
      * Sets the value of this setting
+     *
      * @param value The new value
      */
     public void setValue(T value) {
@@ -102,6 +108,7 @@ public class Setting<T> {
 
     /**
      * Gets the minimum value of this setting
+     *
      * @return The minimum value
      */
     public T getMin() {
@@ -110,6 +117,7 @@ public class Setting<T> {
 
     /**
      * Gets the maximum value of this setting
+     *
      * @return The maximum value
      */
     public T getMax() {
@@ -118,6 +126,7 @@ public class Setting<T> {
 
     /**
      * Gets the incrementation of this setting
+     *
      * @return The incrementation
      */
     public T getIncrementation() {
@@ -126,6 +135,7 @@ public class Setting<T> {
 
     /**
      * Gets the next enum we need to switch to
+     *
      * @return The next enum
      */
     public T getNextMode() {
@@ -141,6 +151,7 @@ public class Setting<T> {
 
     /**
      * Gets whether the setting is visible in the gui
+     *
      * @return Whether the setting is visible
      */
     public boolean isVisible() {
@@ -149,6 +160,7 @@ public class Setting<T> {
 
     /**
      * Gets the parent setting of this setting
+     *
      * @return The parent setting
      */
     public Setting<?> getParentSetting() {
@@ -157,6 +169,7 @@ public class Setting<T> {
 
     /**
      * Sets the parent setting of this setting
+     *
      * @param parentSetting The parent setting
      * @return This setting
      */
@@ -168,6 +181,7 @@ public class Setting<T> {
 
     /**
      * Gets the subsettings of this setting
+     *
      * @return The subsettings
      */
     public List<Setting<?>> getSubsettings() {

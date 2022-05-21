@@ -18,11 +18,10 @@ import static org.lwjgl.opengl.GL11.glScalef;
 public class ColourComponent extends SettingComponent<Color> {
 
     private final Animation animation = new Animation(200, false);
-    private boolean open;
-
     private final List<SettingComponent<?>> pickerComponents = new ArrayList<>();
     private final Setting<Number> hueSetting = new Setting<>("Hue", 0f, 0f, 360f, 1f);
     private final Setting<Number> alphaSetting = new Setting<>("Alpha", 0f, 0f, 255f, 1f);
+    private boolean open;
     private boolean draggingPicker;
     private Color finalColour;
 

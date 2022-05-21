@@ -17,7 +17,7 @@ public class ModuleManager {
     public ModuleManager() {
         this.modules = Arrays.asList(
                 new AutoArmor(),
-               // new AutoCrystal(),
+                // new AutoCrystal(),
                 new AutoLog(),
                 new Criticals(),
 

@@ -17,18 +17,16 @@ import java.util.List;
 
 public class Frame {
 
+    private final float maxHeight = 325;
+    private final Category category;
+    private final List<ModuleComponent> components = new ArrayList<>();
+    private final Animation animation = new Animation(200, true);
     private float x;
     private float y;
     private float width;
     private float barHeight;
     private float height;
-    private final float maxHeight = 325;
     private boolean open = true;
-    private final Category category;
-
-    private final List<ModuleComponent> components = new ArrayList<>();
-
-    private final Animation animation = new Animation(200, true);
 
     public Frame(float x, float y, float width, float barHeight, Category category) {
         this.x = x;
@@ -148,7 +146,7 @@ public class Frame {
     public void mouseReleased(int mouseX, int mouseY, int mouseButton) {
         if (animation.getAnimationFactor() == 1) {
             for (Component component : components) {
-                    component.mouseReleased(mouseX, mouseY, mouseButton);
+                component.mouseReleased(mouseX, mouseY, mouseButton);
             }
         }
     }

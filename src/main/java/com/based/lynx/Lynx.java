@@ -15,9 +15,13 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 public class Lynx {
     public static final String name = "Lynx";
     public static final String version = "1.0.1";
+    public static final EventHandler EVENT_MANAGER;
     public static ModuleManager moduleManager;
     public static CommandManager commandManager;
-    public static final EventHandler EVENT_MANAGER;
+
+    static {
+        EVENT_MANAGER = new EventHandler();
+    }
 
     public static void sendMessage(String string) {
         if (Minecraft.getMinecraft().ingameGUI != null || Minecraft.getMinecraft().player == null) {
@@ -32,9 +36,5 @@ public class Lynx {
         Config.loadConfig();
         Runtime.getRuntime().addShutdownHook(new Config());
         MinecraftForge.EVENT_BUS.register(new EventHandler());
-    }
-
-    static {
-        EVENT_MANAGER = new EventHandler();
     }
 }
