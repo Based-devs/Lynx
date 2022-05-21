@@ -17,11 +17,31 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class Jesus extends Module {
 
+    private static final AxisAlignedBB WATER_WALK_AA = new AxisAlignedBB(0.D, 0.D, 0.D, 1.D, 0.99D, 1.D);
+
     public Jesus() {
         super("Jesus", "", Category.MOVEMENT);
     }
 
-    private static final AxisAlignedBB WATER_WALK_AA = new AxisAlignedBB(0.D, 0.D, 0.D, 1.D, 0.99D, 1.D);
+    private static boolean isAboveLand(Entity entity) {
+        if (entity == null) return false;
+
+        double y = entity.posY - 0.01;
+
+        for (int x = MathHelper.floor(entity.posX); x < MathHelper.ceil(entity.posX); x++)
+            for (int z = MathHelper.floor(entity.posZ); z < MathHelper.ceil(entity.posZ); z++) {
+                BlockPos pos = new BlockPos(x, MathHelper.floor(y), z);
+
+                if (Wrapper.getWorld().getBlockState(pos).isFullBlock())
+                    return true;
+            }
+
+        return false;
+    }
+
+    private static boolean isAboveBlock(Entity entity, BlockPos pos) {
+        return entity.posY >= pos.getY();
+    }
 
     @Override
     public void onUpdate() {
@@ -58,26 +78,6 @@ public class Jesus extends Module {
                 // if (ticks == 0) ((CPacketPlayer) event.getPacket()).y += 0.02D;
             }
         }
-    }
-
-    private static boolean isAboveLand(Entity entity) {
-        if (entity == null) return false;
-
-        double y = entity.posY - 0.01;
-
-        for (int x = MathHelper.floor(entity.posX); x < MathHelper.ceil(entity.posX); x++)
-            for (int z = MathHelper.floor(entity.posZ); z < MathHelper.ceil(entity.posZ); z++) {
-                BlockPos pos = new BlockPos(x, MathHelper.floor(y), z);
-
-                if (Wrapper.getWorld().getBlockState(pos).isFullBlock())
-                    return true;
-            }
-
-        return false;
-    }
-
-    private static boolean isAboveBlock(Entity entity, BlockPos pos) {
-        return entity.posY >= pos.getY();
     }
 
 }

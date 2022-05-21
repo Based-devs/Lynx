@@ -19,14 +19,14 @@ public class Config
     private static final String SETTINGS = "Settings.JSON";
     private static final String BINDS = "Binds.JSON";
 
-    @Override
-    public void run() {
-
-    }
-
     public static void loadConfig() {
         if (!mainFolder.exists()) {
             return;
         }
+    }
+
+    @Override
+    public void run() {
+
     }
 }

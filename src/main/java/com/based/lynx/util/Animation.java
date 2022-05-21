@@ -31,6 +31,7 @@ public class Animation {
 
     /**
      * Gets the animation length (0 to 1)
+     *
      * @return The animation length (0 to 1)
      */
     public float getAnimationFactor() {
@@ -47,6 +48,7 @@ public class Animation {
 
     /**
      * Gets the initial state
+     *
      * @return The initial state
      */
     public boolean getState() {
@@ -55,15 +57,14 @@ public class Animation {
 
     /**
      * Sets the state
+     *
      * @param expand Expand or retract
      */
     public void setState(boolean expand) {
         if (expand) {
             currentState = State.EXPANDING;
             initialState = true;
-        }
-
-        else {
+        } else {
             currentState = State.RETRACTING;
         }
 
@@ -73,6 +74,7 @@ public class Animation {
 
     /**
      * Sets the state (no animation)
+     *
      * @param expand Expand or retract
      */
     public void setStateHard(boolean expand) {
@@ -82,9 +84,7 @@ public class Animation {
 
             // reset time
             currentStateStart = System.currentTimeMillis();
-        }
-
-        else {
+        } else {
             previousState = State.RETRACTING;
             currentState = State.RETRACTING;
             initialState = false;

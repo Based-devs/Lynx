@@ -3,6 +3,7 @@ package com.based.lynx.module;
 import com.based.lynx.setting.Setting;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -13,9 +14,8 @@ public abstract class Module {
     private final Category category;
     private final Setting<AtomicInteger> bind = new Setting<>("Keybind", new AtomicInteger(0))
             .setDescription("The keybind to toggle this module");
-    private boolean enabled;
-
     private final List<Setting<?>> settings = new ArrayList<>();
+    private boolean enabled;
 
     public Module(String name, String description, Category category) {
         this.name = name;
