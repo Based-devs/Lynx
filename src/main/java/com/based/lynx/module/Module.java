@@ -1,6 +1,9 @@
 package com.based.lynx.module;
 
 import com.based.lynx.setting.Setting;
+import com.based.lynx.util.notification.Notification;
+import com.based.lynx.util.notification.NotificationManager;
+import com.based.lynx.util.notification.NotificationType;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
 
